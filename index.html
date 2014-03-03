@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>My Bowling Statistics</title>
+	
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+		<script src="js/main.js"></script>
+	</head>
+	
+	<body>
+		<section data-role="page" id="home">
+			<header data-role="header" data-position="fixed">
+				<h1>My Bowling Statistics</h1>
+			</header>
+			
+			<div data-role="content">
+					<a href="#dialog" id="add" data-rel="dialog" data-role="button" data-icon="plus" data-iconpos="right" data-theme="a">
+						New Game
+					</a>
+						<ol data-role="listview" id="bowl_list" data-filter="true" >
+							
+						</ol>
+			</div>
+			<div>
+				<p id="logger"></p>
+			</div>
+			
+			<script>PullData();</script>
+			<footer data-role="footer" data-position="fixed">
+				<h1>Gabriel Tay Copyright</h1>
+			</footer>
+		</section>
+		
+		<section data-role="page" id="dialog">
+			<header data-role="header">
+				<h1>New Game</h1>
+			</header>
+			<form class="ui-field-contain">
+    			<label for="scoreinput">Score:</label>
+    			<input name="scoreinput" id="scoreinput" data-clear-btn="true" placeholder="Your score" value="" type="number" pattern="[0-9]*" />
+			</form>
+			
+			<div class="ui-field-contain">
+    			<label for="dateinput">Date:</label>
+    			<input name="dateinput" id="dateinput" data-clear-btn="true" value="" type="date"/>
+    			<script>alert(new Date().toLocaleFormat("%Y-%m-%d"));$("#dateinput").val(new Date().toLocaleFormat("%Y-%m-%d"));</script>
+			</div>
+			
+			</div>
+				<a href="#" onclick="InsertData();" id="submit" data-role="button" data-theme="a">
+					Confirm
+				</a>
+			</div>
+			
+			<footer data-role="footer" data-position="fixed">
+					<h4><span id="current_date"></span></h4>
+					<script>$("#current_date").text(new Date().toLocaleDateString());</script>
+			</footer>
+		</section>
+	</body>
+</html>
