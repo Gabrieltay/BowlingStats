@@ -16,7 +16,7 @@ function onDeviceReady(){
 }
 
 function creatDB(tx){
-//	tx.executeSql("DROP TABLE IF EXISTS blist");
+	//tx.executeSql("DROP TABLE IF EXISTS blist");
 	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar)');
 }
 

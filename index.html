@@ -12,9 +12,13 @@
 	</head>
 	
 	<body>
-		<section data-role="page" id="home">
+		<div data-role="page" id="home">
+			<div data-role="panel" id="setting" data-position="right" data-theme="a" data-display="push"></div>
+			
 			<header data-role="header" data-position="fixed">
+				<a data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
 				<h1>My Bowling Statistics</h1>
+				<a data-iconpos="notext" href="#setting" data-role="button" data-icon="flat-menu"></a>
 			</header>
 			
 			<div data-role="content">
@@ -33,7 +37,9 @@
 			<footer data-role="footer" data-position="fixed">
 				<h1>Gabriel Tay Copyright 2014</h1>
 			</footer>
-		</section>
+			
+			
+		</div>
 		
 		<section data-role="page" id="dialog">
 			<header data-role="header">
