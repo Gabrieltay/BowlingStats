@@ -7,15 +7,24 @@
 		<title>My Bowling Statistics</title>
 	
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
+		<link rel="stylesheet" href="src/jquery.swipeButton.css" />
 		<!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />-->
-		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-		<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
 		<script src="js/main.js"></script>
+		<script src="js/jquery.swipeButton-1.2.1.min.js"></script>
+		<!--<script id="panel-init">
+		$(function() {
+			$( "body>[data-role='panel']" ).panel();
+		});
+	</script>-->
 	</head>
 	
 	<body>
-		<div data-role="page" id="home">
-			<div data-role="panel" id="setting" data-position="right" data-theme="a" data-display="overlay"></div>
+		<section data-role="page" id="home" class="ui-responsive-panel">
+			<!--<div data-role="panel" id="setting" data-position="right" data-theme="a" data-display="overlay">
+			
+			</div>-->
 			
 			<header data-role="header" data-position="fixed">
 				<a data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
@@ -27,9 +36,12 @@
 					<a href="#dialog" id="add" data-rel="dialog" data-role="button" data-icon="plus" data-iconpos="right" data-theme="a">
 						New Game
 					</a>
-						<ol data-role="listview" id="bowl_list" data-filter="true" >
-							
-						</ol>
+					<a href="#" onclick="ClearData();" id="clear" data-role="button" data-theme="a">
+					Clear All Data
+					</a>
+					<ol data-role="listview" id="bowl_list" data-filter="true" >
+					
+					</ol>
 			</div>
 			<div>
 				<p id="logger"></p>
@@ -39,10 +51,8 @@
 			<footer data-role="footer" data-position="fixed">
 				<h1>Gabriel Tay Copyright 2014</h1>
 			</footer>
+		</section>
 			
-			
-		</div>
-		
 		<section data-role="page" id="dialog">
 			<header data-role="header">
 				<h1>New Game</h1>
@@ -55,7 +65,7 @@
 			<div class="ui-field-contain">
     			<label for="dateinput">Date:</label>
     			<input name="dateinput" id="dateinput" data-clear-btn="true" value="" type="date"/>
-    			<script>alert(new Date().toLocaleFormat("%Y-%m-%d"));$("#dateinput").val(new Date().toLocaleFormat("%Y-%m-%d"));</script>
+    			<script>$("#dateinput").val(new Date().toDateString());</script>
 			</div>
 			
 			</div>
@@ -66,8 +76,19 @@
 			
 			<footer data-role="footer" data-position="fixed">
 					<h4><span id="current_date"></span></h4>
-					<script>$("#current_date").text(new Date().toLocaleDateString());</script>
+					<script>$("#current_date").text(new Date().toDateString())</script>
 			</footer>
+		</section>
+		
+		<section data-role="page" id="date-data">
+			<header data-role="header" id="date-header">
+				<h1>hello</h1>
+			</header>
+			<div>
+			<ol data-role="listview" id="date_list" data-filter="false" >
+			</ol>
+				<a href="#" data-role="button" id="triggerMe">trigger swipe right</a>
+			</div>
 		</section>
 	</body>
 </html>
