@@ -5,27 +5,13 @@ const DBdisname = "listDB";
 const DBsize = 4000000;
 
 var  init = function () {
-	onDeviceReady();
-	$('#date_list li').swipeDelete({
-				btnTheme: 'e',
-				btnLabel: 'Delete',
-				btnClass: 'aSwipeButton',
-				click: function(e){
-					e.preventDefault();
-					var url = $(e.target).attr('href');
-					$(this).parents('li').slideUp();
-					$.post(url, function(data) {
-					
-					
-					 
-						console.log(data);
-					});
-				}
-			});
-
-			$('#triggerMe').on('click', function(){
-				$('#date_list li:nth-child(1)').trigger('swiperight')
-			});
+	onDeviceReady();		
+	
+	new SwipeOut(document.getElementById("bowl_list"));
+	new SwipeOut(document.getElementById("date_list"));
+	
+	$("#date_list").on("delete", "li", RemoveGame);
+	$("#bowl_list").on("delete", "li", RemoveDate);
 };
 
 $(document).ready(init);
@@ -52,16 +38,41 @@ function GetData(dateValue){
 	$("#date_list").empty();
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
-	tx.executeSql('SELECT score FROM blist WHERE date="'+dateString+'"',[],function(tx,results){
+	tx.executeSql('SELECT id, score FROM blist WHERE date="'+dateString+'"',[],function(tx,results){
 		var len = results.rows.length;
 		for(var i = 0;i<len;i++){
+			var id = results.rows.item(i).id;
 			var score = results.rows.item(i).score;
-			var string = '<li id="all_'+i+'"><a href="#" data-rel="dialog" class="ui-link-inherit"> Game '+(i+1)+' - '+score+'</a></li>';		
+			var string = '<li id="all_'+id+'"><a id="aa" href="#" data-swipeurl="#" class="ui-link-inherit"> Game '+(i+1)+' - '+score+'</a></li>';
 			$("#date_list").append(string);
 		};
 		freshList("date_list");
+  
 	});
 	});
+}
+
+function RemoveGame(e)
+{
+	var id = $(e.currentTarget).attr('id').substring(4);
+	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
+	db.transaction(function (tx) {
+	tx.executeSql('DELETE FROM blist WHERE id="' +id+ '"');});
+	PullData();
+//	alert("CLICKED " + $(e.currentTarget).attr('id')).removeClass().addClass("click");
+}
+
+function RemoveDate(e)
+{
+	var first = $('a', e.currentTarget).text().indexOf('[');
+	var last = $('a', e.currentTarget).text().indexOf(']');
+	var rawString = $('a', e.currentTarget).text().substring((first+1),last);
+	var date = new Date(rawString);
+	var dateString = dateToYMD(date);
+
+	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
+	db.transaction(function (tx) {
+	tx.executeSql('DELETE FROM blist WHERE date="'+dateString+'"');});
 }
 
 function ClearData(){
