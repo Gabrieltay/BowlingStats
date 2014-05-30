@@ -13,5 +13,5 @@
 	<preference name="orientation" value="portrait" />
 	<preference name="fullscreen" value="true" />
 	
-	<icon src=images/"icon.png" gap:role="default" />
+	<icon src=images/"icon.png"/>
 </widget>
