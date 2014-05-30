@@ -22,13 +22,19 @@ function transactionDB(query){
 } 
 
 function onDeviceReady(){
-	//var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
-    //db.transaction(creatDB,errorDB,successDB);
 	transactionDB(CreatQuery);
 }
 
 function InsertData(){
 	transactionDB(InsertQuery);
+}
+
+function ClearData(){
+	transactionDB(ClearQuery);
+}
+
+function PullData(){
+	transactionDB(PullQuery);
 }
 
 function GetData(dateValue){
@@ -43,11 +49,10 @@ function GetData(dateValue){
 		for(var i = 0;i<len;i++){
 			var id = results.rows.item(i).id;
 			var score = results.rows.item(i).score;
-			var string = '<li id="all_'+id+'"><a id="aa" href="#" data-swipeurl="#" class="ui-link-inherit"> Game '+(i+1)+' - '+score+'</a></li>';
+			var string = '<li id="all_'+id+'"><a href="#"> Game '+(i+1)+' - '+score+'</a></li>';
 			$("#date_list").append(string);
 		};
 		freshList("date_list");
-  
 	});
 	});
 }
@@ -75,13 +80,7 @@ function RemoveDate(e)
 	tx.executeSql('DELETE FROM blist WHERE date="'+dateString+'"');});
 }
 
-function ClearData(){
-	transactionDB(ClearQuery);
-}
 
-function PullData(){
-	transactionDB(PullQuery);
-}
 
 function CreatQuery(tx){
 	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar)');
