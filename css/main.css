@@ -5,7 +5,3 @@
 	background-position:center; 
 	background-size: 100% 100%;
 }
-
-.ui-page {
-    -webkit-backface-visibility: hidden;
-}
