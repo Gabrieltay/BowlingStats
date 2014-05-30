@@ -44,7 +44,7 @@ function GetData(dateValue){
 	$("#date_list").empty();
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
-	tx.executeSql('SELECT id, score FROM blist WHERE date="'+dateString+'"',[],function(tx,results){
+	tx.executeSql('SELECT id, score FROM blist WHERE date="'+dateString+'" ORDER BY id',[],function(tx,results){
 		var len = results.rows.length;
 		for(var i = 0;i<len;i++){
 			var id = results.rows.item(i).id;
@@ -107,14 +107,13 @@ function ClearQuery(tx){
 function PullQuery(tx){
 	$("#bowl_list").empty();
 	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar)');
-	tx.executeSql("SELECT AVG(score) AS a, COUNT(score) AS c, date FROM blist GROUP BY date",[],function(tx,results){
+	tx.executeSql("SELECT AVG(score) AS a, COUNT(score) AS c, date FROM blist GROUP BY date ORDER BY date DESC",[],function(tx,results){
 		var len = results.rows.length;
 			for(var i = 0;i<len;i++){
 				var dateString = results.rows.item(i).date;
-				var avg = results.rows.item(i).a;
+				var avg = Math.floor(results.rows.item(i).a);
 				var count = results.rows.item(i).c;
 				var date = new Date(dateString);
-				//var string = '<li id="all_'+i+'"><a href="#all_content_p" data-rel="popup" onclick="getContent('+i+');" class="ui-link-inherit"> ['+date+'] '+count+' games Avg - '+avg+'</a></li>';
 				var string = '<li id="all_'+i+'"><a href="#date-data" data-rel="dialog" onclick="GetData('+date.valueOf()+');" class="ui-link-inherit"> ['+date.toDateString()+'] '+count+' games Avg - '+avg+'</a></li>';		
 				$("#bowl_list").append(string);
 			};
