@@ -64,7 +64,6 @@ function RemoveGame(e)
 	db.transaction(function (tx) {
 	tx.executeSql('DELETE FROM blist WHERE id="' +id+ '"');});
 	PullData();
-//	alert("CLICKED " + $(e.currentTarget).attr('id')).removeClass().addClass("click");
 }
 
 function RemoveDate(e)
@@ -79,8 +78,6 @@ function RemoveDate(e)
 	db.transaction(function (tx) {
 	tx.executeSql('DELETE FROM blist WHERE date="'+dateString+'"');});
 }
-
-
 
 function CreatQuery(tx){
 	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar)');
