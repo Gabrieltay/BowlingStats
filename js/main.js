@@ -114,7 +114,7 @@ function PullQuery(tx){
 				var avg = Math.floor(results.rows.item(i).a);
 				var count = results.rows.item(i).c;
 				var date = new Date(dateString);
-				var string = '<li id="all_'+i+'"><a href="#date-data" data-rel="dialog" onclick="GetData('+date.valueOf()+');" class="ui-link-inherit"> ['+date.toDateString()+'] '+count+' games Avg - '+avg+'</a></li>';		
+				var string = '<li id="all_'+i+'"><a href="#date-data" data-rel="dialog" onclick="GetData('+date.valueOf()+');" class="ui-link-inherit"> ['+dateToYMD(date)+'] '+count+' games Avg - '+avg+'</a></li>';		
 				$("#bowl_list").append(string);
 			};
 		freshList("bowl_list");
