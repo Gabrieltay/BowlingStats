@@ -10,7 +10,8 @@
         PhoneGap Bowling Stats
     </description>
 
-	<preference name="orientation"      value="portrait" />
+	<preference name="orientation" value="portrait" />
+	<preference name="fullscreen" value="true" />
 	
 	<icon src=images/"icon.png" gap:role="default" />
 </widget>
