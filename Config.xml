@@ -13,5 +13,9 @@
 	<preference name="orientation" value="portrait" />
 	<preference name="fullscreen" value="true" />
 	
-	<icon src="icon.png"/>
+	<icon src="res/icon.png"/>
+	<icon gap:platform="ios" height="57" src="res/icon/ios/icon-57.png" width="57" />
+    <icon gap:platform="ios" height="72" src="res/icon/ios/icon-72.png" width="72" />
+    <icon gap:platform="ios" height="114" src="res/icon/ios/icon-57-2x.png" width="114" />
+    <icon gap:platform="ios" height="144" src="res/icon/ios/icon-72-2x.png" width="144" />
 </widget>
