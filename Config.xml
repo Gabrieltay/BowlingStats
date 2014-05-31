@@ -11,7 +11,7 @@
     </description>
 
 	<preference name="orientation" value="portrait" />
-	<preference name="fullscreen" value="true" />
+	<preference name="fullscreen" value="false" />
 	
 	<icon src="res/icon.png"/>
 	<icon gap:platform="ios" height="57" src="res/icon/ios/icon-57.png" width="57" />
