@@ -3,6 +3,7 @@ const DBname = "bowlList";
 const DBversion = "1,0";
 const DBdisname = "listDB";
 const DBsize = 4000000;
+var mId = 0;
 
 var  init = function () {
 	onDeviceReady();		
@@ -66,9 +67,8 @@ function GetImage(id){
 			var file = results.rows.item(0).file;
 			if ( file == "NULL"){
 				alert("No Image");
-				var filepath = GetPhoto();
-				alert("my " + filepath)
-				tx.executeSql('UPDATE blist SET file="' +filepath+ '" WHERE id="' +id+ '"');
+				mId = id;
+				navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.PHOTOLIBRARY , destinationType: Camera.DestinationType.FILE_URI});				
 			}
 			else {
 				alert(results.rows.item(0).file);
@@ -167,7 +167,11 @@ function dateToYMD(date) {
 // onSuccess: Get a snapshot of the current acceleration
 //
 function onURISuccess(imageURI) {
-	alert('photo URI success ' + imageURI)
+	alert(mId + 'photo URI success ' + imageURI)
+	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
+	db.transaction(function (tx) {
+		tx.executeSql('UPDATE blist SET file="' +filepath+ '" WHERE id="' +id+ '"');
+	});
 	//document.getElementById('myImage1').src = imageURI;
 }
 
@@ -182,8 +186,4 @@ function onDataSuccess(imageData) {
 	//document.getElementById('myImage2').src = "data:image/jpeg;base64," + imageData;
 	// var image = document.getElementById('myImage1');
 	// image.src = imageURI;
-}
-
-function GetPhoto(){
-	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.PHOTOLIBRARY , destinationType: Camera.DestinationType.FILE_URI});
 }
