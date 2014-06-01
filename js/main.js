@@ -169,6 +169,7 @@ function onURISuccess(imageURI) {
 }
 
 function PhotoExists(imageURI){
+	alert(imageURI);
 	var reader = new FileReader();
 	var fileSource = imageURI;
 	reader.onloadend = function(evt) {
