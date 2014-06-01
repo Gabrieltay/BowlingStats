@@ -49,12 +49,28 @@ function GetData(dateValue){
 		for(var i = 0;i<len;i++){
 			var id = results.rows.item(i).id;
 			var score = results.rows.item(i).score;
-			var string = '<li id="all_'+id+'"><a href="#"> Game '+(i+1)+' - '+score+'</a></li>';
+			var string = '<li id="all_'+id+'" data-icon="flat-camera" data-iconpos="right"><a href="#" onclick="GetImage('+id+');"> Game '+(i+1)+' - '+score+'</a></li>';
 			$("#date_list").append(string);
 		};
 		freshList("date_list");
 	});
 	});
+}
+
+function GetImage(id){
+	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
+	db.transaction(function (tx) {
+		tx.executeSql('SELECT file FROM blist WHERE id="'+id+'"',[],function(tx,results){
+		var len = results.rows.length;
+		if ( len == 0)
+		{
+			alert("No Image");
+			tx.executeSql('UPDATE blist SET file="hello world" WHERE id="' +id+ '"');
+		} else {
+			alert(results.rows.item(0).file);
+		}	
+		});
+		});
 }
 
 function RemoveGame(e)
@@ -80,7 +96,7 @@ function RemoveDate(e)
 }
 
 function CreatQuery(tx){
-	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar)');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar)');
 }
 
 function InsertQuery(tx){
@@ -106,7 +122,7 @@ function ClearQuery(tx){
 
 function PullQuery(tx){
 	$("#bowl_list").empty();
-	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar)');
+	CreatQuery(tx);
 	tx.executeSql("SELECT AVG(score) AS a, COUNT(score) AS c, date FROM blist GROUP BY date ORDER BY date DESC",[],function(tx,results){
 		var len = results.rows.length;
 			for(var i = 0;i<len;i++){
