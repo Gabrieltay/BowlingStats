@@ -50,7 +50,7 @@ function GetData(dateValue){
 		for(var i = 0;i<len;i++){
 			var id = results.rows.item(i).id;
 			var score = results.rows.item(i).score;
-			var string = '<li id="all_'+id+'" data-icon="flat-camera" data-iconpos="right"><a href="#" onclick="GetImage('+id+');"> Game '+(i+1)+' - '+score+'</a></li>';
+			var string = '<li id="all_'+id+'" data-icon="flat-camera" data-iconpos="right"><a href="#photo-data" data-rel="dialog" onclick="GetImage('+id+');"> Game '+(i+1)+' - '+score+'</a></li>';
 			$("#date_list").append(string);
 		};
 		freshList("date_list");
@@ -66,16 +66,42 @@ function GetImage(id){
 		if ( len > 0) {
 			var file = results.rows.item(0).file;
 			if ( file == "NULL"){
-				alert("No Image");
 				mId = id;
-				navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.PHOTOLIBRARY , destinationType: Camera.DestinationType.FILE_URI});				
+				var string = '<div class="ui-block-a"><a href="#" data-role="button" data-theme="c" onclick="TakePhoto()"><img src="images/camera.png"></a></div>' + 
+					'<div class="ui-block-b"><a href="#" data-role="button" data-theme="c" onclick="FindPhoto()"><img src="images/library.png"></a></div>';	
+				$("#photo-content").html(string);			
+				$('#photo-content').trigger("create");		
 			}
 			else {
-				alert(results.rows.item(0).file);
+				var string = '<img id="game-photo" src="' +file+ '"></img>';
+				//var string = '<img id="game-photo" src="../images/bg.png"></img>';
+				$("#photo-content").html(string);			
+				$('#photo-content').trigger("create");		
 			}
 		}
 		});
 		});
+}
+
+function FindPhoto(){
+	alert("find");
+	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.PHOTOLIBRARY , destinationType: Camera.DestinationType.FILE_URI});	
+}
+
+function TakePhoto(){
+	alert("take");
+	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.CAMERA , destinationType: Camera.DestinationType.FILE_URI, saveToPhotoAlbum: true });
+}
+
+function onURISuccess(imageURI) {
+	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
+	db.transaction(function (tx) {
+		tx.executeSql('UPDATE blist SET file="' +imageURI+ '" WHERE id="' +mId+ '"');
+	});
+	var string = '<img id="game-photo" src="' +file+ '"></img>';
+	$("#photo-content").html(string);			
+	$('#photo-content').trigger("create");		
+	//document.getElementById('myImage1').src = imageURI;
 }
 
 function RemoveGame(e)
@@ -164,26 +190,10 @@ function dateToYMD(date) {
     return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
 }
 
-// onSuccess: Get a snapshot of the current acceleration
-//
-function onURISuccess(imageURI) {
-	alert(mId + 'photo URI success ' + imageURI)
-	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
-	db.transaction(function (tx) {
-		tx.executeSql('UPDATE blist SET file="' +imageURI+ '" WHERE id="' +mId+ '"');
-	});
-	//document.getElementById('myImage1').src = imageURI;
-}
 
-// onError: Failed to get the acceleration
-//
+
+
 function onCameraError(message) {
-	alert('Failed because: ' + message)
+	//alert('Failed because: ' + message)
 }
 
-function onDataSuccess(imageData) {
-	alert('photo data success' + imageData)
-	//document.getElementById('myImage2').src = "data:image/jpeg;base64," + imageData;
-	// var image = document.getElementById('myImage1');
-	// image.src = imageURI;
-}
