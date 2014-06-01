@@ -184,6 +184,6 @@ function onDataSuccess(imageData) {
 	// image.src = imageURI;
 }
 
-function getPhoto(){
+function GetPhoto(){
 	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.PHOTOLIBRARY , destinationType: Camera.DestinationType.FILE_URI});
 }
