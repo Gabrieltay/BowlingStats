@@ -62,6 +62,7 @@ function GetImage(id){
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT file FROM blist WHERE id="'+id+'"',[],function(tx,results){
 		var len = results.rows.length;
+		alert(id +' - '+ len)
 		if ( len == 0)
 		{
 			alert("No Image");
@@ -108,7 +109,7 @@ function InsertQuery(tx){
 		alert("Empty Fields！");
 		return;}
 
-	tx.executeSql('INSERT INTO blist (score,date, file) VALUES ("'+score+'","'+dateString+'", "Bye Bye")',[],function(tx,results){
+	tx.executeSql('INSERT INTO blist (score,date,file) VALUES ("'+score+'","'+dateString+'", "Bye Bye")',[],function(tx,results){
 	$("#dialog").dialog('close');
 	},errorDB);
 	PullQuery(tx);
@@ -117,6 +118,8 @@ function InsertQuery(tx){
 function ClearQuery(tx){
 	$("#bowl_list").empty();
 	tx.executeSql('DELETE FROM blist');
+	tx.executeSql('DROP TABLE blist');
+	CreatQuery(tx);
 	freshList("bowl_list");
 }
 
