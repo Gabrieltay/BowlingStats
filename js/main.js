@@ -169,11 +169,11 @@ function onURISuccess(imageURI) {
 }
 
 function PhotoExists(imageURI){
-	alert(imageURI);
+	
 	var reader = new FileReader();
 	var fileSource = imageURI;
 	reader.onloadend = function(evt) {
-
+alert(imageURI);
     if(evt.target.result == null) {
        // If you receive a null value the file doesn't exists
        alert("doesnt exists");
