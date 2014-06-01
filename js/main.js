@@ -108,7 +108,7 @@ function InsertQuery(tx){
 		alert("Empty Fields！");
 		return;}
 
-	tx.executeSql('INSERT INTO blist (score,date) VALUES ("'+score+'","'+dateString+'")',[],function(tx,results){
+	tx.executeSql('INSERT INTO blist (score,date, file) VALUES ("'+score+'","'+dateString+'", "Bye Bye")',[],function(tx,results){
 	$("#dialog").dialog('close');
 	},errorDB);
 	PullQuery(tx);
