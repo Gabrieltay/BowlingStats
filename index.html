@@ -25,6 +25,33 @@
 		<script src="js/main.js"></script>
 		<script src="js/hammer.js"></script>
 		<script src="js/swipeout.js"></script>
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			
+			// onSuccess: Get a snapshot of the current acceleration
+			//
+
+			function onURISuccess(imageURI) {
+				alert('photo URI success ' + imageURI)
+				//document.getElementById('myImage1').src = imageURI;
+
+			}
+
+			// onError: Failed to get the acceleration
+			//
+			function onCameraError(message) {
+				alert('Failed because: ' + message)
+			}
+
+			function onDataSuccess(imageData) {
+				alert('photo data success' + imageData)
+				//document.getElementById('myImage2').src = "data:image/jpeg;base64," + imageData;
+				// var image = document.getElementById('myImage1');
+				// image.src = imageURI;
+
+			}
+
+		</script>
 	</head>
 	
 	<body>
@@ -39,6 +66,12 @@
 				<a href="#dialog" id="add" data-rel="dialog" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a">New Game</a>
 				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 				<a href="#" onclick="ClearData();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="d">Clear All Data</a></div>
+				<input type=button value="Picture as URI" onclick="{
+
+			navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.PHOTOLIBRARY , destinationType: Camera.DestinationType.FILE_URI});
+
+			}">
+				
 			</div>
 
 			<script>PullData();</script>
