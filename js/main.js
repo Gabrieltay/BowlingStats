@@ -84,12 +84,10 @@ function GetImage(id){
 }
 
 function FindPhoto(){
-	alert("find");
 	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.PHOTOLIBRARY , destinationType: Camera.DestinationType.FILE_URI});	
 }
 
 function TakePhoto(){
-	alert("take");
 	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.CAMERA , destinationType: Camera.DestinationType.FILE_URI, saveToPhotoAlbum: true });
 }
 
@@ -98,7 +96,7 @@ function onURISuccess(imageURI) {
 	db.transaction(function (tx) {
 		tx.executeSql('UPDATE blist SET file="' +imageURI+ '" WHERE id="' +mId+ '"');
 	});
-	var string = '<img id="game-photo" src="' +file+ '"></img>';
+	var string = '<img id="game-photo" src="' +imageURI+ '"></img>';
 	$("#photo-content").html(string);			
 	$('#photo-content').trigger("create");		
 	//document.getElementById('myImage1').src = imageURI;
