@@ -66,7 +66,9 @@ function GetImage(id){
 			var file = results.rows.item(0).file;
 			if ( file == "NULL"){
 				alert("No Image");
-				tx.executeSql('UPDATE blist SET file="hello world" WHERE id="' +id+ '"');
+				var filepath = GetPhoto();
+				alert("my " + filepath)
+				tx.executeSql('UPDATE blist SET file="' +filepath+ '" WHERE id="' +id+ '"');
 			}
 			else {
 				alert(results.rows.item(0).file);
@@ -160,4 +162,28 @@ function dateToYMD(date) {
     var m = date.getMonth() + 1;
     var y = date.getFullYear();
     return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+}
+
+// onSuccess: Get a snapshot of the current acceleration
+//
+function onURISuccess(imageURI) {
+	alert('photo URI success ' + imageURI)
+	//document.getElementById('myImage1').src = imageURI;
+}
+
+// onError: Failed to get the acceleration
+//
+function onCameraError(message) {
+	alert('Failed because: ' + message)
+}
+
+function onDataSuccess(imageData) {
+	alert('photo data success' + imageData)
+	//document.getElementById('myImage2').src = "data:image/jpeg;base64," + imageData;
+	// var image = document.getElementById('myImage1');
+	// image.src = imageURI;
+}
+
+function getPhoto(){
+	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.PHOTOLIBRARY , destinationType: Camera.DestinationType.FILE_URI});
 }
