@@ -132,8 +132,6 @@ function GetImage(id){
 		var len = results.rows.length;
 		if ( len > 0) {
 			var file = results.rows.item(0).file;
-			window.resolveLocalFileSystemURI(imageURI, PhotoExists, PhotoNoExists);
-			PhotoExists(file);
 			if ( file == "NULL"){
 				mId = id;
 				var string = '<div class="ui-block-a"><a href="#" data-role="button" data-theme="c" onclick="TakePhoto()"><img src="images/camera.png"></a></div>' + 
