@@ -170,7 +170,7 @@ function onURISuccess(imageURI) {
 	alert(mId + 'photo URI success ' + imageURI)
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
-		tx.executeSql('UPDATE blist SET file="' +filepath+ '" WHERE id="' +id+ '"');
+		tx.executeSql('UPDATE blist SET file="' +imageURI+ '" WHERE id="' +mId+ '"');
 	});
 	//document.getElementById('myImage1').src = imageURI;
 }
