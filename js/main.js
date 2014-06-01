@@ -34,11 +34,47 @@ function ClearData(){
 	transactionDB(ClearQuery);
 }
 
-function PullData(){
-	transactionDB(PullQuery);
+function RefreshData(){
+	transactionDB(RefreshQuery);
 }
 
-function GetData(dateValue){
+function CreatQuery(tx){
+	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar)');
+}
+
+function RefreshQuery(tx){
+	$("#bowl_list").empty();
+	CreatQuery(tx);
+	tx.executeSql("SELECT AVG(score) AS a, COUNT(score) AS c, date FROM blist GROUP BY date ORDER BY date DESC",[],function(tx,results){
+		var len = results.rows.length;
+			for(var i = 0;i<len;i++){
+				var dateString = results.rows.item(i).date;
+				var avg = Math.floor(results.rows.item(i).a);
+				var count = results.rows.item(i).c;
+				var date = new Date(dateString);
+				var string = '<li id="all_'+i+'"><a href="#date-data" data-rel="dialog" onclick="DateQuery('+date.valueOf()+');" class="ui-link-inherit"> ['+dateToYMD(date)+'] '+count+' games Avg - '+avg+'</a></li>';		
+				$("#bowl_list").append(string);
+			};
+		freshList("bowl_list");
+	},errorDB);
+}
+
+function InsertQuery(tx){
+	var score = $("#scoreinput").val();
+	var date = $("#dateinput").val();
+	var dateString = new String(date);
+
+	if(score == '' || date == '') {
+		alert("Empty Fields！");
+		return;}
+
+	tx.executeSql('INSERT INTO blist (score,date,file) VALUES ("'+score+'","'+dateString+'", "NULL")',[],function(tx,results){
+	$("#dialog").dialog('close');
+	},errorDB);
+	RefreshQuery(tx);
+}
+
+function DateQuery(dateValue){
 	var date = new Date(dateValue);
 	var dateString = dateToYMD(date);
 	$('#date-header > h1').text(date.toDateString());
@@ -58,6 +94,37 @@ function GetData(dateValue){
 	});
 }
 
+function ClearQuery(tx){
+	$("#bowl_list").empty();
+	tx.executeSql('DELETE FROM blist');
+	tx.executeSql('DROP TABLE blist');
+	CreatQuery(tx);
+	freshList("bowl_list");
+}
+
+function RemoveGame(e)
+{
+	var id = $(e.currentTarget).attr('id').substring(4);
+	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
+	db.transaction(function (tx) {
+	tx.executeSql('DELETE FROM blist WHERE id="' +id+ '"');});
+	RefreshData();
+}
+
+function RemoveDate(e)
+{
+	var first = $('a', e.currentTarget).text().indexOf('[');
+	var last = $('a', e.currentTarget).text().indexOf(']');
+	var rawString = $('a', e.currentTarget).text().substring((first+1),last);
+	var date = new Date(rawString);
+	var dateString = dateToYMD(date);
+
+	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
+	db.transaction(function (tx) {
+	tx.executeSql('DELETE FROM blist WHERE date="'+dateString+'"');});
+}
+
+
 function GetImage(id){
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
@@ -65,6 +132,7 @@ function GetImage(id){
 		var len = results.rows.length;
 		if ( len > 0) {
 			var file = results.rows.item(0).file;
+			PhotoExists(file);
 			if ( file == "NULL"){
 				mId = id;
 				var string = '<div class="ui-block-a"><a href="#" data-role="button" data-theme="c" onclick="TakePhoto()"><img src="images/camera.png"></a></div>' + 
@@ -74,7 +142,6 @@ function GetImage(id){
 			}
 			else {
 				var string = '<img id="game-photo" src="' +file+ '"></img>';
-				//var string = '<img id="game-photo" src="../images/bg.png"></img>';
 				$("#photo-content").html(string);			
 				$('#photo-content').trigger("create");		
 			}
@@ -99,73 +166,21 @@ function onURISuccess(imageURI) {
 	var string = '<img id="game-photo" src="' +imageURI+ '"></img>';
 	$("#photo-content").html(string);			
 	$('#photo-content').trigger("create");		
-	//document.getElementById('myImage1').src = imageURI;
 }
 
-function RemoveGame(e)
-{
-	var id = $(e.currentTarget).attr('id').substring(4);
-	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
-	db.transaction(function (tx) {
-	tx.executeSql('DELETE FROM blist WHERE id="' +id+ '"');});
-	PullData();
-}
+function PhotoExists(imageURI){
+	var reader = new FileReader();
+	var fileSource = imageURI;
+	reader.onloadend = function(evt) {
 
-function RemoveDate(e)
-{
-	var first = $('a', e.currentTarget).text().indexOf('[');
-	var last = $('a', e.currentTarget).text().indexOf(']');
-	var rawString = $('a', e.currentTarget).text().substring((first+1),last);
-	var date = new Date(rawString);
-	var dateString = dateToYMD(date);
-
-	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
-	db.transaction(function (tx) {
-	tx.executeSql('DELETE FROM blist WHERE date="'+dateString+'"');});
-}
-
-function CreatQuery(tx){
-	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar)');
-}
-
-function InsertQuery(tx){
-	var score = $("#scoreinput").val();
-	var date = $("#dateinput").val();
-	var dateString = new String(date);
-
-	if(score == '' || date == '') {
-		alert("Empty Fields！");
-		return;}
-
-	tx.executeSql('INSERT INTO blist (score,date,file) VALUES ("'+score+'","'+dateString+'", "NULL")',[],function(tx,results){
-	$("#dialog").dialog('close');
-	},errorDB);
-	PullQuery(tx);
-}
-
-function ClearQuery(tx){
-	$("#bowl_list").empty();
-	tx.executeSql('DELETE FROM blist');
-	tx.executeSql('DROP TABLE blist');
-	CreatQuery(tx);
-	freshList("bowl_list");
-}
-
-function PullQuery(tx){
-	$("#bowl_list").empty();
-	CreatQuery(tx);
-	tx.executeSql("SELECT AVG(score) AS a, COUNT(score) AS c, date FROM blist GROUP BY date ORDER BY date DESC",[],function(tx,results){
-		var len = results.rows.length;
-			for(var i = 0;i<len;i++){
-				var dateString = results.rows.item(i).date;
-				var avg = Math.floor(results.rows.item(i).a);
-				var count = results.rows.item(i).c;
-				var date = new Date(dateString);
-				var string = '<li id="all_'+i+'"><a href="#date-data" data-rel="dialog" onclick="GetData('+date.valueOf()+');" class="ui-link-inherit"> ['+dateToYMD(date)+'] '+count+' games Avg - '+avg+'</a></li>';		
-				$("#bowl_list").append(string);
-			};
-		freshList("bowl_list");
-	},errorDB);
+    if(evt.target.result == null) {
+       // If you receive a null value the file doesn't exists
+       alert("doesnt exists");
+    } else {
+    	alert("exists");
+        // Otherwise the file exists
+    }         
+};
 }
 
 function errorDB(err){
@@ -176,9 +191,8 @@ function successDB(){
 	//alert("Successful");	
 }
 
-function freshList(id){
-	var theid = "#"+id;
-	$(theid).listview("refresh");
+function onCameraError(message) {
+	//alert('Failed because: ' + message)
 }
 
 function dateToYMD(date) {
@@ -188,10 +202,14 @@ function dateToYMD(date) {
     return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
 }
 
-
-
-
-function onCameraError(message) {
-	//alert('Failed because: ' + message)
+function freshList(id){
+	var theid = "#"+id;
+	$(theid).listview("refresh");
 }
 
+function resetFields(){
+	$("#scoreinput").val("");
+	
+	$('#scoreinput').trigger("create");		
+	document.getElementById('dateinput').valueAsDate = new Date();
+}

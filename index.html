@@ -37,12 +37,12 @@
 			</header>
 			
 			<div data-role="content">
-				<a href="#dialog" id="add" data-rel="dialog" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a">New Game</a>
+				<a href="#dialog" id="add" data-rel="dialog" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
 				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 				<a href="#" onclick="ClearData();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="d">Clear All Data</a></div>
 			</div>
 
-			<script>PullData();</script>
+			<script>RefreshData();</script>
 			
 			<footer data-role="footer" data-position="fixed">
 				<h1>GT Copyright 2014</h1>
@@ -68,7 +68,6 @@
 					<div class="ui-field-contain">
 						<label for="dateinput">Date:</label>
 						<input type="date" name="date" id="dateinput" value="">
-						<script>$("#dateinput").val(new Date().toDateString());</script>
 					</div>
 			
 					<a href="#" onclick="InsertData();" id="submit" data-role="button" data-icon="flat-man" data-theme="g">Confirm</a>
