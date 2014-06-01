@@ -132,6 +132,7 @@ function GetImage(id){
 		var len = results.rows.length;
 		if ( len > 0) {
 			var file = results.rows.item(0).file;
+			window.resolveLocalFileSystemURI(imageURI, PhotoExists, PhotoNoExists);
 			PhotoExists(file);
 			if ( file == "NULL"){
 				mId = id;
@@ -168,20 +169,13 @@ function onURISuccess(imageURI) {
 	$('#photo-content').trigger("create");		
 }
 
-function PhotoExists(imageURI){
+function PhotoExists(entry){
 	
-	var reader = new FileReader();
-	var fileSource = imageURI;
-	reader.onloadend = function(evt) {
-alert(imageURI);
-    if(evt.target.result == null) {
-       // If you receive a null value the file doesn't exists
-       alert("doesnt exists");
-    } else {
-    	alert("exists");
-        // Otherwise the file exists
-    }         
-};
+	alert("exists - " + entry.fullPath());
+}
+
+function PhotoNoExists(){
+	alert("doesnt exists");
 }
 
 function errorDB(err){
