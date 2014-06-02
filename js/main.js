@@ -269,7 +269,7 @@ function resetFields(){
 function socialsharing() {
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
-		tx.executeSql('SELECT score, file FROM blist WHERE id="'+id+'"',[],function(tx,results){
+		tx.executeSql('SELECT score, file FROM blist WHERE id="'+mId+'"',[],function(tx,results){
 		var len = results.rows.length;
 		alert("len - " + len);
 		if ( len > 0) {
