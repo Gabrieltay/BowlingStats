@@ -264,7 +264,7 @@ function socialsharing() {
 		tx.executeSql('SELECT score, file FROM blist WHERE id="'+mId+'"',[],function(tx,results){
 		var len = results.rows.length;
 		if ( len > 0) {
-			alert(len):
+			alert(len);
 			var imagedata = results.rows.item(0).file;
 			var score = results.rows.item(0).score;
 			alert(score);
