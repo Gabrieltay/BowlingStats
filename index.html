@@ -41,18 +41,7 @@
 			<div data-role="content">
 				<a href="#dialog" id="add" data-rel="dialog" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
 				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
-				
-				<ul data-role="listview" data-inset="true">
-        			<li data-role="list-divider" data-theme="a">List Header</li>
-        			<li>
-        				<fieldset class="ui-grid-a">
-        					<div class="ui-block-a">Highest: </div>
-
-        					<div class="score ui-block-e">123</div>
-      					</fieldset>
-        			</li>
-        			<li>Linked list item</li>
-      </ul>
+				</ul>
 			</div>
 
 			<script>RefreshData();</script>
@@ -139,7 +128,66 @@
 			</header>
 			
 			<div data-role="content">
-				
+				<ul data-role="listview" data-inset="true" data-theme="e">
+        			<li>
+        				<fieldset class="ui-grid-a">
+        					<div class="ui-block-a">Highest Score: </div>
+
+        					<div id="hs-val" class="score ui-block-e">123</div>
+      					</fieldset>
+      				</li>	
+      				<li>
+      					<fieldset class="ui-grid-a">
+        					<div class="ui-block-a">Lowest Score: </div>
+
+        					<div id="ls-val" class="score ui-block-e">123</div>
+      					</fieldset>
+      				</li>	
+      			</ul>
+      			
+      			<ul data-role="listview" data-inset="true" data-theme="d">
+      				<li>
+      					<fieldset class="ui-grid-a">
+        					<div class="ui-block-a">Highest Average: </div>
+
+        					<div id="ha-val" class="score ui-block-e">123</div>
+      					</fieldset>
+        			</li>
+        			
+        			<li>
+      					<fieldset class="ui-grid-a">
+        					<div class="ui-block-a">Lowest Average: </div>
+
+        					<div id="la-val" class="score ui-block-e">123</div>
+      					</fieldset>
+        			</li>
+        		</ul>
+        		
+        		<ul data-role="listview" data-inset="true" data-theme="b">
+      				<li>
+      					<fieldset class="ui-grid-a">
+        					<div class="ui-block-a">Total Pins: </div>
+
+        					<div id="tp-val" class="score ui-block-e">123</div>
+      					</fieldset>
+        			</li>
+        			
+        			<li>
+      					<fieldset class="ui-grid-a">
+        					<div class="ui-block-a">Total Games: </div>
+
+        					<div id="tg-val" class="score ui-block-e">123</div>
+      					</fieldset>
+        			</li>
+        			
+        			<li>
+      					<fieldset class="ui-grid-a">
+        					<div class="ui-block-a">Total Average Score: </div>
+
+        					<div id="ta-val" class="score ui-block-e">123</div>
+      					</fieldset>
+        			</li>
+        		</ul>
 				<a href="#" onclick="ConfirmClear();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="d">Clear All Data</a></div>
 			</div>
 			
