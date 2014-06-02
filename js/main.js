@@ -200,22 +200,22 @@ function ConfirmClear(){
 }
 
 function FindPhoto(){
-	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType : Camera.PictureSourceType.PHOTOLIBRARY, destinationType: Camera.DestinationType.DATA_URL });	
+	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 40, allowEdit: true, sourceType : Camera.PictureSourceType.PHOTOLIBRARY, destinationType: Camera.DestinationType.DATA_URL });	
 }
 
 function TakePhoto(){
-	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 40, allowEdit: true, destinationType: Camera.DestinationType.FILE_URI });
+	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 40, allowEdit: true, destinationType: Camera.DestinationType.DATA_URL });
 }
 
 function onURISuccess(imageData) {  
 	alert(imageData);
-	//var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
+	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	//db.transaction(function (tx) {
 	//	tx.executeSql('UPDATE blist SET file="' +imageData+ '" WHERE id="' +mId+ '"');
 	//});
-	//var string = '<img id="game-photo" src="' +"data:image/jpeg;base64," + imageData + '"></img>';
-	//$("#photo-content").html(string);			
-	//$('#photo-content').trigger("create");		
+	var string = '<img id="game-photo" src="' +"data:image/jpeg;base64," + imageData + '"></img>';
+	$("#photo-content").html(string);			
+	$('#photo-content').trigger("create");		
 }
 
 function errorDB(err){
