@@ -178,7 +178,6 @@ function GetImage(id){
 		var len = results.rows.length;
 		if ( len > 0) {
 			var imageData = results.rows.item(0).file;
-			alert(imageData);
 			mId = id;
 			if ( imageData == "NULL"){
 				var string = '<div class="ui-block-a"><a href="#" data-role="button" data-theme="c" onclick="TakePhoto()"><img src="images/camera.png"></a></div>' + 
@@ -205,7 +204,7 @@ function FindPhoto(){
 }
 
 function TakePhoto(){
-	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, destinationType: Camera.DestinationType.DATA_URL});
+	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
 }
 
 function onURISuccess(imageData) {  
@@ -217,15 +216,6 @@ function onURISuccess(imageData) {
 	//var string = '<img id="game-photo" src="' +"data:image/jpeg;base64," + imageData + '"></img>';
 	//$("#photo-content").html(string);			
 	//$('#photo-content').trigger("create");		
-}
-
-function PhotoExists(entry){
-	
-	alert("exists - " + entry.fullPath());
-}
-
-function PhotoNoExists(){
-	alert("doesnt exists");
 }
 
 function errorDB(err){
