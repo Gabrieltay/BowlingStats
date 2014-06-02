@@ -247,7 +247,7 @@ function success(){
 	
 }
 
-function error(){
+function onError(){
 	
 }
 
