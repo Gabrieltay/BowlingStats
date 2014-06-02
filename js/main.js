@@ -151,7 +151,7 @@ function GetImage(id){
 }
 
 function ConfirmClear(){
-	navigator.notification.confirm("Clear All Data?", ClearData, [], [Ok, Cancel]);
+	navigator.notification.confirm('Clear All Data?', ClearData);
 }
 
 function FindPhoto(){
