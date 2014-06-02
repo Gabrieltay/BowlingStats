@@ -208,6 +208,7 @@ function TakePhoto(){
 }
 
 function onURISuccess(imageURI) {
+	alert(imageURI);
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
 		tx.executeSql('UPDATE blist SET file="' +imageURI+ '" WHERE id="' +mId+ '"');
