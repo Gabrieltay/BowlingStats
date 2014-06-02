@@ -14,7 +14,6 @@ var  init = function () {
 	$("#date_list").on("delete", "li", RemoveGame);
 	$("#bowl_list").on("delete", "li", RemoveDate);
 	
-	//drawChart();
 };
 
 $(document).ready(init);
@@ -239,6 +238,14 @@ function onCameraError(message) {
 	//alert('Failed because: ' + message)
 }
 
+function success(){
+	
+}
+
+function error(){
+	
+}
+
 function dateToYMD(date) {
     var d = date.getDate();
     var m = date.getMonth() + 1;
@@ -258,81 +265,34 @@ function resetFields(){
 	document.getElementById('dateinput').valueAsDate = new Date();
 }
 
-function drawChart(){
-	transactionDB(draw);
-}
 
-var d = [];
-
-function weekendAreas(axes) {
-
-			var markings = [],
-				d = new Date(axes.xaxis.min);
-
-			// go to the first Saturday
-
-			d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 1) % 7));
-			d.setUTCSeconds(0);
-			d.setUTCMinutes(0);
-			d.setUTCHours(0);
-
-			var i = d.getTime();
-
-			// when we don't set yaxis, the rectangle automatically
-			// extends to infinity upwards and downwards
-
-			do {
-				markings.push({ xaxis: { from: i, to: i + 2 * 24 * 60 * 60 * 1000 } });
-				i += 7 * 24 * 60 * 60 * 1000;
-			} while (i < axes.xaxis.max);
-
-			return markings;
-		}
-
-		
-		
-
-function draw(tx) {
-	
-	tx.executeSql("SELECT AVG(score) AS a, date FROM blist GROUP BY date",[],function(tx,results){
+function socialsharing() {alert("hhhh");
+	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
+	db.transaction(function (tx) {
+		tx.executeSql('SELECT score, file FROM blist WHERE id="'+id+'"',[],function(tx,results){
 		var len = results.rows.length;
-			for(var i = 0;i<len;i++){
-				var dateString = results.rows.item(i).date;
-				var avg = Math.floor(results.rows.item(i).a);
-				var date = new Date(dateString);
-				alert(date.valueOf());
-				d.push([date.valueOf(), avg]);
-			};
-	},errorDB);
-
-	var options = {
-			xaxis: {
-				mode: "time",
-				tickLength: 5
-			},
-			selection: {
-				mode: "x"
-			},
-			grid: {
-				markings: weekendAreas
-			}
-		};
-		
-	$.plot("#placeholder", [d], options);
-	}
-	
-
-function socialsharingDemo() {
-	alert("inside");
-  window.plugins.socialsharing.available(function(isAvailable) {
-    if (isAvailable) {
-    	alert("available");
+		if ( len > 0) {
+			var file = results.rows.item(0).file;
+			var score = results.rows.item(0).score;
+			if ( file != "NULL"){
+				window.plugins.socialsharing.available(function(isAvailable) {
+					if (isAvailable) {
+						window.plugins.socialsharing.share("Check out my score " + score, "Hello", file);
+					}
+    				else {
+    					alert("Social Plugin not available");
+    				}});
+				}	
+			}});
+		});
+  
+    
       // use a local image from inside the www folder:
 //      window.plugins.socialsharing.share('Some text', 'Some subject', null, 'http://www.nu.nl');
 //      window.plugins.socialsharing.share('Some text');
 
 //      window.plugins.socialsharing.share('test', null, 'data:image/png;base64,R0lGODlhDAAMALMBAP8AAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAUKAAEALAAAAAAMAAwAQAQZMMhJK7iY4p3nlZ8XgmNlnibXdVqolmhcRQA7', null, function(e){alert("success: " + e)}, function(e){alert("error: " + e)});
-      window.plugins.socialsharing.share(null, null, 'https://www.google.nl/images/srpr/logo11w.png', null, function(){alert("ok")}, function(e){alert("error: " + e)});
+      
       // alternative usage:
 
       // 1) a local image from anywhere else (if permitted):
@@ -343,8 +303,8 @@ function socialsharingDemo() {
 
       // 3) text and link:
 //      window.plugins.socialsharing.share('Some text and a link', '', '', 'http://www.nu.nl');
-    }
-  });
+    
+
 }
 
 		

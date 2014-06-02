@@ -44,10 +44,6 @@
 				<a href="#dialog" id="add" data-rel="dialog" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
 				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 				</ul>
-				<button onclick="socialsharingDemo()">message only</button>
-				<div class="demo-container">
-					<div id="placeholder" class="demo-placeholder"></div>
-				</div>
 			</div>
 
 			<script>RefreshData();</script>
@@ -112,6 +108,7 @@
 			<header id="photo-header" data-role="header" data-theme="f" class="ui-corner-all">
 				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
 				<h1>Current Photo</h1>
+				<a onclick="socialsharing()" data-iconpos="notext" data-role="button" data-icon="heart" data-iconpos="right"></a>
 			</header>
 			
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">

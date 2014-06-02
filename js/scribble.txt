@@ -1,0 +1,102 @@
+
+function drawChart(){
+	transactionDB(draw);
+}
+
+var d = [];
+
+function weekendAreas(axes) {
+
+			var markings = [],
+				d = new Date(axes.xaxis.min);
+
+			// go to the first Saturday
+
+			d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 1) % 7));
+			d.setUTCSeconds(0);
+			d.setUTCMinutes(0);
+			d.setUTCHours(0);
+
+			var i = d.getTime();
+
+			// when we don't set yaxis, the rectangle automatically
+			// extends to infinity upwards and downwards
+
+			do {
+				markings.push({ xaxis: { from: i, to: i + 2 * 24 * 60 * 60 * 1000 } });
+				i += 7 * 24 * 60 * 60 * 1000;
+			} while (i < axes.xaxis.max);
+
+			return markings;
+		}
+
+		
+		
+
+function draw(tx) {
+	
+	tx.executeSql("SELECT AVG(score) AS a, date FROM blist GROUP BY date",[],function(tx,results){
+		var len = results.rows.length;
+			for(var i = 0;i<len;i++){
+				var dateString = results.rows.item(i).date;
+				var avg = Math.floor(results.rows.item(i).a);
+				var date = new Date(dateString);
+				alert(date.valueOf());
+				d.push([date.valueOf(), avg]);
+			};
+	},errorDB);
+
+	var options = {
+			xaxis: {
+				mode: "time",
+				tickLength: 5
+			},
+			selection: {
+				mode: "x"
+			},
+			grid: {
+				markings: weekendAreas
+			}
+		};
+		
+	$.plot("#placeholder", [d], options);
+	}
+	
+
+
+
+.demo-container {
+	box-sizing: border-box;
+	width: 100%;
+	height: 450px;
+	padding: 20px 15px 15px 15px;
+	margin: 15px auto 30px auto;
+	border: 1px solid #ddd;
+	background: #fff;
+	background: linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
+	box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+	-o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	-ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.demo-placeholder {
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+	line-height: 1.2em;
+}
+
+.legend table {
+	border-spacing: 5px;
+}
+
+
+				<div class="demo-container">
+					<div id="placeholder" class="demo-placeholder"></div>
+				</div>
