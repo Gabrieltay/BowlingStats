@@ -30,8 +30,9 @@ function InsertData(){
 	transactionDB(InsertQuery);
 }
 
-function ClearData(){
-	transactionDB(ClearQuery);
+function ClearData(buttonIndex){
+	if ( buttonIndex == 1 )
+		transactionDB(ClearQuery);
 }
 
 function RefreshData(){
@@ -147,6 +148,10 @@ function GetImage(id){
 		}
 		});
 		});
+}
+
+function ConfirmClear(){
+	navigator.notification.confirm("Clear All Data?", ClearData, [], [Ok, Cancel]);
 }
 
 function FindPhoto(){
