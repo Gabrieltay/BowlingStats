@@ -214,9 +214,9 @@ function onURISuccess(imageData) {
 	//db.transaction(function (tx) {
 	//	tx.executeSql('UPDATE blist SET file="' +imageData+ '" WHERE id="' +mId+ '"');
 	//});
-	var string = '<img id="game-photo" src="' +"data:image/jpeg;base64," + imageData + '"></img>';
-	$("#photo-content").html(string);			
-	$('#photo-content').trigger("create");		
+	//var string = '<img id="game-photo" src="' +"data:image/jpeg;base64," + imageData + '"></img>';
+	//$("#photo-content").html(string);			
+	//$('#photo-content').trigger("create");		
 }
 
 function PhotoExists(entry){
