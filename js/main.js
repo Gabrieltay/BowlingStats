@@ -208,7 +208,11 @@ function TakePhoto(){
 }
 
 function onURISuccess(imageURI) {
-	alert(imageURI);
+	var filepath="";
+	window.resolveLocalFileSystemURI(imageURI, function(fileEntry) {
+      filepath=fileEntry.fullPath;
+      }, onError);  
+      alert(filepath);    
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
 		tx.executeSql('UPDATE blist SET file="' +imageURI+ '" WHERE id="' +mId+ '"');
@@ -268,18 +272,14 @@ function resetFields(){
 
 
 function socialsharing() {
-	alert(mId);
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT score, file FROM blist WHERE id="'+mId+'"',[],function(tx,results){
 		var len = results.rows.length;
-		alert("len - " + len);
 		if ( len > 0) {
 			var file = results.rows.item(0).file;
 			var score = results.rows.item(0).score;
-			alert(file);
 			if ( file != "NULL"){
-				alert("not null");
 				var reader = new FileReader();
 				window.plugins.socialsharing.available(function(isAvailable) {
 					if (isAvailable) {
