@@ -7,7 +7,6 @@ var mId = 0;
 
 var  init = function () {
 	onDeviceReady();		
-	StatusBar.hide();
 	
 	new SwipeOut(document.getElementById("bowl_list"));
 	new SwipeOut(document.getElementById("date_list"));
@@ -208,12 +207,7 @@ function TakePhoto(){
 	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.CAMERA , destinationType: Camera.DestinationType.FILE_URI, saveToPhotoAlbum: true });
 }
 
-function onURISuccess(imageURI) {
-	var filepath="";
-	window.resolveLocalFileSystemURI(imageURI, function(fileEntry) {
-      filepath=fileEntry.fullPath;
-      }, onError);  
-      alert(filepath);    
+function onURISuccess(imageURI) {  
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
 		tx.executeSql('UPDATE blist SET file="' +imageURI+ '" WHERE id="' +mId+ '"');
