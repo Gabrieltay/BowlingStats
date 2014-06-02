@@ -266,11 +266,12 @@ function resetFields(){
 }
 
 
-function socialsharing() {alert("hhhh");
+function socialsharing() {
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT score, file FROM blist WHERE id="'+id+'"',[],function(tx,results){
 		var len = results.rows.length;
+		alert("len - " + len);
 		if ( len > 0) {
 			var file = results.rows.item(0).file;
 			var score = results.rows.item(0).score;
@@ -282,7 +283,8 @@ function socialsharing() {alert("hhhh");
     				else {
     					alert("Social Plugin not available");
     				}});
-				}	
+				}
+				else {alert("null");} 	
 			}});
 		});
   
