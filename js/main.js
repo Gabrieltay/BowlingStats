@@ -174,10 +174,10 @@ function RemoveDate(e)
 function GetImage(id){
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
-		tx.executeSql('SELECT imageData FROM blist WHERE id="'+id+'"',[],function(tx,results){
+		tx.executeSql('SELECT file FROM blist WHERE id="'+id+'"',[],function(tx,results){
 		var len = results.rows.length;
 		if ( len > 0) {
-			var imageData = results.rows.item(0).imageData;
+			var imageData = results.rows.item(0).file;
 			alert(imageData);
 			mId = id;
 			if ( imageData == "NULL"){
