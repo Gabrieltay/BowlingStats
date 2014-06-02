@@ -210,9 +210,9 @@ function TakePhoto(){
 function onURISuccess(imageData) {  
 	alert(imageData);
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
-	//db.transaction(function (tx) {
-	//	tx.executeSql('UPDATE blist SET file="' +imageData+ '" WHERE id="' +mId+ '"');
-	//});
+	db.transaction(function (tx) {
+		tx.executeSql('UPDATE blist SET file="' +imageData+ '" WHERE id="' +mId+ '"');
+	});
 	var string = '<img id="game-photo" src="' +"data:image/jpeg;base64," + imageData + '"></img>';
 	$("#photo-content").html(string);			
 	$('#photo-content').trigger("create");		
