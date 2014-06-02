@@ -283,8 +283,8 @@ function socialsharing() {
 				window.plugins.socialsharing.available(function(isAvailable) {
 					if (isAvailable) {
 						alert(file);
-						window.plugins.socialsharing.share(null, null, 'https://www.google.nl/images/srpr/logo4w.png', null);
-//						window.plugins.socialsharing.share('Some text', 'http://domain.com', file);
+						//window.plugins.socialsharing.share(null, null, 'https://www.google.nl/images/srpr/logo4w.png', null);
+						window.plugins.socialsharing.share('Some text', 'http://domain.com', file, null);
 					}
     				else {
     					alert("Social Plugin not available");
