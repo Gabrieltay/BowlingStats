@@ -32,7 +32,10 @@ function InsertData(){
 
 function ClearData(buttonIndex){
 	if ( buttonIndex == 1 )
+	{
 		transactionDB(ClearQuery);
+		StatsData();
+	}
 }
 
 function RefreshData(){
