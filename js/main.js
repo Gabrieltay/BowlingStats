@@ -278,7 +278,8 @@ function socialsharing() {
 			if ( file != "NULL"){
 				window.plugins.socialsharing.available(function(isAvailable) {
 					if (isAvailable) {
-						window.plugins.socialsharing.share("Check out my score " + score, "Hello", file);
+						alert(file);
+						window.plugins.socialsharing.share('Some text', 'http://domain.com', file);
 					}
     				else {
     					alert("Social Plugin not available");
