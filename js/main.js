@@ -14,7 +14,7 @@ var  init = function () {
 	$("#date_list").on("delete", "li", RemoveGame);
 	$("#bowl_list").on("delete", "li", RemoveDate);
 	
-	draw();
+	drawChart();
 };
 
 $(document).ready(init);
@@ -258,20 +258,69 @@ function resetFields(){
 	document.getElementById('dateinput').valueAsDate = new Date();
 }
 
-function draw() {
+function drawChart(){
+	transactionDB(draw);
+}
 
-		var d1 = [];
-		for (var i = 0; i < 14; i += 0.5) {
-			d1.push([i, Math.sin(i)]);
+var d = [];
+
+function weekendAreas(axes) {
+
+			var markings = [],
+				d = new Date(axes.xaxis.min);
+
+			// go to the first Saturday
+
+			d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 1) % 7));
+			d.setUTCSeconds(0);
+			d.setUTCMinutes(0);
+			d.setUTCHours(0);
+
+			var i = d.getTime();
+
+			// when we don't set yaxis, the rectangle automatically
+			// extends to infinity upwards and downwards
+
+			do {
+				markings.push({ xaxis: { from: i, to: i + 2 * 24 * 60 * 60 * 1000 } });
+				i += 7 * 24 * 60 * 60 * 1000;
+			} while (i < axes.xaxis.max);
+
+			return markings;
 		}
 
-		var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+		
+		
 
-		// A null signifies separate line segments
+function draw(tx) {
+	
+	tx.executeSql("SELECT AVG(score) AS a, date FROM blist GROUP BY date",[],function(tx,results){
+		var len = results.rows.length;
+			for(var i = 0;i<len;i++){
+				var dateString = results.rows.item(i).date;
+				var avg = Math.floor(results.rows.item(i).a);
+				var date = new Date(dateString);
+				alert(date.valueOf());
+				d.push([date.valueOf(), avg]);
+			};
+	},errorDB);
 
-		var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
-
-		$.plot("#placeholder", [ d1, d2, d3 ]);
-
-
+	var options = {
+			xaxis: {
+				mode: "time",
+				tickLength: 5
+			},
+			selection: {
+				mode: "x"
+			},
+			grid: {
+				markings: weekendAreas
+			}
+		};
+		
+	$.plot("#placeholder", [d], options);
 	}
+	
+
+
+		
