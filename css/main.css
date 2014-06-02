@@ -13,4 +13,9 @@
     width: auto\9; /* ie8 */
   display: block;
     margin: 0px auto;
+}
+
+.score 
+{
+float:right;
 }​

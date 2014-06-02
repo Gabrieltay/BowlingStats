@@ -42,6 +42,17 @@
 				<a href="#dialog" id="add" data-rel="dialog" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
 				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 				
+				<ul data-role="listview" data-inset="true">
+        			<li data-role="list-divider" data-theme="a">List Header</li>
+        			<li>
+        				<fieldset class="ui-grid-a">
+        					<div class="ui-block-a">Highest: </div>
+
+        					<div class="score ui-block-e">123</div>
+      					</fieldset>
+        			</li>
+        			<li>Linked list item</li>
+      </ul>
 			</div>
 
 			<script>RefreshData();</script>
@@ -128,6 +139,7 @@
 			</header>
 			
 			<div data-role="content">
+				
 				<a href="#" onclick="ConfirmClear();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="d">Clear All Data</a></div>
 			</div>
 			
