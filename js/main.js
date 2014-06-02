@@ -323,8 +323,10 @@ function draw(tx) {
 	
 
 function socialsharingDemo() {
+	alert("inside");
   window.plugins.socialsharing.available(function(isAvailable) {
     if (isAvailable) {
+    	alert("available");
       // use a local image from inside the www folder:
 //      window.plugins.socialsharing.share('Some text', 'Some subject', null, 'http://www.nu.nl');
 //      window.plugins.socialsharing.share('Some text');
