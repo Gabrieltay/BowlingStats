@@ -201,12 +201,13 @@ function ConfirmClear(){
 }
 
 function FindPhoto(){
-	//navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM, destinationType: Camera.DestinationType.FILE_URI, mediaType : Camera.MediaType.PICTURE});	
-	navigator.device.capture.captureImage(captureSuccess, onError, {limit:2});
+	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType : Camera.PictureSourceType.PHOTOLIBRARY, destinationType: Camera.DestinationType.NATIVE_URI });	
+	//navigator.device.capture.captureImage(captureSuccess, onError, {limit:2});
 }
 
 function TakePhoto(){
-	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.CAMERA , destinationType: Camera.DestinationType.FILE_URI, saveToPhotoAlbum: true });
+	//navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.CAMERA , destinationType: Camera.DestinationType.FILE_URI, saveToPhotoAlbum: true });
+	navigator.device.capture.captureImage(captureSuccess, onError, {limit:2});
 }
 
 function captureSuccess(mediaFiles){
@@ -218,7 +219,7 @@ function captureSuccess(mediaFiles){
 }
 
 function onURISuccess(imageURI) {  
-	
+	alert(imageURI);
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
 		tx.executeSql('UPDATE blist SET file="' +imageURI+ '" WHERE id="' +mId+ '"');
