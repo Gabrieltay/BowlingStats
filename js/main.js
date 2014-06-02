@@ -208,7 +208,6 @@ function TakePhoto(){
 }
 
 function onURISuccess(imageData) {  
-	alert(imageData);
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
 		tx.executeSql('UPDATE blist SET file="' +imageData+ '" WHERE id="' +mId+ '"');
@@ -259,6 +258,7 @@ function resetFields(){
 
 
 function socialsharing() {
+	alert("ID - " + mId);
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT score, file FROM blist WHERE id="'+mId+'"',[],function(tx,results){
