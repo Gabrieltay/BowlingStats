@@ -258,22 +258,21 @@ function resetFields(){
 
 
 function socialsharing() {
-	alert("ID - " + mId);
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT score, file FROM blist WHERE id="'+mId+'"',[],function(tx,results){
 		var len = results.rows.length;
 		if ( len > 0) {
-			alert(len);
 			var imagedata = results.rows.item(0).file;
 			var score = results.rows.item(0).score;
-			alert(score);
+			var dataurl = "data:image/jpeg;base64," + imagedata;
 			if ( file != "NULL"){
+				alert("not null");
 				window.plugins.socialsharing.available(function(isAvailable) {
 					if (isAvailable) {
-						alert(imagedata);
+						alert(dataurl);
 						//window.plugins.socialsharing.share(null, null, 'https://www.google.nl/images/srpr/logo4w.png', null);
-						window.plugins.socialsharing.share('Look at my great score!', "My Name", "data:image/jpeg;base64," + imageData, null);
+						window.plugins.socialsharing.share('Look at my great score!', "My Name", dataurl, null);
 					}
     				else {
     					alert("Social Plugin not available");

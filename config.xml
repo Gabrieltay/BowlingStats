@@ -52,6 +52,10 @@
 	<feature name="StatusBar">
             <param name="ios-package" value="CDVStatusBar" onload="true" />
     </feature>
+    
+    <feature name="SocialSharing">
+  			<param name="ios-package" value="SocialSharing" />
+	</feature>
     <!--
 	<gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.media-capture" />
