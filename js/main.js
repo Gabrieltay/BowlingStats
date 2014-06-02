@@ -14,7 +14,7 @@ var  init = function () {
 	$("#date_list").on("delete", "li", RemoveGame);
 	$("#bowl_list").on("delete", "li", RemoveDate);
 	
-	drawChart();
+	//drawChart();
 };
 
 $(document).ready(init);
