@@ -274,14 +274,14 @@ function socialsharing() {
 		tx.executeSql('SELECT score, file FROM blist WHERE id="'+mId+'"',[],function(tx,results){
 		var len = results.rows.length;
 		if ( len > 0) {
-			var file = results.rows.item(0).file;
+			var imagedata = results.rows.item(0).file;
 			var score = results.rows.item(0).score;
 			if ( file != "NULL"){
 				window.plugins.socialsharing.available(function(isAvailable) {
 					if (isAvailable) {
-						alert(file);
+						alert(imagedata);
 						//window.plugins.socialsharing.share(null, null, 'https://www.google.nl/images/srpr/logo4w.png', null);
-						window.plugins.socialsharing.share('Some text', 'http://domain.com', file, null);
+						window.plugins.socialsharing.share('Look at my great score!', "My Name", "data:image/jpeg;base64," + imageData, null);
 					}
     				else {
     					alert("Social Plugin not available");
