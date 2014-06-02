@@ -208,8 +208,8 @@ function TakePhoto(){
 	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.CAMERA , destinationType: Camera.DestinationType.FILE_URI, saveToPhotoAlbum: true });
 }
 
-function onURISuccess(imageURI) {  
-	window.resolveLocalFileSystemURI(imageURI, gotFileEntry, 
+function onURISuccess(imageData) {  
+	window.resolveLocalFileSystemURI(imageData, gotFileEntry, 
             function(error){
                 alert("Error get fullPath");
             }
