@@ -205,7 +205,7 @@ function FindPhoto(){
 }
 
 function TakePhoto(){
-	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.CAMERA , destinationType: Camera.DestinationType.DATA_URL, saveToPhotoAlbum: true });
+	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, destinationType: Camera.DestinationType.DATA_URL});
 }
 
 function onURISuccess(imageData) {  
