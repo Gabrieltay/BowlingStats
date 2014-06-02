@@ -201,7 +201,7 @@ function ConfirmClear(){
 }
 
 function FindPhoto(){
-	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType: Camera.PictureSourceType.PHOTOLIBRARY , destinationType: Camera.DestinationType.FILE_URI});	
+	navigator.camera.getPicture(onURISuccess, onCameraError, { quality: 50, sourceType : Camera.PictureSourceType.SAVEDPHOTOALBUM, destinationType: Camera.DestinationType.FILE_URI, mediaType : Camera.MediaType.PICTURE});	
 }
 
 function TakePhoto(){
@@ -209,6 +209,16 @@ function TakePhoto(){
 }
 
 function onURISuccess(imageURI) {  
+	window.resolveLocalFileSystemURI(imageURI, gotFileEntry, 
+            function(error){
+                alert("Error get fullPath");
+            }
+        );
+	function gotFileEntry(imageURI) { 
+         // alert("imageURI: "+JSON.stringify(imageURI));
+         alert("imageURI: "+imageURI.nativeURL);
+        }
+        
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
 		tx.executeSql('UPDATE blist SET file="' +imageURI+ '" WHERE id="' +mId+ '"');
