@@ -266,7 +266,7 @@ function socialsharing() {
 			var imagedata = results.rows.item(0).file;
 			var score = results.rows.item(0).score;
 			var dataurl = 'data:image/jpeg;base64,' + imagedata;
-			if ( file != "NULL"){
+			if ( imagedata != "NULL"){
 				alert("not null");
 				window.plugins.socialsharing.available(function(isAvailable) {
 					if (isAvailable) {
