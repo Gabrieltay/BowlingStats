@@ -178,8 +178,8 @@ function GetImage(id){
 		var len = results.rows.length;
 		if ( len > 0) {
 			var file = results.rows.item(0).file;
+			mId = id;
 			if ( file == "NULL"){
-				mId = id;
 				var string = '<div class="ui-block-a"><a href="#" data-role="button" data-theme="c" onclick="TakePhoto()"><img src="images/camera.png"></a></div>' + 
 					'<div class="ui-block-b"><a href="#" data-role="button" data-theme="c" onclick="FindPhoto()"><img src="images/library.png"></a></div>';	
 				$("#photo-content").html(string);			
@@ -267,6 +267,7 @@ function resetFields(){
 
 
 function socialsharing() {
+	alert(mId);
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(function (tx) {
 		tx.executeSql('SELECT score, file FROM blist WHERE id="'+mId+'"',[],function(tx,results){
@@ -275,7 +276,9 @@ function socialsharing() {
 		if ( len > 0) {
 			var file = results.rows.item(0).file;
 			var score = results.rows.item(0).score;
+			alert(file);
 			if ( file != "NULL"){
+				alert("not null");
 				window.plugins.socialsharing.available(function(isAvailable) {
 					if (isAvailable) {
 						alert(file);
