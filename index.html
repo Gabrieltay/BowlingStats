@@ -25,6 +25,8 @@
 		<script src="js/main.js"></script>
 		<script src="js/hammer.js"></script>
 		<script src="js/swipeout.js"></script>
+		<script language="javascript" type="text/javascript" src="js/jquery.flot.js"></script>
+		<script language="javascript" type="text/javascript" src="js/jquery.flot.resize.js"></script>
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	</head>
 	
@@ -42,6 +44,10 @@
 				<a href="#dialog" id="add" data-rel="dialog" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
 				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 				</ul>
+				
+				<div class="demo-container">
+					<div id="placeholder" class="demo-placeholder"></div>
+				</div>
 			</div>
 
 			<script>RefreshData();</script>
