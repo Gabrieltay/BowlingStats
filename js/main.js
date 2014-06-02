@@ -39,6 +39,47 @@ function RefreshData(){
 	transactionDB(RefreshQuery);
 }
 
+function StatsData(){
+	transactionDB(StatsQuery);
+}
+
+function StatsQuery(tx){
+	tx.executeSql('SELECT MAX(score) AS s FROM blist',[],function(tx,results){
+		var hs = (results.rows.item(0).s == null) ? 0 :  results.rows.item(0).s;
+		$("#hs-val").text(hs);
+	},errorDB);
+	
+	tx.executeSql('SELECT MIN(score) AS s FROM blist',[],function(tx,results){
+		var ls = (results.rows.item(0).s == null) ? 0 :  results.rows.item(0).s;
+		$("#ls-val").text(ls);
+	},errorDB);
+	
+	tx.executeSql('SELECT MAX(a) AS s FROM (SELECT AVG(score) AS a FROM blist GROUP BY date);',[],function(tx,results){
+		var ha = (results.rows.item(0).s == null) ? 0 :  results.rows.item(0).s;
+		$("#ha-val").text(Math.floor(ha));
+	},errorDB);
+	
+	tx.executeSql('SELECT MIN(a) AS s FROM (SELECT AVG(score) AS a FROM blist GROUP BY date);',[],function(tx,results){
+		var la = (results.rows.item(0).s == null) ? 0 :  results.rows.item(0).s;
+		$("#la-val").text(Math.floor(la));
+	},errorDB);
+	
+	tx.executeSql('SELECT SUM(score) AS s FROM blist',[],function(tx,results){
+		var tp = (results.rows.item(0).s == null) ? 0 :  results.rows.item(0).s;
+		$("#tp-val").text(tp);
+	},errorDB);
+	
+	tx.executeSql('SELECT COUNT(score) AS s FROM blist',[],function(tx,results){
+		var tg = (results.rows.item(0).s == null) ? 0 :  results.rows.item(0).s;
+		$("#tg-val").text(tg);
+	},errorDB);
+	
+	tx.executeSql('SELECT AVG(score) AS s FROM blist',[],function(tx,results){
+		var ta = (results.rows.item(0).s == null) ? 0 :  results.rows.item(0).s;
+		$("#ta-val").text(Math.floor(ta));
+	},errorDB);
+}
+
 function CreatQuery(tx){
 	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar)');
 }
