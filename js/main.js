@@ -237,7 +237,7 @@ function successDB(){
 }
 
 function onCameraError(message) {
-	//alert('Failed because: ' + message)
+	alert('Failed because: ' + message)
 }
 
 function success(){
