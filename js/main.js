@@ -14,16 +14,17 @@ var init = function() {
 	$("#date_list").on("delete", "li", RemoveGame);
 	$("#bowl_list").on("delete", "li", RemoveDate);
 
+	FastClick.attach(document.body);
 };
 
 $(document).ready(init);
 
 $(document).on("pagebeforeshow", "#home", function() {
-	//StatusBar.hide();
+	StatusBar.hide();
 });
 
 $(document).on("pagebeforeshow", "#stats-data", function() {
-	//StatusBar.hide();
+	StatusBar.hide();
 });
 
 $(document).on("pagebeforeshow", "#photo-data", function() {
