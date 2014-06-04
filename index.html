@@ -34,35 +34,34 @@
 
 		<!-- Home Page -->
 		<section data-role="page" id="home" class="ui-responsive-panel">
-			<header data-role="header" data-position="fixed" data-theme="f" style="min-height: 45px;">
-				<a data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
-				<h1>Bowling Scores</h1>
-				<a href="#stats-data" data-rel="page" data-iconpos="notext" data-role="button" data-icon="flat-menu" onclick="StatsData()"></a>
-			</header>
 			<span id="fastclick">
+				<header data-role="header" data-position="fixed" data-theme="f" style="min-height: 45px;">
+					<a data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
+					<h1>Bowling Scores</h1>
+					<a href="#stats-data" data-rel="page" data-iconpos="notext" data-role="button" data-icon="flat-menu" onclick="StatsData()"></a>
+				</header>
 				<div data-role="content">
 					<a href="#dialog" id="add" data-rel="dialog" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
 					<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 					</ul>
-				</div> </span>
+				</div> 
 			<script>
 				RefreshData();
 			</script>
 
 			<footer data-role="footer" data-position="fixed">
 				<h1>GT Copyright 2014</h1>
-			</footer>
+			</footer></span>
 		</section>
 		<!-- End of Home Page -->
 
 		<!-- Add Page -->
 		<section data-role="page" id="dialog">
-			<header data-role="header" data-theme="f" class="ui-corner-all">
-				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
-				<h1>New Game</h1>
-			</header>
-
 			<span id="fastclick">
+				<header data-role="header" data-theme="f" class="ui-corner-all">
+					<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
+					<h1>New Game</h1>
+				</header>
 				<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
 					<form>
 						<div class="ui-field-contain">
@@ -77,25 +76,23 @@
 
 						<a href="#" onclick="InsertData();" id="submit" data-role="button" data-icon="flat-man" data-theme="g">Confirm</a>
 					</form>
-				</div> </span>
-
-			<footer data-role="footer" data-position="fixed" class="ui-corner-all">
-				<h4><span id="current_date"></span></h4>
-				<script>
-					$("#current_date").text(new Date().toDateString())
-				</script>
-			</footer>
+				</div>
+				<footer data-role="footer" data-position="fixed" class="ui-corner-all">
+					<h4><span id="current_date"></span></h4>
+					<script>
+						$("#current_date").text(new Date().toDateString())
+					</script>
+				</footer></span>
 		</section>
 		<!-- End of Add Page -->
 
 		<!-- View Page -->
 		<section data-role="page" id="date-data" >
-			<header id="date-header" data-role="header" data-theme="f" class="ui-corner-all">
-				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
-				<h1>Current Date</h1>
-			</header>
-
 			<span id="fastclick">
+				<header id="date-header" data-role="header" data-theme="f" class="ui-corner-all">
+					<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
+					<h1>Current Date</h1>
+				</header>
 				<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
 					<ul data-role="listview" id="date_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 				</div> </span>
@@ -108,33 +105,30 @@
 
 		<!-- Photo Page -->
 		<section data-role="page" id="photo-data">
-			<header id="photo-header" data-role="header" data-theme="f" class="ui-corner-all">
-				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
-				<h1>Current Photo</h1>
-				<a onclick="socialsharing()" data-iconpos="notext" data-role="button" data-icon="heart" data-iconpos="right"></a>
-			</header>
-
 			<span id="fastclick">
+				<header id="photo-header" data-role="header" data-theme="f" class="ui-corner-all">
+					<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
+					<h1>Current Photo</h1>
+					<a onclick="socialsharing()" data-iconpos="notext" data-role="button" data-icon="heart" data-iconpos="right"></a>
+				</header>
 				<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
 					<fieldset class="ui-grid-a" id="photo-content">
 
 					</fieldset>
-				</div> </span>
-
-			<footer data-role="footer" data-position="fixed" class="ui-corner-all">
-				<h1>GT Copyright 2014</h1>
-			</footer>
+				</div>
+				<footer data-role="footer" data-position="fixed" class="ui-corner-all">
+					<h1>GT Copyright 2014</h1>
+				</footer></span>
 		</section>
 		<!-- End of Photo Page -->
 
 		<!-- Stats Page -->
 		<section data-role="page" id="stats-data">
-			<header data-role="header" data-position="fixed" data-theme="f">
-				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Stats">Stats</a>
-				<h1>Statistics</h1>
-			</header>
-
 			<span id="fastclick">
+				<header data-role="header" data-position="fixed" data-theme="f">
+					<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Stats">Stats</a>
+					<h1>Statistics</h1>
+				</header>
 				<div data-role="content">
 					<ul data-role="listview" data-inset="true" data-theme="e">
 						<li>
@@ -225,11 +219,10 @@
 						</li>
 					</ul>
 					<a href="#" onclick="ConfirmClear();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="d">Clear All Data</a>
-				</div> </div> </span>
-
-			<footer data-role="footer" data-position="fixed">
-				<h1>GT Copyright 2014</h1>
-			</footer>
+				</div> </div>
+				<footer data-role="footer" data-position="fixed">
+					<h1>GT Copyright 2014</h1>
+				</footer> </span>
 		</section>
 		<!-- End of Stats Page -->
 	</body>
