@@ -5,40 +5,39 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="apple-mobile-web-app-capable" content="yes">
-	    <meta name="apple-mobile-web-app-status-bar-style" content="black">	
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<title>Bowling Scores</title>
 
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
 		<link rel="stylesheet" type="text/css" href="css/jquery.swipeButton.css" />
 		<link rel="stylesheet" href="css/jquery.mobile.iscrollview.css" />
-        <link rel="stylesheet" href="css/jquery.mobile.iscrollview-pull.css" /> 
+		<link rel="stylesheet" href="css/jquery.mobile.iscrollview-pull.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
-		
+
 		<script src="js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript">
-                $(document).bind("mobileinit", function()
-                {
-                   if (navigator.userAgent.indexOf("Android") != -1)
-                   {
-                     $.mobile.defaultPageTransition = 'none';
-                     $.mobile.defaultDialogTransition = 'none';
-                   }
-                });
-        </script>
+			$(document).bind("mobileinit", function() {
+				if (navigator.userAgent.indexOf("Android") != -1) {
+					$.mobile.defaultPageTransition = 'none';
+					$.mobile.defaultDialogTransition = 'none';
+				}
+			});
+		</script>
 		<script src="js/jquery.mobile-1.4.2.min.js"></script>
 		<script src="js/main.js"></script>
 		<script src="js/hammer.js"></script>
 		<script src="js/swipeout.js"></script>
 		<script src="js/iscroll.js"></script>
-        <script src="js/jquery.mobile.iscrollview.js"></script> 
+		<script src="js/jquery.mobile.iscrollview.js"></script>
+		<script src="js/fastclick.js"></script>
 
 		<script language="javascript" type="text/javascript" src="js/jquery.flot.js"></script>
 		<script language="javascript" type="text/javascript" src="js/jquery.flot.resize.js"></script>
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	</head>
-	
-	<body>
-	
+
+	<body onload="initFastButtons();">
+
 		<!-- Home Page -->
 		<section data-role="page" id="home" class="ui-responsive-panel">
 			<header data-role="header" data-position="fixed" data-theme="f" data-id="header" data-tap-toggle="false" style="min-height: 45px;">
@@ -46,165 +45,198 @@
 				<h1>Bowling Scores</h1>
 				<a href="#stats-data" data-rel="page" data-iconpos="notext" data-role="button" data-icon="flat-menu" onclick="StatsData()"></a>
 			</header>
-			
-			<div data-role="content" data-iscroll>
-				<a href="#dialog" id="add" data-rel="dialog" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
-				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
-				</ul>
-			</div>
+			<span id="fastclick">
+				<div data-role="content" data-iscroll>
+					<a href="#dialog" id="add" data-rel="dialog" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
+					<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
+					</ul>
+				</div> </span>
+			<script>
+				RefreshData();
+			</script>
 
-			<script>RefreshData();</script>
-			
 			<footer data-role="footer" data-position="fixed" data-tap-toggle="false" data-id="footer">
 				<h1>GT Copyright 2014</h1>
 			</footer>
 		</section>
-		<!-- End of Home Page -->	
-			
-			
-		<!-- Add Page -->	
+		<!-- End of Home Page -->
+
+		<!-- Add Page -->
 		<section data-role="page" id="dialog">
 			<header data-role="header" data-theme="f" class="ui-corner-all">
 				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
 				<h1>New Game</h1>
 			</header>
-			
-			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
-				<form>
-					<div class="ui-field-contain">
-						<label for="scoreinput">Score:</label>
-						<input name="scoreinput" id="scoreinput" placeholder="Your score" data-clear-btn="true" type="number" min="1" max="300" />
-					</div>	
-				
-					<div class="ui-field-contain">
-						<label for="dateinput">Date:</label>
-						<input type="date" name="date" id="dateinput" value="">
-					</div>
-			
-					<a href="#" onclick="InsertData();" id="submit" data-role="button" data-icon="flat-man" data-theme="g">Confirm</a>
-				</form>
-			</div>
-			
+
+			<span id="fastclick">
+				<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
+					<form>
+						<div class="ui-field-contain">
+							<label for="scoreinput">Score:</label>
+							<input name="scoreinput" id="scoreinput" placeholder="Your score" data-clear-btn="true" type="number" min="1" max="300" />
+						</div>
+
+						<div class="ui-field-contain">
+							<label for="dateinput">Date:</label>
+							<input type="date" name="date" id="dateinput" value="">
+						</div>
+
+						<a href="#" onclick="InsertData();" id="submit" data-role="button" data-icon="flat-man" data-theme="g">Confirm</a>
+					</form>
+				</div> </span>
+
 			<footer data-role="footer" data-position="fixed" class="ui-corner-all">
 				<h4><span id="current_date"></span></h4>
-				<script>$("#current_date").text(new Date().toDateString())</script>
+				<script>
+					$("#current_date").text(new Date().toDateString())
+				</script>
 			</footer>
 		</section>
-		<!-- End of Add Page -->	
-		
-		
-		<!-- View Page -->	
+		<!-- End of Add Page -->
+
+		<!-- View Page -->
 		<section data-role="page" id="date-data" >
 			<header id="date-header" data-role="header" data-theme="f" class="ui-corner-all">
 				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
 				<h1>Current Date</h1>
 			</header>
-			
-			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
-				<ul data-role="listview" id="date_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
-			</div>
-			
+
+			<span id="fastclick">
+				<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
+					<ul data-role="listview" id="date_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
+				</div> </span>
+
 			<footer data-role="footer" data-position="fixed" class="ui-corner-all">
 				<h1>GT Copyright 2014</h1>
 			</footer>
 		</section>
-		<!-- End of View Page -->	
-		
-		<!-- Photo Page -->	
+		<!-- End of View Page -->
+
+		<!-- Photo Page -->
 		<section data-role="page" id="photo-data">
 			<header id="photo-header" data-role="header" data-theme="f" class="ui-corner-all">
 				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
 				<h1>Current Photo</h1>
 				<a onclick="socialsharing()" data-iconpos="notext" data-role="button" data-icon="heart" data-iconpos="right"></a>
 			</header>
-			
-			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
-				<fieldset class="ui-grid-a" id="photo-content">
-					
-				</fieldset>
-			</div>
-			
+
+			<span id="fastclick">
+				<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
+					<fieldset class="ui-grid-a" id="photo-content">
+
+					</fieldset>
+				</div> </span>
+
 			<footer data-role="footer" data-position="fixed" class="ui-corner-all">
 				<h1>GT Copyright 2014</h1>
 			</footer>
 		</section>
-		<!-- End of Photo Page -->	
-		
-		<!-- Stats Page -->	
+		<!-- End of Photo Page -->
+
+		<!-- Stats Page -->
 		<section data-role="page" id="stats-data">
 			<header data-role="header" data-position="fixed" data-theme="f">
 				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Stats">Stats</a>
 				<h1>Statistics</h1>
 			</header>
-			
-			<div data-role="content">
-				<ul data-role="listview" data-inset="true" data-theme="e">
-        			<li>
-        				<fieldset class="ui-grid-a">
-        					<div class="ui-block-a">Highest Score: </div>
 
-        					<div id="hs-val" class="score ui-block-e">123</div>
-      					</fieldset>
-      				</li>	
-      				<li>
-      					<fieldset class="ui-grid-a">
-        					<div class="ui-block-a">Lowest Score: </div>
+			<span id="fastclick">
+				<div data-role="content">
+					<ul data-role="listview" data-inset="true" data-theme="e">
+						<li>
+							<fieldset class="ui-grid-a">
+								<div class="ui-block-a">
+									Highest Score:
+								</div>
 
-        					<div id="ls-val" class="score ui-block-e">123</div>
-      					</fieldset>
-      				</li>	
-      			</ul>
-      			
-      			<ul data-role="listview" data-inset="true" data-theme="d">
-      				<li>
-      					<fieldset class="ui-grid-a">
-        					<div class="ui-block-a">Highest Average: </div>
+								<div id="hs-val" class="score ui-block-e">
+									123
+								</div>
+							</fieldset>
+						</li>
+						<li>
+							<fieldset class="ui-grid-a">
+								<div class="ui-block-a">
+									Lowest Score:
+								</div>
 
-        					<div id="ha-val" class="score ui-block-e">123</div>
-      					</fieldset>
-        			</li>
-        			
-        			<li>
-      					<fieldset class="ui-grid-a">
-        					<div class="ui-block-a">Lowest Average: </div>
+								<div id="ls-val" class="score ui-block-e">
+									123
+								</div>
+							</fieldset>
+						</li>
+					</ul>
 
-        					<div id="la-val" class="score ui-block-e">123</div>
-      					</fieldset>
-        			</li>
-        		</ul>
-        		
-        		<ul data-role="listview" data-inset="true" data-theme="b">
-      				<li>
-      					<fieldset class="ui-grid-a">
-        					<div class="ui-block-a">Total Pins: </div>
+					<ul data-role="listview" data-inset="true" data-theme="d">
+						<li>
+							<fieldset class="ui-grid-a">
+								<div class="ui-block-a">
+									Highest Average:
+								</div>
 
-        					<div id="tp-val" class="score ui-block-e">123</div>
-      					</fieldset>
-        			</li>
-        			
-        			<li>
-      					<fieldset class="ui-grid-a">
-        					<div class="ui-block-a">Total Games: </div>
+								<div id="ha-val" class="score ui-block-e">
+									123
+								</div>
+							</fieldset>
+						</li>
 
-        					<div id="tg-val" class="score ui-block-e">123</div>
-      					</fieldset>
-        			</li>
-        			
-        			<li>
-      					<fieldset class="ui-grid-a">
-        					<div class="ui-block-a">Total Average Score: </div>
+						<li>
+							<fieldset class="ui-grid-a">
+								<div class="ui-block-a">
+									Lowest Average:
+								</div>
 
-        					<div id="ta-val" class="score ui-block-e">123</div>
-      					</fieldset>
-        			</li>
-        		</ul>
-				<a href="#" onclick="ConfirmClear();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="d">Clear All Data</a></div>
-			</div>
-			
+								<div id="la-val" class="score ui-block-e">
+									123
+								</div>
+							</fieldset>
+						</li>
+					</ul>
+
+					<ul data-role="listview" data-inset="true" data-theme="b">
+						<li>
+							<fieldset class="ui-grid-a">
+								<div class="ui-block-a">
+									Total Pins:
+								</div>
+
+								<div id="tp-val" class="score ui-block-e">
+									123
+								</div>
+							</fieldset>
+						</li>
+
+						<li>
+							<fieldset class="ui-grid-a">
+								<div class="ui-block-a">
+									Total Games:
+								</div>
+
+								<div id="tg-val" class="score ui-block-e">
+									123
+								</div>
+							</fieldset>
+						</li>
+
+						<li>
+							<fieldset class="ui-grid-a">
+								<div class="ui-block-a">
+									Total Average Score:
+								</div>
+
+								<div id="ta-val" class="score ui-block-e">
+									123
+								</div>
+							</fieldset>
+						</li>
+					</ul>
+					<a href="#" onclick="ConfirmClear();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="d">Clear All Data</a>
+				</div> </div> </span>
+
 			<footer data-role="footer" data-position="fixed">
 				<h1>GT Copyright 2014</h1>
 			</footer>
 		</section>
-		<!-- End of Stats Page -->	
+		<!-- End of Stats Page -->
 	</body>
 </html>

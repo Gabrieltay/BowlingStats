@@ -1,3 +1,8 @@
+*
+{
+	-webkit-tap-highlight-color: transparent;
+}
+
 #home
 {
 	background-image:url("../images/bg.png");
