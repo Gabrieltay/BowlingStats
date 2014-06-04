@@ -56,9 +56,7 @@ version   = "0.1.0">
 		<true/>
 	</gap:config-file>
 	<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
-		<array>
-			<string>NO</string>
-		</array>
+		<false/>
 	</gap:config-file>
 	
 	<feature name="StatusBar">
