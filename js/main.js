@@ -18,6 +18,14 @@ var  init = function () {
 
 $(document).ready(init);
 
+$(document).on("pagebeforeshow","#home",function(){
+  //StatusBar.hide();
+});
+
+$(document).on("pagebeforeshow","#stats-data",function(){
+  //StatusBar.hide();
+});
+
 function transactionDB(query){
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(query,errorDB);
@@ -267,18 +275,17 @@ function socialsharing() {
 			var score = results.rows.item(0).score;
 			var dataurl = 'data:image/jpeg;base64,' + imagedata;
 			if ( imagedata != "NULL"){
-				alert("not null");
 				window.plugins.socialsharing.available(function(isAvailable) {
 					if (isAvailable) {
-						alert(dataurl);
-						//window.plugins.socialsharing.share(null, null, 'https://www.google.nl/images/srpr/logo4w.png', null);
 						window.plugins.socialsharing.share('Look at my great score!', "My Name", dataurl, null);
 					}
     				else {
     					alert("Social Plugin not available");
     				}});
 				}
-				else {alert("null");} 	
+				else {
+					window.plugins.socialsharing.share('Hello World');
+				} 	
 			}});
 		});
   
