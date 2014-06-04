@@ -4,14 +4,10 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<title>Bowling Scores</title>
 
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
 		<link rel="stylesheet" type="text/css" href="css/jquery.swipeButton.css" />
-		<link rel="stylesheet" href="css/jquery.mobile.iscrollview.css" />
-		<link rel="stylesheet" href="css/jquery.mobile.iscrollview-pull.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 
 		<script src="js/jquery-1.9.1.min.js"></script>
@@ -27,8 +23,6 @@
 		<script src="js/main.js"></script>
 		<script src="js/hammer.js"></script>
 		<script src="js/swipeout.js"></script>
-		<script src="js/iscroll.js"></script>
-		<script src="js/jquery.mobile.iscrollview.js"></script>
 		<script src="js/fastclick.js"></script>
 
 		<script language="javascript" type="text/javascript" src="js/jquery.flot.js"></script>
@@ -40,13 +34,13 @@
 
 		<!-- Home Page -->
 		<section data-role="page" id="home" class="ui-responsive-panel">
-			<header data-role="header" data-position="fixed" data-theme="f" data-id="header" data-tap-toggle="false" style="min-height: 45px;">
+			<header data-role="header" data-position="fixed" data-theme="f" style="min-height: 45px;">
 				<a data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
 				<h1>Bowling Scores</h1>
 				<a href="#stats-data" data-rel="page" data-iconpos="notext" data-role="button" data-icon="flat-menu" onclick="StatsData()"></a>
 			</header>
 			<span id="fastclick">
-				<div data-role="content" data-iscroll>
+				<div data-role="content">
 					<a href="#dialog" id="add" data-rel="dialog" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
 					<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 					</ul>
@@ -55,7 +49,7 @@
 				RefreshData();
 			</script>
 
-			<footer data-role="footer" data-position="fixed" data-tap-toggle="false" data-id="footer">
+			<footer data-role="footer" data-position="fixed">
 				<h1>GT Copyright 2014</h1>
 			</footer>
 		</section>
