@@ -14,14 +14,14 @@ var init = function() {
 	$("#date_list").on("delete", "li", RemoveGame);
 	$("#bowl_list").on("delete", "li", RemoveDate);
 
-	$('li').on('touchstart', function(e){
+	$('ul').on('touchstart', function(e){
 		$(this).addClass('tapped');
 	});
 
-	$('li').on('touchend', function(e){
+	$('ul').on('touchend', function(e){
 		$(this).removeClass('tapped');
 	});
-	
+		
 	FastClick.attach(document.body);
 };
 
