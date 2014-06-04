@@ -26,6 +26,10 @@ $(document).on("pagebeforeshow","#stats-data",function(){
   //StatusBar.hide();
 });
 
+$(document).on("pagebeforeshow","#photo-data",function(){
+  $("#photo-content").empty();
+});
+
 function transactionDB(query){
 	var db = window.openDatabase(DBname,DBversion,DBdisname,DBsize);
 	db.transaction(query,errorDB);
