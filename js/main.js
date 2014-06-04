@@ -19,14 +19,6 @@ var init = function() {
 
 $(document).ready(init);
 
-$(document).on("pagebeforeshow", "#home", function() {
-	StatusBar.hide();
-});
-
-$(document).on("pagebeforeshow", "#stats-data", function() {
-	StatusBar.hide();
-});
-
 $(document).on("pagebeforeshow", "#photo-data", function() {
 	$("#photo-content").empty();
 });
