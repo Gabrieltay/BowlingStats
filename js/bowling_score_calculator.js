@@ -44,8 +44,9 @@ function calc(op, calcType) {
 	
 	results[frame_no][throw_no] = parseInt(op);
 	
-	if ( throw_no == 1 ) {   
-	    eval("form['frame" + frame_no + "-1'].value = " + op);
+	if ( throw_no == 1 ) { 
+	    //eval("form['frame" + frame_no + "-1'].value = " + op);
+	    $('#edit-frame' + frame_no + '-1').text(op);
 	    throw_no++;
 	    form['b-X'].disabled=true;
 	    form['b-/'].disabled=false;
@@ -57,7 +58,8 @@ function calc(op, calcType) {
 	    results[frame_no]['status'] = 'no';
 	    
 	    	    
-      	    eval("form['frame" + frame_no + "-2'].value = " + op);
+      	    //eval("form['frame" + frame_no + "-2'].value = " + op);
+	    	 $('#edit-frame' + frame_no + '-2').text(op);
 	    
 	    if (calcType == "duckpin"	) {
 		//eval("alert('heitto2='" + throw_no + ", 'frame='" + frame_no + ")");
@@ -96,7 +98,8 @@ function calc(op, calcType) {
 	    }
 	  } else {
 	    //kolmas heitto
-	    eval("form['frame" + frame_no + "-3'].value = " + op);
+	    //eval("form['frame" + frame_no + "-3'].value = " + op);
+	    $('#edit-frame' + frame_no + '-3').text(op);
 	    //alert("kolme");
 	    //alert(throw_no);
 	    //eval("alert('heitto3='" + throw_no + ", 'frame='" + frame_no + ")");
@@ -127,14 +130,17 @@ function calc(op, calcType) {
 
       switch (throw_no) {
 	case 1:
-          eval("form['frame" + frame_no + "-1'].value = 'X'");
+          //eval("form['frame" + frame_no + "-1'].value = 'X'");
+          $('#edit-frame' + frame_no + '-1').text('X');
 	  break;
 	case 2:
-          eval("form['frame" + frame_no + "-2'].value = 'X'");
+          //eval("form['frame" + frame_no + "-2'].value = 'X'");
+          $('#edit-frame' + frame_no + '-2').text('X');
 	  form['b-/'].disabled=true;
 	  break;
 	case 3:
-          eval("form['frame" + frame_no + "-3'].value = 'X'");
+          //eval("form['frame" + frame_no + "-3'].value = 'X'");
+          $('#edit-frame' + frame_no + '-3').text('X');
 	  calculate_frame_result(parseInt(parseInt(results[frame_no]['1'])+parseInt(results[frame_no]['2'])+parseInt(results[frame_no]['3'])));
 	  end_game();
 	  break;
@@ -145,8 +151,10 @@ function calc(op, calcType) {
       results[frame_no][throw_no] = '10';
       results[frame_no][throw_no+1] = '';
       calculate_frame_result(parseInt(10));
-      eval("form['frame" + frame_no + "-1'].value = ''");
-      eval("form['frame" + frame_no + "-2'].value = 'X'");
+      //eval("form['frame" + frame_no + "-1'].value = ''");
+      //eval("form['frame" + frame_no + "-2'].value = 'X'");
+      $('#edit-frame' + frame_no + '-1').text('');
+      $('#edit-frame' + frame_no + '-2').text('X');
   
       frame_no++;
       form['b-/'].disabled=true;
@@ -163,13 +171,15 @@ function calc(op, calcType) {
     
       switch (throw_no) {
 	case 2:
-          eval("form['frame" + frame_no + "-2'].value = '/'");
+          //eval("form['frame" + frame_no + "-2'].value = '/'");
+          $('#edit-frame' + frame_no + '-2').text('/');
 	  form['b-X'].disabled=false;
 	  form['b-/'].disabled=true;
 	  throw_no++;
 	  break;
 	case 3:
-          eval("form['frame" + frame_no + "-3'].value = '/'");
+          //eval("form['frame" + frame_no + "-3'].value = '/'");
+          $('#edit-frame' + frame_no + '-3').text('/');
 	  calculate_frame_result(parseInt(parseInt(results[frame_no]['1']) +
 					  parseInt(results[frame_no]['2']) +
 					  parseInt(results[frame_no]['3'])));
@@ -180,7 +190,8 @@ function calc(op, calcType) {
 	results[frame_no]['status'] = '/';
 	results[frame_no][throw_no] = parseInt(10 - results[frame_no][throw_no-1]);
 	calculate_frame_result(parseInt(10));
-	eval("form['frame" + frame_no + "-2'].value = '/'");
+	//eval("form['frame" + frame_no + "-2'].value = '/'");
+	$('#edit-frame' + frame_no + '-2').text('/');
 	
 	frame_no++;
 	throw_no--;
@@ -193,16 +204,21 @@ function calc(op, calcType) {
   
   if (op == "new") {
     for (var i=1; i <= 10; i++) {
-      eval("form['frame" + i + "-1'].value = ''");
-      eval("form['frame" + i + "-2'].value = ''");
+//      eval("form['frame" + i + "-1'].value = ''");
+//      eval("form['frame" + i + "-2'].value = ''");
+		$('#edit-frame' + i + '-1').text('');
+		$('#edit-frame' + i + '-2').text('');
       if (calcType == "duckpin") {
         eval("form['frame" + i + "-3'].value = ''");
       }
-      eval("form['frame" + i + "-res'].value = ''");
+      //eval("form['frame" + i + "-res'].value = ''");
+      $('#edit-frame' + i + '-res').text('');
       results.length = 0;
     }
-      eval("form['frame10-3'].value = ''");
-      form['game_result'].value = '';
+      //eval("form['frame10-3'].value = ''");
+      $('#edit-frame10-3').text('');
+      //form['game_result'].value = '';
+      $('#edit-game-result').text('');
       frame_no = 1;
       throw_no = 1;
       for( var j=0; j < 10; j++) {
@@ -252,19 +268,26 @@ function update_frame_result() {
   
   switch (frame_no) {
     case 1:
-      eval("form['frame" + frame_no + "-res'].value = " + results[frame_no]['result']);
+      //eval("form['frame" + frame_no + "-res'].value = " + results[frame_no]['result']);
+      $('#edit-frame' + frame_no + '-res').text(results[frame_no]['result']);
       break;
     case 2:
-      eval("form['frame" + parseInt(frame_no-1) + "-res'].value = " + results[frame_no-1]['result']);
-      eval("form['frame" + frame_no + "-res'].value = " + results[frame_no]['result']);
+      //eval("form['frame" + parseInt(frame_no-1) + "-res'].value = " + results[frame_no-1]['result']);
+      //eval("form['frame" + frame_no + "-res'].value = " + results[frame_no]['result']);
+      $('#edit-frame' + parseInt(frame_no-1) + '-res').text(results[frame_no-1]['result']);
+      $('#edit-frame' + frame_no + '-res').text(results[frame_no]['result']);
       break;
     default:
-      eval("form['frame" + parseInt(frame_no-2) + "-res'].value = " + results[frame_no-2]['result']);
-      eval("form['frame" + parseInt(frame_no-1) + "-res'].value = " + results[frame_no-1]['result']);
-      eval("form['frame" + frame_no + "-res'].value = " + results[frame_no]['result']);
+      //eval("form['frame" + parseInt(frame_no-2) + "-res'].value = " + results[frame_no-2]['result']);
+      //eval("form['frame" + parseInt(frame_no-1) + "-res'].value = " + results[frame_no-1]['result']);
+      //eval("form['frame" + frame_no + "-res'].value = " + results[frame_no]['result']);
+      $('#edit-frame' + parseInt(frame_no-2) + '-res').text(results[frame_no-2]['result']);
+      $('#edit-frame' + parseInt(frame_no-1) + '-res').text(results[frame_no-1]['result']);
+      $('#edit-frame' + frame_no + '-res').text(results[frame_no]['result']);
       break;
   }
-  eval("form['game_result'].value = " + results[frame_no]['result']);
+  //eval("form['game_result'].value = " + results[frame_no]['result']);
+  $('#edit-game-result').text(results[frame_no]['result']);
   return;
 }
 
