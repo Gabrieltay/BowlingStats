@@ -40,6 +40,13 @@ float:right;
 	border-collapse: collapse !important;
 }
 
+#bowling-calc-buttons-container table{
+	table-layout:fixed; width:100%;
+	text-align: center;
+	vertical-align: middle;
+	border-collapse: collapse !important;
+}
+
 #bowling-calc-score-container td {
 	overflow:hidden;
 }
@@ -52,9 +59,6 @@ float:right;
 	width: 100%;/*25px;*/
 	text-align: center;
 	vertical-align: middle;
-
-	/*font-size: small;	*/
-
 }
 
 ​#bowling-calc-score-container .first {
