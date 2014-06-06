@@ -8,7 +8,7 @@
 
 		<script src="js/jquery-1.9.1.min.js"></script>
 		<script src="js/jquery.once.js?v=1.2"></script>
-
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	</head>
 	<body  >
 
@@ -27,9 +27,7 @@
 									<form action="/bowling-score-calculator" method="post" id="generate-bowling-score-calculator" accept-charset="UTF-8">
 										<div>
 											<noscript>
-												<label>
-													Bowling score calculator requires javascript to be enabled to work.
-												</label>
+												<label> Bowling score calculator requires javascript to be enabled to work. </label>
 											</noscript>
 
 											<div id="bowling-calc-container">
@@ -120,10 +118,11 @@
 															<div class="form-item form-type-textfield form-item-frame10-3">
 																<label type="text" id="edit-frame10-3" name="frame10-3" value="0" size="1" maxlength="1" class="form-text">&nbsp;</label>
 															</div></td>
+															<!--
 															<td rowspan="2" class="game-result">
 															<div class="form-item form-type-textfield form-item-game-result">
 																<label type="text" id="edit-game-result" name="game_result" value="0" size="10" maxlength="3" class="form-text">&nbsp;</label>
-															</div></td>
+															</div></td> -->
 														</tr>
 														<tr>
 															<td class="frame score" colspan="2">
@@ -191,7 +190,8 @@
 															<td class="bowling-calc-buttons-container">
 															<input type="button" name="b-5" value="5" onclick="calc('5', 'ten-pin')" />
 															</td>
-
+														</tr>
+														<tr>
 															<td class="bowling-calc-buttons-container">
 															<input type="button" name="b-6" value="6" onclick="calc('6', 'ten-pin')" />
 															</td>
@@ -211,13 +211,15 @@
 															<input type="button" name="b-/" value="/" disabled="True" onclick="calc('/', 'ten-pin')" />
 															</td>
 														</tr>
-														<tr>
+														</table>
+															<div class="final-res-container">
+															<h1 id="final-res">0</h1>
+															</div>
 															<!--<td class="bowling-calc-buttons-container-fix"></td>-->
-															<td colspan=2 class="bowling-calc-buttons-container new-game">
+															<!--<td colspan=2 class="bowling-calc-buttons-container new-game">-->
 															<input type="button" name="b-new" value="New game" onclick="calc('new', 'ten-pin')" />
-															</td>
-														</tr>
-													</table>
+
+													
 												</div>
 
 											</div>
@@ -233,7 +235,7 @@
 
 			</div>
 		</div>
-
+		
 		<script src="js/bowling_score_calculator.js"></script>
 		<!--<script src="http://www.sportcalculators.com/sites/all/modules/SportCalculators/js/bowling_score_calculator.js"></script>-->
 	</body>

@@ -40,11 +40,19 @@ float:right;
 	border-collapse: collapse !important;
 }
 
-#bowling-calc-buttons-container table{
+#bowling-calc-buttons-container table {
 	table-layout:fixed; width:100%;
 	text-align: center;
 	vertical-align: middle;
 	border-collapse: collapse !important;
+}
+
+#final-res-container h1{
+	 width: 700px ;
+	 vertical-align: middle;
+	 text-align: center;
+		margin-left: auto ;
+  	margin-right: auto ;
 }
 
 #bowling-calc-score-container td {
@@ -61,6 +69,7 @@ float:right;
 	vertical-align: middle;
 }
 
+
 ​#bowling-calc-score-container .first {
 	border-top: 2px solid black;
 	padding-bottom: 0px;
@@ -76,3 +85,10 @@ float:right;
 #bowling-calc-score-container .frame {
 	border-right: 2px solid black;
 }
+
+td.bowling-calc-buttons-container input[type=button] {
+	width: 100%;
+	margin-top: 10px;
+	padding-left: 15px;
+}
+

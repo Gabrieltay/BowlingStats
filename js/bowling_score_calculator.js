@@ -218,7 +218,8 @@ function calc(op, calcType) {
       //eval("form['frame10-3'].value = ''");
       $('#edit-frame10-3').text('\xa0');
       //form['game_result'].value = '';
-      $('#edit-game-result').text('\xa0');
+      //$('#edit-game-result').text('\xa0');
+      $('#final-res').text('\xa0');
       frame_no = 1;
       throw_no = 1;
       for( var j=0; j < 10; j++) {
@@ -287,7 +288,8 @@ function update_frame_result() {
       break;
   }
   //eval("form['game_result'].value = " + results[frame_no]['result']);
-  $('#edit-game-result').text(results[frame_no]['result']);
+  //$('#edit-game-result').text(results[frame_no]['result']);
+  $('#final-res').text(results[frame_no]['result']);
   return;
 }
 
@@ -299,3 +301,5 @@ function end_game() {
   form['b-X'].disabled = true;
 
 }
+
+
