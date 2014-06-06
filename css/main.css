@@ -24,11 +24,11 @@
   display: block;
     margin: 0px auto;
 }
-/*
-.score 
+
+.stats-score 
 {
 float:right;
-}*/
+}
 
 
 
@@ -48,19 +48,15 @@ float:right;
 }
 
 #final-res-container h1{
-	 width: 700px ;
-	 vertical-align: middle;
-	 text-align: center;
-		margin-left: auto ;
+	width: 700px ;
+	vertical-align: middle;
+	text-align: center;
+	margin-left: auto ;
   	margin-right: auto ;
+  	font-size: 3em;
 }
 
-#bowling-calc-score-container td {
-	overflow:hidden;
-}
-#bowling-calc-score-container td {
-	width:6%px;
-	}
+
 	
 #bowling-calc-score-container label {
 	height: 100%;
@@ -92,3 +88,27 @@ td.bowling-calc-buttons-container input[type=button] {
 	padding-left: 15px;
 }
 
+form input[type=button] {
+    border: none;
+    display: block;
+    background: #136899;
+    height: 40px;
+    width: 100%;
+    /*max-width: 80px;*/
+    color: #ffffff;
+    text-align: center;
+    border-radius: 5px;
+    /*box-shadow: 0px 3px 1px #2075aa;*/
+  	-webkit-transition: all 0.15s linear;
+	  -moz-transition: all 0.15s linear;
+	  transition: all 0.15s linear;
+}
+
+form input[type=button]:disabled {
+    /*background: #68beff;
+    background: #014677;
+    background: #E8F5FA;
+    border: #014677 1px solid;*/
+
+	background: #ffffff;
+}
