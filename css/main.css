@@ -48,7 +48,7 @@ float:right;
 }
 
 #final-res-container h1{
-	width: 700px ;
+	width: 100% ;
 	vertical-align: middle;
 	text-align: center;
 	margin-left: auto ;
