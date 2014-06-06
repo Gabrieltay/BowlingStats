@@ -10,7 +10,7 @@ form .duckpin {
 
 @media only screen and (max-width: 800px) {
 
-#bowling-calc-score-container p {
+#bowling-calc-score-container label {
 		font-size: 0.8em;
 	}
 
@@ -74,7 +74,26 @@ form .duckpin {
 
 }
 
-#bowling-calc-score-container .result_score p {
+#bowling-calc-score-container label {
+	/*height: 100%;25px;*/
+	width: 100%;/*25px;*/
+	background-color: #E8F5FA;
+	border: 1px;
+	text-align: center;
+	vertical-align: middle;
+	padding-left: 0px;
+	padding-bottom: 5px;
+	margin: 0px;
+	/*font-size: small;	*/
+
+}
+
+#bowling-calc-score-container td {
+	height:100px;
+
+}
+
+#bowling-calc-score-container .result_score label {
 	text-align: center;
 }
 /*
