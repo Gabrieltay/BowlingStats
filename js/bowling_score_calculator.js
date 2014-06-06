@@ -206,19 +206,19 @@ function calc(op, calcType) {
     for (var i=1; i <= 10; i++) {
 //      eval("form['frame" + i + "-1'].value = ''");
 //      eval("form['frame" + i + "-2'].value = ''");
-		$('#edit-frame' + i + '-1').text('');
-		$('#edit-frame' + i + '-2').text('');
+		$('#edit-frame' + i + '-1').text('\xa0');
+		$('#edit-frame' + i + '-2').text('\xa0');
       if (calcType == "duckpin") {
-        eval("form['frame" + i + "-3'].value = ''");
+        eval("form['frame" + i + "-3'].value = '\xa0'");
       }
       //eval("form['frame" + i + "-res'].value = ''");
-      $('#edit-frame' + i + '-res').text('');
+      $('#edit-frame' + i + '-res').text('\xa0');
       results.length = 0;
     }
       //eval("form['frame10-3'].value = ''");
-      $('#edit-frame10-3').text('');
+      $('#edit-frame10-3').text('\xa0');
       //form['game_result'].value = '';
-      $('#edit-game-result').text('');
+      $('#edit-game-result').text('\xa0');
       frame_no = 1;
       throw_no = 1;
       for( var j=0; j < 10; j++) {

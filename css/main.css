@@ -24,10 +24,51 @@
   display: block;
     margin: 0px auto;
 }
-
+/*
 .score 
 {
 float:right;
+}*/
+
+
+
+#bowling-calc-score-container table {
+	table-layout:fixed; width:100%;
+	border: 2px solid black;
+	text-align: center;
+	vertical-align: middle;
+	border-collapse: collapse !important;
 }
 
-​
+#bowling-calc-score-container td {
+	overflow:hidden;
+}
+#bowling-calc-score-container td {
+	width:6%px;
+	}
+	
+#bowling-calc-score-container label {
+	height: 100%;
+	width: 100%;/*25px;*/
+	text-align: center;
+	vertical-align: middle;
+
+	/*font-size: small;	*/
+
+}
+
+​#bowling-calc-score-container .first {
+	border-top: 2px solid black;
+	padding-bottom: 0px;
+}
+
+
+#bowling-calc-score-container .second, #bowling-calc-score-container .third {
+	border-left: 2px solid black;
+	border-bottom: 2px solid black;
+	border-right: 2px solid black;
+}
+
+#bowling-calc-score-container .frame {
+	border-right: 2px solid black;
+}
