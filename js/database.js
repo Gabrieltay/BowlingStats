@@ -126,9 +126,9 @@ function InsertQuery(tx) {
 		alert("Empty Fields！");
 		return;
 	}
-
 	tx.executeSql('INSERT INTO blist (score,date,file) VALUES ("' + score + '","' + dateString + '", "NULL")', [], function(tx, results) {
-		$("#dialog").dialog('close');
+		//$("#dialog").dialog('close');
+		$.mobile.back();
 	}, errorDB);
 	RefreshQuery(tx);
 }
@@ -245,7 +245,7 @@ function successDB() {
 }
 
 function onCameraError(message) {
-	alert('Failed because: ' + message)
+	alert('Failed because: ' + message);
 }
 
 function success() {

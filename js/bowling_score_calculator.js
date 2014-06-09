@@ -21,7 +21,7 @@ var results = [];
  * Function to return result for the operation performed on calc.
  */
 function calc(op, calcType) {
-
+	
 	//_gaq.push(['_trackEvent', calcType, op]);
 
 	if (calcType == "ten-pin") {
@@ -38,16 +38,15 @@ function calc(op, calcType) {
 		}
 		form['b-/'].disabled = false;
 	}
-
+	
 	if (op == "1" || op == "2" || op == "3" || op == "4" || op == "5" || op == "6" || op == "7" || op == "8" || op == "9" || op == "0") {
 
 		results[frame_no][throw_no] = parseInt(op);
 
 		if (throw_no == 1) {
-			//eval("form['frame" + frame_no + "-1'].value = " + op);
 			$('#edit-frame' + frame_no + '-1').text(op);
 			throw_no++;
-			form['b-X'].disabled = true;
+			form['b-X'].disabled=true;
 			form['b-/'].disabled = false;
 			for (var k = parseInt(10 - op); k < 10; k++) {
 				eval("form['b-" + k + "'].disabled=true");
@@ -56,11 +55,10 @@ function calc(op, calcType) {
 
 			results[frame_no]['status'] = 'no';
 
-			//eval("form['frame" + frame_no + "-2'].value = " + op);
+
 			$('#edit-frame' + frame_no + '-2').text(op);
 
 			if (frame_no != 10) {
-				//alert("normal");
 				calculate_frame_result(parseInt(results[frame_no][throw_no] + results[frame_no][throw_no - 1]));
 				throw_no--;
 				frame_no++;
@@ -69,22 +67,19 @@ function calc(op, calcType) {
 			} else {
 				if (results[frame_no]['1'] != 10) {
 					calculate_frame_result(parseInt(parseInt(results[frame_no][throw_no]) + parseInt(results[frame_no][throw_no - 1])));
+					throw_no++;
 					end_game();
 				} else {
 					throw_no++;
 				}
 			}
 		} else {
-			//kolmas heitto
-			//eval("form['frame" + frame_no + "-3'].value = " + op);
 			$('#edit-frame' + frame_no + '-3').text(op);
-			//alert("kolme");
-			//alert(throw_no);
-			//eval("alert('heitto3='" + throw_no + ", 'frame='" + frame_no + ")");
 
 			calculate_frame_result(parseInt(parseInt(results[frame_no][throw_no]) + parseInt(results[frame_no][throw_no - 1]) + parseInt(results[frame_no][throw_no - 2])));
 			if (frame_no == 10) {
-				end_game();
+				throw_no++;
+				end_game();				
 			} else {
 				throw_no = 1;
 				frame_no++;
@@ -95,8 +90,7 @@ function calc(op, calcType) {
 				}
 			}
 		}
-		// alert("loppu");
-		// alert(throw_no);
+		//$('#debug').text(frame_no + ' - ' + throw_no);
 		return;
 	}
 
@@ -108,6 +102,7 @@ function calc(op, calcType) {
 				{
 					$('#edit-frame' + (frame_no - 1) + '-1').text('');
 					$('#edit-frame' + (frame_no - 1) + '-2').text('');
+					throw_no = 1;
 				}
 				else if (frame_no >= 2)
 				{
@@ -118,83 +113,90 @@ function calc(op, calcType) {
 					for (var k = parseInt(10 - throw_1); k < 10; k++) {
 						eval("form['b-" + k + "'].disabled=true");
 					}
-					throw_no++;
+					throw_no = 2;
 				}
-				//recalculate till previous frame
+				if ( frame_no > 2 )
+					recalculate(frame_no - 2);
+				else
+					{
+						results[frame_no]['status'] = null;
+						results[frame_no]['result'] = null;
+						$('#edit-frame' + 1 + '-res').text('');
+						frame_no--;
+					}	
 				break;
 			case 2:
+				if (frame_no >= 1)
+				{
+					$('#edit-frame' + (frame_no) + '-1').text('');
+					for (var k = 1; k < 10; k++) {
+						eval("form['b-" + k + "'].disabled=false");
+						form['b-X'].disabled = false;
+						form['b-/'].disabled = true;
+						throw_no = 1;
+					}
+				}
 				break;
 			case 3:
-				break;
-
-		}
-	}
-
-	if (op == "erases") {
-		var cur_frame = frame_no;
-		switch (throw_no) {
-			case 1:
-				$('#edit-frame' + (frame_no - 1) + '-res').text('\xa0');
-				if (frame_no >= 2 && results[frame_no-1]['status'] == 'X')// Previous Strike
+				if (frame_no == 10)
 				{
-					$('#edit-frame' + (frame_no - 1) + '-1').text('');
-					$('#edit-frame' + (frame_no - 1) + '-2').text('');
+					
+					$('#edit-frame' + frame_no + '-2').text('');
+					if ($('#edit-frame' + frame_no + '-1').text() == 'X')
+					{
+						for (var k = 0; k < 10; k++) {
+						eval("form['b-" + k + "'].disabled=false");}
+						form['b-X'].disabled = false;
+						form['b-/'].disabled = true;
+					}
+					else 
+					{
+						$('#edit-frame' + frame_no + '-res').text('');
+						form['b-X'].disabled = true;
+						form['b-/'].disabled = false;
+						for (var k = 0; k < 10; k++) {
+							eval("form['b-" + k + "'].disabled=false");
+							}
+						for (var k = parseInt(10 - parseInt($('#edit-frame' + frame_no + '-1').text())); k < 10; k++) {
+							eval("form['b-" + k + "'].disabled=true");
+							}
+					}
+					throw_no = 2;
+					recalculate(frame_no - 1);
+				}
+				break;
+			default:
+				if (frame_no == 10)
+				{
+					$('#edit-frame' + (frame_no) + '-3').text('');
+					$('#edit-frame' + frame_no + '-res').text('');
+					if ($('#edit-frame' + frame_no + '-2').text() == 'X')
+					{
+						for (var k = 0; k < 10; k++) {
+						eval("form['b-" + k + "'].disabled=false");}
+						form['b-X'].disabled = false;
+						form['b-/'].disabled = true;
+					}
+					else
+					{
+						form['b-X'].disabled = true;
+						form['b-/'].disabled = false;
+						for (var k = 0; k < 10; k++) {
+							eval("form['b-" + k + "'].disabled=false");
+							}
+						for (var k = parseInt(10 - parseInt($('#edit-frame' + frame_no + '-2').text())); k < 10; k++) {
+							eval("form['b-" + k + "'].disabled=true");
+							}
+					}
+					recalculate(frame_no - 1);
+					throw_no = 3;
+				}
+				break;
 
-					if (frame_no >= 3 && results[frame_no-2]['status'] == 'X')// Previous Double Strike
-					{
-						if (frame_no >= 4 && results[frame_no-3]['status'] == 'X')// Previous Triple Strike
-						{
-							for (frame_no -= 3; frame_no <= cur_frame - 2; frame_no++) {
-								results[frame_no][1] = '10';
-								calculate_frame_result(parseInt(10));
-							}
-						} else {// Previous Double Strike
-							for (frame_no -= 2; frame_no <= cur_frame - 2; frame_no++) {
-								results[frame_no][1] = '10';
-								calculate_frame_result(parseInt(10));
-							}
-						}
-					} else if (frame_no >= 3 && results[frame_no-2]['status'] == '/') {// Previous Spare Strike
-						for (frame_no -= 2; frame_no <= cur_frame - 2; frame_no++) {
-							calculate_frame_result(parseInt(10));
-						}
-					} else {// Only Strike
-						$('#edit-frame' + (frame_no - 1) + '-1').text('');
-						$('#edit-frame' + (frame_no - 1) + '-2').text('');
-						frame_no--;
-					}
-				} else {
-					frame_no--;
-					if (frame_no >= 3 && results[frame_no-1]['status'] == 'X')// Previous Previous Strike
-					{
-						frame_no--;
-						results[frame_no][1] = '10';
-						calculate_frame_result(parseInt(10));
-						frame_no++;
-						alert(frame_no);
-					}
-					var throw_1 = results[frame_no][1];
-					$('#edit-frame' + (frame_no) + '-2').text('');
-					form['b-X'].disabled = true;
-					form['b-/'].disabled = false;
-					for (var k = parseInt(10 - throw_1); k < 10; k++) {
-						eval("form['b-" + k + "'].disabled=true");
-					}
-					throw_no++;
-				}
-				break;
-			case 2:
-				$('#edit-frame' + (frame_no) + '-1').text('');
-				for (var k = 1; k < 10; k++) {
-					eval("form['b-" + k + "'].disabled=false");
-					form['b-X'].disabled = false;
-					form['b-/'].disabled = true;
-				}
-				throw_no--;
-				break;
 		}
-		return;
+		//$('#debug').text(frame_no + ' - ' + throw_no);
 	}
+
 
 	if (op == "X") {
 
@@ -225,15 +227,14 @@ function calc(op, calcType) {
 			results[frame_no][throw_no] = '10';
 			results[frame_no][throw_no + 1] = '';
 			calculate_frame_result(parseInt(10));
-			//eval("form['frame" + frame_no + "-1'].value = ''");
-			//eval("form['frame" + frame_no + "-2'].value = 'X'");
+
 			$('#edit-frame' + frame_no + '-1').text('');
 			$('#edit-frame' + frame_no + '-2').text('X');
 
 			frame_no++;
 			form['b-/'].disabled = true;
 		}
-
+		$('#debug').text(frame_no + ' - ' + throw_no);
 		return;
 	}
 
@@ -255,6 +256,7 @@ function calc(op, calcType) {
 					//eval("form['frame" + frame_no + "-3'].value = '/'");
 					$('#edit-frame' + frame_no + '-3').text('/');
 					calculate_frame_result(parseInt(parseInt(results[frame_no]['1']) + parseInt(results[frame_no]['2']) + parseInt(results[frame_no]['3'])));
+					throw_no++;
 					end_game();
 					break;
 			}
@@ -270,7 +272,7 @@ function calc(op, calcType) {
 			form['b-X'].disabled = false;
 			form['b-/'].disabled = true;
 		}
-
+		$('#debug').text(frame_no + ' - ' + throw_no);
 		return;
 	}
 
@@ -297,13 +299,31 @@ function calc(op, calcType) {
 		}
 		form['b-X'].disabled = false;
 		form['b-/'].disabled = true;
-
 	}
 }
 
 function recalculate(last_frame){
-	frame_no=0;
+	frame_no=1;
+	while ( frame_no <= last_frame )
+	{
+		if ( results[frame_no]['status'] != null )
+		{
+			if ( results[frame_no]['status'] == 'no')
+			{
+				calculate_frame_result(parseInt(results[frame_no][1] + results[frame_no][2]));
+			}
+			else if ( results[frame_no]['status'] == 'X' || results[frame_no]['status'] == '/')
+			{
+				calculate_frame_result(parseInt(10));
+			}
+			
+			frame_no++;	
+		}
+		else {
+			return;
+		}
 		
+	}
 }
 
 function calculate_frame_result(frame_res) {
@@ -374,3 +394,16 @@ function end_game() {
 
 }
 
+function injectNumXButtons(num) {
+	var htmlString = '';
+	for (var i = 0; i <= num; i++) {
+		htmlString = htmlString + '<td class="bowling-calc-buttons-container-' + parseInt(i/6) +"> <input type="button" name="b-"
+	}
+	<td class="bowling-calc-buttons-container">
+									<input class="calc-buttons" type="button" name="b-0" value="0" onclick="calc('0', 'ten-pin')" />
+									</td>
+}
+
+function injectNumYButtons() {
+	
+}
