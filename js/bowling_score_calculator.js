@@ -20,25 +20,17 @@ var results = [];
 /**
  * Function to return result for the operation performed on calc.
  */
-function calc(op, calcType) {
-	
-	//_gaq.push(['_trackEvent', calcType, op]);
+function calc(op) {
+//alert(op);
+  form = document.getElementById("generate-bowling-score-calculator");
 
-	if (calcType == "ten-pin") {
-		form = document.getElementById("generate-bowling-score-calculator");
-	} else if (calcType == "duckpin") {
-		form = document.getElementById("generate-duckpin-bowling-calculator");
-	}
 
 	if (throw_no == 1) {
 		results[frame_no] = [];
 	} else if (throw_no == 2) {
-		for (var j = 0; j < 10; j++) {
-			eval("form['b-" + j + "'].disabled=false");
-		}
-		form['b-/'].disabled = false;
+    injectYBtn(10);
 	}
-	
+
 	if (op == "1" || op == "2" || op == "3" || op == "4" || op == "5" || op == "6" || op == "7" || op == "8" || op == "9" || op == "0") {
 
 		results[frame_no][throw_no] = parseInt(op);
@@ -46,11 +38,7 @@ function calc(op, calcType) {
 		if (throw_no == 1) {
 			$('#edit-frame' + frame_no + '-1').text(op);
 			throw_no++;
-			form['b-X'].disabled=true;
-			form['b-/'].disabled = false;
-			for (var k = parseInt(10 - op); k < 10; k++) {
-				eval("form['b-" + k + "'].disabled=true");
-			}
+      injectYBtn(parseInt(10 - op));
 		} else if (throw_no == 2) {
 
 			results[frame_no]['status'] = 'no';
@@ -62,8 +50,7 @@ function calc(op, calcType) {
 				calculate_frame_result(parseInt(results[frame_no][throw_no] + results[frame_no][throw_no - 1]));
 				throw_no--;
 				frame_no++;
-				form['b-/'].disabled = true;
-				form['b-X'].disabled = false;
+        injectXBtn(10);
 			} else {
 				if (results[frame_no]['1'] != 10) {
 					calculate_frame_result(parseInt(parseInt(results[frame_no][throw_no]) + parseInt(results[frame_no][throw_no - 1])));
@@ -79,18 +66,14 @@ function calc(op, calcType) {
 			calculate_frame_result(parseInt(parseInt(results[frame_no][throw_no]) + parseInt(results[frame_no][throw_no - 1]) + parseInt(results[frame_no][throw_no - 2])));
 			if (frame_no == 10) {
 				throw_no++;
-				end_game();				
+				end_game();
 			} else {
 				throw_no = 1;
 				frame_no++;
-				for (var k = 1; k < 10; k++) {
-					eval("form['b-" + k + "'].disabled=false");
-					form['b-X'].disabled = false;
-					form['b-/'].disabled = true;
-				}
+				injectXBtn(10);
 			}
 		}
-		//$('#debug').text(frame_no + ' - ' + throw_no);
+		$('#debug').text(frame_no + ' - ' + throw_no);
 		return;
 	}
 
@@ -108,11 +91,7 @@ function calc(op, calcType) {
 				{
 					var throw_1 = results[frame_no-1][1];
 					$('#edit-frame' + (frame_no - 1) + '-2').text('');
-					form['b-X'].disabled = true;
-					form['b-/'].disabled = false;
-					for (var k = parseInt(10 - throw_1); k < 10; k++) {
-						eval("form['b-" + k + "'].disabled=true");
-					}
+					injectYBtn(parseInt(10 - throw_1));
 					throw_no = 2;
 				}
 				if ( frame_no > 2 )
@@ -123,43 +102,29 @@ function calc(op, calcType) {
 						results[frame_no]['result'] = null;
 						$('#edit-frame' + 1 + '-res').text('');
 						frame_no--;
-					}	
+					}
 				break;
 			case 2:
 				if (frame_no >= 1)
 				{
 					$('#edit-frame' + (frame_no) + '-1').text('');
-					for (var k = 1; k < 10; k++) {
-						eval("form['b-" + k + "'].disabled=false");
-						form['b-X'].disabled = false;
-						form['b-/'].disabled = true;
-						throw_no = 1;
-					}
+          injectXBtn(10);
+					throw_no = 1;
 				}
 				break;
 			case 3:
 				if (frame_no == 10)
 				{
-					
+
 					$('#edit-frame' + frame_no + '-2').text('');
 					if ($('#edit-frame' + frame_no + '-1').text() == 'X')
 					{
-						for (var k = 0; k < 10; k++) {
-						eval("form['b-" + k + "'].disabled=false");}
-						form['b-X'].disabled = false;
-						form['b-/'].disabled = true;
+            injectXBtn(10);
 					}
-					else 
+					else
 					{
 						$('#edit-frame' + frame_no + '-res').text('');
-						form['b-X'].disabled = true;
-						form['b-/'].disabled = false;
-						for (var k = 0; k < 10; k++) {
-							eval("form['b-" + k + "'].disabled=false");
-							}
-						for (var k = parseInt(10 - parseInt($('#edit-frame' + frame_no + '-1').text())); k < 10; k++) {
-							eval("form['b-" + k + "'].disabled=true");
-							}
+						injectYBtn(parseInt(10 - parseInt($('#edit-frame' + frame_no + '-1').text())));
 					}
 					throw_no = 2;
 					recalculate(frame_no - 1);
@@ -172,21 +137,11 @@ function calc(op, calcType) {
 					$('#edit-frame' + frame_no + '-res').text('');
 					if ($('#edit-frame' + frame_no + '-2').text() == 'X')
 					{
-						for (var k = 0; k < 10; k++) {
-						eval("form['b-" + k + "'].disabled=false");}
-						form['b-X'].disabled = false;
-						form['b-/'].disabled = true;
+            injectXBtn(10);
 					}
 					else
 					{
-						form['b-X'].disabled = true;
-						form['b-/'].disabled = false;
-						for (var k = 0; k < 10; k++) {
-							eval("form['b-" + k + "'].disabled=false");
-							}
-						for (var k = parseInt(10 - parseInt($('#edit-frame' + frame_no + '-2').text())); k < 10; k++) {
-							eval("form['b-" + k + "'].disabled=true");
-							}
+            injectYBtn(parseInt(10 - parseInt($('#edit-frame' + frame_no + '-2').text())));
 					}
 					recalculate(frame_no - 1);
 					throw_no = 3;
@@ -194,7 +149,7 @@ function calc(op, calcType) {
 				break;
 
 		}
-		//$('#debug').text(frame_no + ' - ' + throw_no);
+		$('#debug').text(frame_no + ' - ' + throw_no);
 	}
 
 
@@ -206,16 +161,13 @@ function calc(op, calcType) {
 
 			switch (throw_no) {
 				case 1:
-					//eval("form['frame" + frame_no + "-1'].value = 'X'");
 					$('#edit-frame' + frame_no + '-1').text('X');
 					break;
 				case 2:
-					//eval("form['frame" + frame_no + "-2'].value = 'X'");
 					$('#edit-frame' + frame_no + '-2').text('X');
-					form['b-/'].disabled = true;
+          injectXBtn(10);
 					break;
 				case 3:
-					//eval("form['frame" + frame_no + "-3'].value = 'X'");
 					$('#edit-frame' + frame_no + '-3').text('X');
 					calculate_frame_result(parseInt(parseInt(results[frame_no]['1']) + parseInt(results[frame_no]['2']) + parseInt(results[frame_no]['3'])));
 					end_game();
@@ -232,7 +184,7 @@ function calc(op, calcType) {
 			$('#edit-frame' + frame_no + '-2').text('X');
 
 			frame_no++;
-			form['b-/'].disabled = true;
+      injectXBtn(10);
 		}
 		$('#debug').text(frame_no + ' - ' + throw_no);
 		return;
@@ -246,14 +198,11 @@ function calc(op, calcType) {
 
 			switch (throw_no) {
 				case 2:
-					//eval("form['frame" + frame_no + "-2'].value = '/'");
 					$('#edit-frame' + frame_no + '-2').text('/');
-					form['b-X'].disabled = false;
-					form['b-/'].disabled = true;
+          injectXBtn(10);
 					throw_no++;
 					break;
 				case 3:
-					//eval("form['frame" + frame_no + "-3'].value = '/'");
 					$('#edit-frame' + frame_no + '-3').text('/');
 					calculate_frame_result(parseInt(parseInt(results[frame_no]['1']) + parseInt(results[frame_no]['2']) + parseInt(results[frame_no]['3'])));
 					throw_no++;
@@ -264,13 +213,11 @@ function calc(op, calcType) {
 			results[frame_no]['status'] = '/';
 			results[frame_no][throw_no] = parseInt(10 - results[frame_no][throw_no - 1]);
 			calculate_frame_result(parseInt(10));
-			//eval("form['frame" + frame_no + "-2'].value = '/'");
 			$('#edit-frame' + frame_no + '-2').text('/');
 
 			frame_no++;
 			throw_no--;
-			form['b-X'].disabled = false;
-			form['b-/'].disabled = true;
+      injectXBtn(10);
 		}
 		$('#debug').text(frame_no + ' - ' + throw_no);
 		return;
@@ -278,27 +225,17 @@ function calc(op, calcType) {
 
 	if (op == "new") {
 		for (var i = 1; i <= 10; i++) {
-			//      eval("form['frame" + i + "-1'].value = ''");
-			//      eval("form['frame" + i + "-2'].value = ''");
 			$('#edit-frame' + i + '-1').text('\xa0');
 			$('#edit-frame' + i + '-2').text('\xa0');
-
-			//eval("form['frame" + i + "-res'].value = ''");
 			$('#edit-frame' + i + '-res').text('\xa0');
 			results.length = 0;
 		}
-		//eval("form['frame10-3'].value = ''");
+
 		$('#edit-frame10-3').text('\xa0');
-		//form['game_result'].value = '';
-		//$('#edit-game-result').text('\xa0');
 		$('#final-res').text('\xa0');
 		frame_no = 1;
 		throw_no = 1;
-		for (var j = 0; j < 10; j++) {
-			eval("form['b-" + j + "'].disabled=false");
-		}
-		form['b-X'].disabled = false;
-		form['b-/'].disabled = true;
+    injectXBtn(10);
 	}
 }
 
@@ -316,13 +253,13 @@ function recalculate(last_frame){
 			{
 				calculate_frame_result(parseInt(10));
 			}
-			
-			frame_no++;	
+
+			frame_no++;
 		}
 		else {
 			return;
 		}
-		
+
 	}
 }
 
@@ -386,24 +323,40 @@ function update_frame_result() {
 }
 
 function end_game() {
-	for (var i = 0; i < 10; i++) {
-		eval("form['b-" + i + "'].disabled = true");
-	}
-	form['b-/'].disabled = true;
-	form['b-X'].disabled = true;
-
+  clearBtn();
 }
 
-function injectNumXButtons(num) {
-	var htmlString = '';
-	for (var i = 0; i <= num; i++) {
-		htmlString = htmlString + '<td class="bowling-calc-buttons-container-' + parseInt(i/6) +"> <input type="button" name="b-"
-	}
-	<td class="bowling-calc-buttons-container">
-									<input class="calc-buttons" type="button" name="b-0" value="0" onclick="calc('0', 'ten-pin')" />
-									</td>
+function injectXBtn(num) {
+  var htmlString = "";
+  var calcStr ="";
+  $(".bowling-calc-buttons-table-1").empty();
+	for (var i = 0; i < num; i++) {
+    calcStr = "calc('" + i + "')";
+    htmlString = '<td class="bowling-calc-buttons-container"><input type="button" name="b-' +i+ '" value="' +i+ '" onclick=' + calcStr + ' /></td>';
+		$(".bowling-calc-buttons-table-1").append(htmlString);
+  }
+  calcStr = "calc('X')";
+  htmlString = '<td class="bowling-calc-buttons-container"><input type="button" name="b-X" value="X" onclick=' + calcStr + ' /></td>';
+  $(".bowling-calc-buttons-table-1").append(htmlString);
+  $(".bowling-calc-buttons-table-1").trigger('create');
 }
 
-function injectNumYButtons() {
-	
+function injectYBtn(num) {
+	var htmlString = "";
+  var calcStr ="";
+  $(".bowling-calc-buttons-table-1").empty();
+	for (var i = 0; i < num; i++) {
+    calcStr = "calc('" + i + "')";
+    htmlString = '<td class="bowling-calc-buttons-container"><input type="button" name="b-' +i+ '" value="' +i+ '" onclick=' + calcStr + ' /></td>';
+		$(".bowling-calc-buttons-table-1").append(htmlString);
+  }
+  calcStr = "calc('/')";
+  htmlString = '<td class="bowling-calc-buttons-container"><input type="button" name="b-/" value="/" onclick=' + calcStr + ' /></td>';
+  $(".bowling-calc-buttons-table-1").append(htmlString);
+  $(".bowling-calc-buttons-table-1").trigger('create');
+}
+
+function clearBtn(){
+  $(".bowling-calc-buttons-table-1").empty();
+  $(".bowling-calc-buttons-table-1").trigger('create');
 }

@@ -42,7 +42,7 @@
 			</header>
 
 			<div data-role="content">
-				<a href="#score-data" data-rel="page" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" >Game</a>
+				<a href="#score-data" data-rel="page" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="calc('new')">Game</a>
 				<a href="#dialog" id="add" data-rel="page" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
 				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 			</div>
@@ -370,8 +370,9 @@
 
 						<div id="bowling-calc-buttons-container">
 							<table class="bowling-calc-buttons-table" style="border-collapse: separate;">
-								<tr>
-									<td class="bowling-calc-buttons-container-0">
+								<tr class="bowling-calc-buttons-table-1">
+                                    <!--
+                                    <td class="bowling-calc-buttons-container">
 									<input class="calc-buttons" type="button" name="b-0" value="0" onclick="calc('0', 'ten-pin')" />
 									</td>
 									<td class="bowling-calc-buttons-container">
@@ -388,8 +389,9 @@
 									</td>
 									<td class="bowling-calc-buttons-container">
 									<input class="calc-buttons" type="button" name="b-5" value="5" onclick="calc('5', 'ten-pin')" />
-									</td>
+									</td>-->
 								</tr>
+                                <!--
 								<tr>
 									<td class="bowling-calc-buttons-container-1">
 									<input class="calc-buttons" type="button" name="b-6" value="6" onclick="calc('6', 'ten-pin')" />
@@ -409,7 +411,7 @@
 									<td class="bowling-calc-buttons-container">
 									<input class="calc-buttons" type="button" name="b-/" value="/"  onclick="calc('/', 'ten-pin')" />
 									</td>
-								</tr>
+								</tr> -->
 							</table>
 							<div id="final-res-container">
 								<h1 id="final-res">0</h1>
