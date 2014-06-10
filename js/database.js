@@ -98,16 +98,16 @@ function StatsQuery(tx) {
 
 function CreatQuery(tx) {
 	var sqlStr = "";
-	for (var i=2;i<=4;i++)
+	for (var i=2;i<=22;i++)
 	{
-		if ( i != 4)
-			sqlStr = sqlStr + 'frame_' + parseInt(i/2) + '_' + ((i%2 == 0) ? '1' : '2') + ' character(1), ';
+		if ( i != 22)
+			sqlStr = sqlStr + 'frame_' + parseInt(i/2) + '_' + ((i%2 == 0) ? '1' : '2') + ' varchar(1), ';
 		else
-			sqlStr = sqlStr + 'frame_10_3 character(1)';	
+			sqlStr = sqlStr + 'frame_10_3 varchar(1)';	
 	}
-	//tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar,' + sqlStr + ')', [], function(tx, results) {
-	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar, frame_1_1 varchar(1), frame_1_2 varchar(1))', [], function(tx, results) {
-		alert("OK");
+	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar,' + sqlStr + ')', [], function(tx, results) {
+	//tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar, frame_1_1 varchar(1), frame_1_2 varchar(1))', [], function(tx, results) {
+		alert(sqlStr);
 	}, errorDB);
 }
 
@@ -152,8 +152,8 @@ function InsertQuery(tx) {
 		else 
 			sqlStr = sqlStr + 'frame_10_' + parseInt(i-19);	
 	}
-	tx.executeSql('INSERT INTO blist (score,date,file,frame_1_1,frame_1_2 ) VALUES ("' + score + '","' + dateString + '", "NULL", "","X")', [], function(tx, results) {
-	//tx.executeSql('INSERT INTO blist (score,date,file' + sqlStr + ') VALUES ("' + score + '","' + dateString + '", "NULL", "-","X")', [], function(tx, results) {
+	//tx.executeSql('INSERT INTO blist (score,date,file,frame_1_1,frame_1_2 ) VALUES ("' + score + '","' + dateString + '", "NULL", "","X")', [], function(tx, results) {
+	tx.executeSql('INSERT INTO blist (score,date,file,' + sqlStr + ') VALUES ("' + score + '","' + dateString + '", "NULL", "","X","","X","","X","","X","","X","","X","","X","","X","","X","X","X","X")', [], function(tx, results) {
 		//$("#dialog").dialog('close');
 		$.mobile.back();
 	}, errorDB);
