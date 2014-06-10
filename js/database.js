@@ -97,7 +97,16 @@ function StatsQuery(tx) {
 }
 
 function CreatQuery(tx) {
-	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar)');
+	var sqlStr = "";
+	for (var i=2;i<=22;i++)
+	{
+		if ( i != 22)
+			sqlStr = sqlStr + 'frame_' + parseInt(i/2) + '_' + ((i%2 == 0) ? '1' : '2') + ' character(1), ';
+		else
+			sqlStr = sqlStr + 'frame_10_3 character(1)';	
+	}
+
+	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar,' + sqlStr + ')');
 }
 
 function RefreshQuery(tx) {
@@ -273,6 +282,7 @@ function resetFields() {
 
 	$('#scoreinput').trigger("create");
 	document.getElementById('dateinput').valueAsDate = new Date();
+	calc('new');
 }
 
 function socialsharing() {

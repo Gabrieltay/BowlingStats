@@ -42,7 +42,6 @@
 			</header>
 
 			<div data-role="content">
-				<a href="#score-data" data-rel="page" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="calc('new')">Game</a>
 				<a href="#dialog" id="add" data-rel="page" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
 				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 			</div>
@@ -72,7 +71,7 @@
 						<label for="dateinput">Date:</label>
 						<input type="date" name="date" id="dateinput" value="">
 					</div>
-					<a href="#score-data" data-rel="page" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" >Game</a>
+					<a href="#score-data" data-rel="page" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="calcs('new')">Game</a>
 					<a href="#" onclick="InsertData();" id="submit" data-role="button" data-icon="flat-man" data-theme="g">Confirm</a>
 				</form>
 			</div>
@@ -370,58 +369,15 @@
 
 						<div id="bowling-calc-buttons-container">
 							<table class="bowling-calc-buttons-table" style="border-collapse: separate;">
-								<tr class="bowling-calc-buttons-table-1">
-                                    <!--
-                                    <td class="bowling-calc-buttons-container">
-									<input class="calc-buttons" type="button" name="b-0" value="0" onclick="calc('0', 'ten-pin')" />
-									</td>
-									<td class="bowling-calc-buttons-container">
-									<input class="calc-buttons" type="button" name="b-1" value="1" onclick="calc('1', 'ten-pin')" />
-									</td>
-									<td class="bowling-calc-buttons-container">
-									<input class="calc-buttons" type="button" name="b-2" value="2" onclick="calc('2', 'ten-pin')" />
-									</td>
-									<td class="bowling-calc-buttons-container">
-									<input class="calc-buttons" type="button" name="b-3" value="3" onclick="calc('3', 'ten-pin')" />
-									</td>
-									<td class="bowling-calc-buttons-container">
-									<input class="calc-buttons" type="button" name="b-4" value="4" onclick="calc('4', 'ten-pin')" />
-									</td>
-									<td class="bowling-calc-buttons-container">
-									<input class="calc-buttons" type="button" name="b-5" value="5" onclick="calc('5', 'ten-pin')" />
-									</td>-->
-								</tr>
-                                <!--
-								<tr>
-									<td class="bowling-calc-buttons-container-1">
-									<input class="calc-buttons" type="button" name="b-6" value="6" onclick="calc('6', 'ten-pin')" />
-									</td>
-									<td class="bowling-calc-buttons-container">
-									<input class="calc-buttons" type="button" name="b-7" value="7" onclick="calc('7', 'ten-pin')" />
-									</td>
-									<td class="bowling-calc-buttons-container">
-									<input class="calc-buttons" type="button" name="b-8" value="8" onclick="calc('8', 'ten-pin')" />
-									</td>
-									<td class="bowling-calc-buttons-container">
-									<input class="calc-buttons" type="button" name="b-9" value="9" onclick="calc('9', 'ten-pin')" />
-									</td>
-									<td class="bowling-calc-buttons-container">
-									<input class="calc-buttons" type="button" name="b-X" value="X" onclick="calc('X', 'ten-pin')" />
-									</td>
-									<td class="bowling-calc-buttons-container">
-									<input class="calc-buttons" type="button" name="b-/" value="/"  onclick="calc('/', 'ten-pin')" />
-									</td>
-								</tr> -->
+								<tr class="bowling-calc-buttons-table-1"/>
+								
+								<tr class="bowling-calc-buttons-table-2"/>
 							</table>
 							<div id="final-res-container">
 								<h1 id="final-res">0</h1>
-								<h1 id="debug">0</h1>
 							</div>
-							<!--<td class="bowling-calc-buttons-container-fix"></td>-->
-							<!--<td colspan=2 class="bowling-calc-buttons-container new-game">-->
-							<input type="button" name="b-erase" value="Erase" onclick="calc('erase', 'ten-pin')" />
-							<input type="button" name="b-new" value="Clear" onclick="calc('new', 'ten-pin')" />
-
+							<input type="button" name="b-erase" value="Erase" onclick="calc('erase')" />
+							<input type="button" name="b-new" value="Clear" onclick="calc('new')" />
 						</div>
 
 					</div>
