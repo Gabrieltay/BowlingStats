@@ -107,7 +107,6 @@ function CreatQuery(tx) {
 	}
 	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar,' + sqlStr + ')', [], function(tx, results) {
 	//tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar, frame_1_1 varchar(1), frame_1_2 varchar(1))', [], function(tx, results) {
-		alert(sqlStr);
 	}, errorDB);
 }
 
@@ -121,7 +120,7 @@ function RefreshQuery(tx) {
 			var avg = Math.floor(results.rows.item(i).a);
 			var count = results.rows.item(i).c;
 			var date = new Date(dateString);
-			var string = '<li id="all_' + i + '"><a href="#date-data" data-rel="dialog" onclick="DateQuery(' + date.valueOf() + ');" class="ui-link-inherit"> [' + dateToYMD(date) + '] ' + count + ' games Avg - ' + avg + '</a></li>';
+			var string = '<li id="all_' + i + '"><a href="#date-data" data-rel="page" onclick="DateQuery(' + date.valueOf() + ');" class="ui-link-inherit"> [' + dateToYMD(date) + '] ' + count + ' games Avg - ' + avg + '</a></li>';
 			$("#bowl_list").append(string);
 		};
 		freshList("bowl_list");
@@ -152,8 +151,9 @@ function InsertQuery(tx) {
 		else 
 			sqlStr = sqlStr + 'frame_10_' + parseInt(i-19);	
 	}
-	//tx.executeSql('INSERT INTO blist (score,date,file,frame_1_1,frame_1_2 ) VALUES ("' + score + '","' + dateString + '", "NULL", "","X")', [], function(tx, results) {
-	tx.executeSql('INSERT INTO blist (score,date,file,' + sqlStr + ') VALUES ("' + score + '","' + dateString + '", "NULL", "","X","","X","","X","","X","","X","","X","","X","","X","","X","X","X","X")', [], function(tx, results) {
+	tx.executeSql('INSERT INTO blist (score,date,file,' + sqlStr + ') VALUES ("' + score + '","' + dateString + '", "NULL", "1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","")', [], function(tx, results) {
+
+	//tx.executeSql('INSERT INTO blist (score,date,file,' + sqlStr + ') VALUES ("' + score + '","' + dateString + '", "NULL", "","X","","X","","X","","X","","X","","X","","X","","X","","X","X","X","X")', [], function(tx, results) {
 		//$("#dialog").dialog('close');
 		$.mobile.back();
 	}, errorDB);
@@ -163,6 +163,7 @@ function InsertQuery(tx) {
 function DateQuery(dateValue) {
 	var date = new Date(dateValue);
 	var dateString = dateToYMD(date);
+
 	$('#date-header > h1').text(date.toDateString());
 	$("#date_list").empty();
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
@@ -172,7 +173,7 @@ function DateQuery(dateValue) {
 			for (var i = 0; i < len; i++) {
 				var id = results.rows.item(i).id;
 				var score = results.rows.item(i).score;
-				var string = '<li id="all_' + id + '" data-icon="flat-camera" data-iconpos="right"><a href="#photo-data" data-rel="dialog" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
+				var string = '<li id="all_' + id + '" data-icon="flat-camera" data-iconpos="right"><a href="#photo-data" data-rel="page" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
 				$("#date_list").append(string);
 			};
 			freshList("date_list");
@@ -211,9 +212,19 @@ function RemoveDate(e) {
 }
 
 function GetImage(id) {
+	var sqlStr = "";
+	for (var i=2;i<=22;i++)
+	{
+		if ( i <= 19)
+			sqlStr = sqlStr + 'frame_' + parseInt(i/2) + '_' + ((i%2 == 0) ? '1' : '2') + ', ';
+		else if ( i <= 21 )
+			sqlStr = sqlStr + 'frame_10_' + parseInt(i-19)  + ', ';	
+		else 
+			sqlStr = sqlStr + 'frame_10_' + parseInt(i-19);	
+	}
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
-		tx.executeSql('SELECT file FROM blist WHERE id="' + id + '"', [], function(tx, results) {
+		tx.executeSql('SELECT file,' + sqlStr + ' FROM blist WHERE id="' + id + '"', [], function(tx, results) {
 			var len = results.rows.length;
 			if (len > 0) {
 				var imageData = results.rows.item(0).file;
@@ -227,6 +238,7 @@ function GetImage(id) {
 					$("#photo-content").html(string);
 					$('#photo-content').trigger("create");
 				}
+				populateScores(results.rows.item(0));
 			}
 		});
 	});
@@ -300,7 +312,7 @@ function resetFields() {
 
 	$('#scoreinput').trigger("create");
 	document.getElementById('dateinput').valueAsDate = new Date();
-	calc('new');
+	calc('edit','new');
 }
 
 function socialsharing() {

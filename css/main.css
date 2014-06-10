@@ -32,7 +32,7 @@ float:right;
 
 
 
-#bowling-calc-score-container table {
+.bowling-calc-score-container table {
 	table-layout:fixed; width:100%;
 	border: 2px solid black;
 	text-align: center;
@@ -40,14 +40,14 @@ float:right;
 	border-collapse: collapse !important;
 }
 
-#bowling-calc-buttons-container table {
+.bowling-calc-buttons-container table {
 	table-layout:fixed; width:100%;
 	text-align: center;
 	vertical-align: middle;
 	border-collapse: collapse !important;
 }
 
-#final-res-container h1{
+.final-res-container h1{
 	width: 100% ;
 	vertical-align: middle;
 	text-align: center;
@@ -58,7 +58,7 @@ float:right;
 
 
 
-#bowling-calc-score-container label {
+.bowling-calc-score-container label {
 	height: 100%;
 	width: 100%;/*25px;*/
 	text-align: center;
@@ -66,19 +66,19 @@ float:right;
 }
 
 
-​#bowling-calc-score-container .first {
+​.bowling-calc-score-container .first {
 	border-top: 2px solid black;
 	padding-bottom: 0px;
 }
 
 
-#bowling-calc-score-container .second, #bowling-calc-score-container .third {
+.bowling-calc-score-container .second, .bowling-calc-score-container .third {
 	border-left: 2px solid black;
 	border-bottom: 2px solid black;
 	border-right: 2px solid black;
 }
 
-#bowling-calc-score-container .frame {
+.bowling-calc-score-container .frame {
 	border-right: 2px solid black;
 }
 
