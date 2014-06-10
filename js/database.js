@@ -152,7 +152,7 @@ function InsertQuery(tx) {
 		else 
 			sqlStr = sqlStr + 'frame_10_' + parseInt(i-19);	
 	}
-	tx.executeSql('INSERT INTO blist (score,date,file,frame_1_1,frame_1_2 ) VALUES ("' + score + '","' + dateString + '", "NULL", "-","X")', [], function(tx, results) {
+	tx.executeSql('INSERT INTO blist (score,date,file,frame_1_1,frame_1_2 ) VALUES ("' + score + '","' + dateString + '", "NULL", "","X")', [], function(tx, results) {
 	//tx.executeSql('INSERT INTO blist (score,date,file' + sqlStr + ') VALUES ("' + score + '","' + dateString + '", "NULL", "-","X")', [], function(tx, results) {
 		//$("#dialog").dialog('close');
 		$.mobile.back();
