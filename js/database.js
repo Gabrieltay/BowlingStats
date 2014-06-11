@@ -223,14 +223,14 @@ function GetImage(id) {
 				var imageData = results.rows.item(0).file;
 				var date = new Date(results.rows.item(0).date);
 				var score = results.rows.item(0).score;
-				$("#photo-header-text").text(date.toDateString());
+				$("#photo-header-text").text(date);
 				mId = id;
 				if (imageData == "NULL") {
 					var string = '<div class="ui-block-a"><a href="#" data-role="button" data-theme="c" onclick=\"TakePhoto()\"><img src="images/camera.png"></a></div>' + '<div class="ui-block-b"><a href="#" data-role="button" data-theme="c" onclick="FindPhoto()"><img src="images/library.png"></a></div>';
 					$("#photo-content").html(string);
 					$('#photo-content').trigger("create");
 				} else {
-					var string = '<img id="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
+					var string = '<img class="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
 					$("#photo-content").html(string);
 					$('#photo-content').trigger("create");
 				}
@@ -286,17 +286,17 @@ function onEditSuccess(imageData) {
 	db.transaction(function(tx) {
 		tx.executeSql('UPDATE blist SET file="' + imageData + '" WHERE id="' + mId + '"');
 	});
-	var string = '<img id="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
+	var string = '<img class="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
 	$("#photo-content").html(string);
 	$('#photo-content').trigger("create");
 }
 
-function onEditSuccess(imageData) {
+function onNewSuccess(imageData) {
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
 		tx.executeSql('UPDATE blist SET file="' + imageData + '" WHERE id="' + mId + '"');
 	});
-	var string = '<img id="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
+	var string = '<img class="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
 	$("#photo-content").html(string);
 	$('#photo-content').trigger("create");
 }

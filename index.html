@@ -37,13 +37,13 @@
 
 			<header data-role="header" data-position="fixed" data-theme="f">
 				<a data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
-				<h1>Bowling Scores</h1>
-				<a href="#stats-data" data-rel="page" data-iconpos="notext" data-role="button" data-icon="flat-menu" onclick="StatsData()"></a>
+				<h1>Pro Bowl</h1>
+				<a href="#stats-data" id="stats-btn" data-rel="page" data-iconpos="notext" data-role="button" data-icon="flat-menu" onclick="StatsData()"></a>
 			</header>
 
 			<div data-role="content">
 				<a href="#dialog" id="add" data-rel="page" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
-				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="bb" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
+				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="gg" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 				<!--
 				<div >
 				<a href="#" data-role="button" data-inline="true" data-theme="a">a</a>
@@ -79,16 +79,20 @@
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
 				<form>
-
-					<div class="ui-field-contain">
-						<label for="scoreinput">Score:</label>
-						<input name="scoreinput" id="scoreinput" placeholder="Your score" data-clear-btn="true" type="number" min="1" max="300" />
-					</div>
-
-					<div class="ui-field-contain">
-						<label for="dateinput">Date:</label>
-						<input type="date" name="date" id="dateinput" value="">
-					</div>
+					<table class="field-container">
+						<tr>
+							<td class="left">
+							<div class="ui-field-contain">
+								<label for="scoreinput">Score:</label>
+								<input name="scoreinput" id="scoreinput" placeholder="Your score" data-clear-btn="true" type="number" min="1" max="300" />
+							</div>
+							<div class="ui-field-contain">
+								<label for="dateinput">Date:</label>
+								<input type="date" name="date" id="dateinput" value="">
+							</div></td>
+							<td class="right"><img class="game-photo2" src="images/camera.png"></img></td>
+						</tr>
+					</table>
 					<fieldset class="ui-grid-b">
 						<div class="ui-block-a">
 							<a href="#score-data" data-role="button" data-icon="flat-new" data-iconpos="right" data-theme="i" onclick="calcs('new')">Score</a>
@@ -120,7 +124,7 @@
 				<h1>Current Date</h1>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
-				<ul data-role="listview" id="date_list" data-inset="true" data-theme="bb" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
+				<ul data-role="listview" id="date_list" data-inset="true" data-theme="gg" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 			</div>
 
 			<footer data-role="footer" data-position="fixed" class="ui-corner-all">
