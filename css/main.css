@@ -30,8 +30,6 @@
 float:right;
 }
 
-
-
 .bowling-calc-score-container table {
 	table-layout:fixed; width:100%;
 	border: 2px solid black;
@@ -81,10 +79,10 @@ float:right;
 .bowling-calc-score-container .frame {
 	border-right: 2px solid black;
 }
-
+/*
 td.bowling-calc-buttons-container input[type=button] {
 	width: 100% ;
-	/*margin-top: 10px ;*/
+	margin-top: 10px ;
 	padding-left: 15px ;
 }
 
@@ -94,26 +92,20 @@ td.bowling-calc-buttons-container input[type=button].calc-buttons {
     background: #136899 ;
     height: 40px ;
     width: 100% ;
-    /*max-width: 80px !important*/
     color: #ffffff ;
     text-align: center ;
-    /*border-radius: 5px ;*/
-    /*box-shadow: 0px 3px 1px #2075aa !important*/
   	-webkit-transition: all 0.15s linear ;
 	  -moz-transition: all 0.15s linear ;
 	  transition: all 0.15s linear;
 }
 
 .ui-btn input[type=button].calc-buttons:disabled {
-    /*background: #68beff !important
-    background: #014677 !important
-    background: #E8F5FA !important*/
     border: #014677 5px solid !important;
    display: block ;
 	background: #FFFFFF !important;
 }
 
-/*
+
 .form-item-frame1-2 {
 	position: relative;
 	display: inline-block;

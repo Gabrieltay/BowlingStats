@@ -4,6 +4,15 @@ const DBversion = "1,0";
 const DBdisname = "listDB";
 const DBsize = 4000000;
 var mId = 0;
+var frameCols = "";
+for (var i = 2; i <= 22; i++) {
+	if (i <= 19)
+		frameCols = frameCols + 'frame_' + parseInt(i / 2) + '_' + ((i % 2 == 0) ? '1' : '2') + ', ';
+	else if (i <= 21)
+		frameCols = frameCols + 'frame_10_' + parseInt(i - 19) + ', ';
+	else
+		frameCols = frameCols + 'frame_10_' + parseInt(i - 19);
+}
 
 var init = function() {
 	onDeviceReady();
@@ -14,14 +23,14 @@ var init = function() {
 	$("#date_list").on("delete", "li", RemoveGame);
 	$("#bowl_list").on("delete", "li", RemoveDate);
 
-	$('ul').on('touchstart', function(e){
+	$('ul').on('touchstart', function(e) {
 		$(this).addClass('tapped');
 	});
 
-	$('ul').on('touchend', function(e){
+	$('ul').on('touchend', function(e) {
 		$(this).removeClass('tapped');
 	});
-		
+
 	FastClick.attach(document.body);
 };
 
@@ -98,15 +107,14 @@ function StatsQuery(tx) {
 
 function CreatQuery(tx) {
 	var sqlStr = "";
-	for (var i=2;i<=22;i++)
-	{
-		if ( i != 22)
-			sqlStr = sqlStr + 'frame_' + parseInt(i/2) + '_' + ((i%2 == 0) ? '1' : '2') + ' varchar(1), ';
+	for (var i = 2; i <= 22; i++) {
+		if (i != 22)
+			sqlStr = sqlStr + 'frame_' + parseInt(i / 2) + '_' + ((i % 2 == 0) ? '1' : '2') + ' varchar(1), ';
 		else
-			sqlStr = sqlStr + 'frame_10_3 varchar(1)';	
+			sqlStr = sqlStr + 'frame_10_3 varchar(1)';
 	}
 	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar,' + sqlStr + ')', [], function(tx, results) {
-	//tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar, frame_1_1 varchar(1), frame_1_2 varchar(1))', [], function(tx, results) {
+		//tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar, frame_1_1 varchar(1), frame_1_2 varchar(1))', [], function(tx, results) {
 	}, errorDB);
 }
 
@@ -132,31 +140,26 @@ function InsertQuery(tx) {
 	var date = $("#dateinput").val();
 	var dateString = new String(date);
 
-	if (score == '' || date == '') {
-		alert("Empty Fields！");
+	if (score == '' || date == '' || parseInt(score) > 300) {
+		alert("Empty/Invalid Fields！");
 		return;
 	}
-	//tx.executeSql('INSERT INTO blist (score,date,file) VALUES ("' + score + '","' + dateString + '", "NULL")', [], function(tx, results) {
-	//	//$("#dialog").dialog('close');
-	//	$.mobile.back();
-	//}, errorDB);
 
-	var sqlStr = "";
-	for (var i=2;i<=22;i++)
-	{
-		if ( i <= 19)
-			sqlStr = sqlStr + 'frame_' + parseInt(i/2) + '_' + ((i%2 == 0) ? '1' : '2') + ', ';
-		else if ( i <= 21 )
-			sqlStr = sqlStr + 'frame_10_' + parseInt(i-19)  + ', ';	
-		else 
-			sqlStr = sqlStr + 'frame_10_' + parseInt(i-19);	
+	if (isCompleted() == 1 && $('#edit-final-res').text() == $("#scoreinput").val()) {
+		getScores();
+		tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "NULL", ' + getScores() + ')', [], function(tx, results) {
+			$.mobile.back();
+		}, errorDB);
+	} else {
+		tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "NULL", "","","","","","","","","","","","","","","","","","","","","")', [], function(tx, results) {
+
+			//tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "NULL", "1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","")', [], function(tx, results) {
+
+			//tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "NULL", "","X","","X","","X","","X","","X","","X","","X","","X","","X","X","X","X")', [], function(tx, results) {
+			//$("#dialog").dialog('close');
+			$.mobile.back();
+		}, errorDB);
 	}
-	tx.executeSql('INSERT INTO blist (score,date,file,' + sqlStr + ') VALUES ("' + score + '","' + dateString + '", "NULL", "1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","")', [], function(tx, results) {
-
-	//tx.executeSql('INSERT INTO blist (score,date,file,' + sqlStr + ') VALUES ("' + score + '","' + dateString + '", "NULL", "","X","","X","","X","","X","","X","","X","","X","","X","","X","X","X","X")', [], function(tx, results) {
-		//$("#dialog").dialog('close');
-		$.mobile.back();
-	}, errorDB);
 	RefreshQuery(tx);
 }
 
@@ -212,19 +215,9 @@ function RemoveDate(e) {
 }
 
 function GetImage(id) {
-	var sqlStr = "";
-	for (var i=2;i<=22;i++)
-	{
-		if ( i <= 19)
-			sqlStr = sqlStr + 'frame_' + parseInt(i/2) + '_' + ((i%2 == 0) ? '1' : '2') + ', ';
-		else if ( i <= 21 )
-			sqlStr = sqlStr + 'frame_10_' + parseInt(i-19)  + ', ';	
-		else 
-			sqlStr = sqlStr + 'frame_10_' + parseInt(i-19);	
-	}
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
-		tx.executeSql('SELECT file,' + sqlStr + ' FROM blist WHERE id="' + id + '"', [], function(tx, results) {
+		tx.executeSql('SELECT file,' + frameCols + ' FROM blist WHERE id="' + id + '"', [], function(tx, results) {
 			var len = results.rows.length;
 			if (len > 0) {
 				var imageData = results.rows.item(0).file;
@@ -312,7 +305,7 @@ function resetFields() {
 
 	$('#scoreinput').trigger("create");
 	document.getElementById('dateinput').valueAsDate = new Date();
-	calc('edit','new');
+	calc('edit', 'new');
 }
 
 function socialsharing() {
