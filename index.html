@@ -43,7 +43,25 @@
 
 			<div data-role="content">
 				<a href="#dialog" id="add" data-rel="page" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
-				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
+				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="bb" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
+				<!--
+				<div >
+				<a href="#" data-role="button" data-inline="true" data-theme="a">a</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="b">b</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="c">c</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="d">d</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="e">e</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="f">f</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="g">g</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="h">h</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="i">i</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="j">j</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="k">k</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="l">l</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="m">m</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="n">n</a>
+				</div>
+				-->
 			</div>
 			<script>
 				RefreshData();
@@ -71,8 +89,19 @@
 						<label for="dateinput">Date:</label>
 						<input type="date" name="date" id="dateinput" value="">
 					</div>
-					<a href="#score-data" data-rel="page" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="calcs('new')">Game</a>
+					<fieldset class="ui-grid-b">
+						<div class="ui-block-a">
+							<a href="#score-data" data-role="button" data-icon="flat-new" data-iconpos="right" data-theme="i" onclick="calcs('new')">Score</a>
+						</div>
+						<div class="ui-block-b">
+							<a href="#" data-role="button" data-icon="flat-eye" data-iconpos="right" data-theme="j">Choose Photo</a>
+						</div>
+						<div class="ui-block-b">
+							<a href="#" data-role="button" data-icon="flat-camera" data-iconpos="right" data-theme="k" onclick="TakePhoto('new')">Take Photo</a>
+						</div>
+					</fieldset>
 					<a href="#" onclick="InsertData();" id="submit" data-role="button" data-icon="flat-man" data-theme="g">Confirm</a>
+
 				</form>
 			</div>
 			<footer data-role="footer" data-position="fixed" class="ui-corner-all">
@@ -91,7 +120,7 @@
 				<h1>Current Date</h1>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
-				<ul data-role="listview" id="date_list" data-inset="true" data-theme="b" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
+				<ul data-role="listview" id="date_list" data-inset="true" data-theme="bb" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 			</div>
 
 			<footer data-role="footer" data-position="fixed" class="ui-corner-all">
@@ -103,7 +132,7 @@
 		<section data-role="page" id="photo-data">
 			<header id="photo-header" data-role="header" data-theme="f" class="ui-corner-all">
 				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
-				<h1>Current Photo</h1>
+				<h1 id="photo-header-text">Current Photo</h1>
 				<a onclick="socialsharing()" data-iconpos="notext" data-role="button" data-icon="heart" data-iconpos="right"></a>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
@@ -111,6 +140,48 @@
 					<div id="view-bowling-calc-container" class="bowling-calc-container">
 						<div id="view-bowling-calc-score-container" class="bowling-calc-score-container">
 							<table class="bowling-calc-score-table">
+								<tr class="top-frame">
+									<td class="first-frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame1-no">
+										<label type="text" class="form-text" id="view-frame1-no" name="frame1-res" value="0" size="1" maxlength="1">1</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame2-no">
+										<label type="text" class="form-text" id="view-frame2-no" name="frame2-res" value="0" size="1" maxlength="1">2</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame3-no">
+										<label type="text" class="form-text" id="view-frame3-no" name="frame3-res" value="0" size="1" maxlength="1">3</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame4-no">
+										<label type="text" class="form-text" id="view-frame4-no" name="frame4-res" value="0" size="1" maxlength="1">4</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame5-no">
+										<label type="text" class="form-text" id="view-frame5-no" name="frame5-res" value="0" size="1" maxlength="1">5</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame6-no">
+										<label type="text" class="form-text" id="view-frame6-no" name="frame6-res" value="0" size="1" maxlength="1">6</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame7-no">
+										<label type="text" class="form-text" id="view-frame7-no" name="frame7-res" value="0" size="3" maxlength="1">7</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame8-no">
+										<label type="text" class="form-text" id="view-frame8-no" name="frame8-res" value="0" size="1" maxlength="1">8</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame9-no">
+										<label type="text" class="form-text" id="view-frame9-no" name="frame9-res" value="0" size="1" maxlength="3">9</label>
+									</div></td>
+									<td class="last-frame-no" colspan="3">
+									<div class="form-item form-type-textfield form-item-frame10-no">
+										<label type="text" class="form-text" id="view-frame10-no" name="frame10-res" value="0" size="2" maxlength="2">10</label>
+									</div></td>
+								</tr>
 								<tr>
 									<td class="first score">
 									<div class="form-item form-type-textfield form-item-frame1-1">
@@ -239,7 +310,7 @@
 									<div class="form-item form-type-textfield form-item-frame9-res">
 										<label type="text" class="form-text" id="view-frame9-res" name="frame9-res" value="0" size="3" maxlength="3">&nbsp;</label>
 									</div></td>
-									<td class="frame score" colspan="3">
+									<td class="last-frame score" colspan="3">
 									<div class="form-item form-type-textfield form-item-frame10-res">
 										<label type="text" class="form-text" id="view-frame10-res" name="frame10-res" value="0" size="3" maxlength="3">&nbsp;</label>
 									</div></td>
@@ -378,154 +449,205 @@
 					<div id="edit-bowling-calc-container" class="bowling-calc-container">
 						<div id="edit-bowling-calc-score-container" class="bowling-calc-score-container">
 							<table class="bowling-calc-score-table">
+								<tr class="top-frame">
+									<td class="first-frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame1-no">
+										<label class="form-text" id="edit-frame1-no" name="frame1-res" value="0" size="1" maxlength="1">1</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame2-no">
+										<label class="form-text" id="edit-frame2-no" name="frame2-res" value="0" size="1" maxlength="1">2</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame3-no">
+										<label class="form-text" id="edit-frame3-no" name="frame3-res" value="0" size="1" maxlength="1">3</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame4-no">
+										<label class="form-text" id="edit-frame4-no" name="frame4-res" value="0" size="1" maxlength="1">4</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame5-no">
+										<label class="form-text" id="edit-frame5-no" name="frame5-res" value="0" size="1" maxlength="1">5</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame6-no">
+										<label class="form-text" id="edit-frame6-no" name="frame6-res" value="0" size="1" maxlength="1">6</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame7-no">
+										<label class="form-text" id="edit-frame7-no" name="frame7-res" value="0" size="3" maxlength="1">7</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame8-no">
+										<label class="form-text" id="edit-frame8-no" name="frame8-res" value="0" size="1" maxlength="1">8</label>
+									</div></td>
+									<td class="frame-no" colspan="2">
+									<div class="form-item form-type-textfield form-item-frame9-no">
+										<label class="form-text" id="edit-frame9-no" name="frame9-res" value="0" size="1" maxlength="3">9</label>
+									</div></td>
+									<td class="last-frame-no" colspan="3">
+									<div class="form-item form-type-textfield form-item-frame10-no">
+										<label class="form-text" id="edit-frame10-no" name="frame10-res" value="0" size="2" maxlength="2">10</label>
+									</div></td>
+								</tr>
 								<tr>
 									<td class="first score">
 									<div class="form-item form-type-textfield form-item-frame1-1">
-										<label type="text" class="form-text" id="edit-frame1-1" name="frame1-1" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame1-1" name="frame1-1" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="second score">
 									<div class="form-item form-type-textfield form-item-frame1-2">
-										<label type="text" class="form-text" id="edit-frame1-2" name="frame1-2" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame1-2" name="frame1-2" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="first score">
 									<div class="form-item form-type-textfield form-item-frame2-1">
-										<label type="text" class="form-text" id="edit-frame2-1" name="frame2-1" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame2-1" name="frame2-1" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="second score">
 									<div class="form-item form-type-textfield form-item-frame2-2">
-										<label type="text" class="form-text" id="edit-frame2-2" name="frame2-2" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame2-2" name="frame2-2" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="first score">
 									<div class="form-item form-type-textfield form-item-frame3-1">
-										<label type="text" class="form-text" id="edit-frame3-1" name="frame3-1" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame3-1" name="frame3-1" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="second score">
 									<div class="form-item form-type-textfield form-item-frame3-2">
-										<label type="text" class="form-text" id="edit-frame3-2" name="frame3-2" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame3-2" name="frame3-2" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="first score">
 									<div class="form-item form-type-textfield form-item-frame4-1">
-										<label type="text" class="form-text" id="edit-frame4-1" name="frame4-1" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame4-1" name="frame4-1" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="second score">
 									<div class="form-item form-type-textfield form-item-frame4-2">
-										<label type="text" class="form-text" id="edit-frame4-2" name="frame4-2" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame4-2" name="frame4-2" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="first score">
 									<div class="form-item form-type-textfield form-item-frame5-1">
-										<label type="text" class="form-text" id="edit-frame5-1" name="frame5-1" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame5-1" name="frame5-1" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="second score">
 									<div class="form-item form-type-textfield form-item-frame5-2">
-										<label type="text" class="form-text" id="edit-frame5-2" name="frame5-2" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame5-2" name="frame5-2" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="first score">
 									<div class="form-item form-type-textfield form-item-frame6-1">
-										<label type="text" class="form-text" id="edit-frame6-1" name="frame6-1" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame6-1" name="frame6-1" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="second score">
 									<div class="form-item form-type-textfield form-item-frame6-2">
-										<label type="text" class="form-text" id="edit-frame6-2" name="frame6-2" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame6-2" name="frame6-2" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="first score">
 									<div class="form-item form-type-textfield form-item-frame7-1">
-										<label type="text" class="form-text" id="edit-frame7-1" name="frame7-1" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame7-1" name="frame7-1" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="second score">
 									<div class="form-item form-type-textfield form-item-frame7-2">
-										<label type="text" class="form-text" id="edit-frame7-2" name="frame7-2" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame7-2" name="frame7-2" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="first score">
 									<div class="form-item form-type-textfield form-item-frame8-1">
-										<label type="text" class="form-text" id="edit-frame8-1" name="frame8-1" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame8-1" name="frame8-1" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="second score">
 									<div class="form-item form-type-textfield form-item-frame8-2">
-										<label type="text" class="form-text" id="edit-frame8-2" name="frame8-2" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame8-2" name="frame8-2" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="first score">
 									<div class="form-item form-type-textfield form-item-frame9-1">
-										<label type="text" class="form-text" id="edit-frame9-1" name="frame9-1" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame9-1" name="frame9-1" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="second score">
 									<div class="form-item form-type-textfield form-item-frame9-2">
-										<label type="text" class="form-text" id="edit-frame9-2" name="frame9-2" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame9-2" name="frame9-2" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="first score">
 									<div class="form-item form-type-textfield form-item-frame10-1">
-										<label type="text" class="form-text" id="edit-frame10-1" name="frame10-1" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame10-1" name="frame10-1" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="second score">
 									<div class="form-item form-type-textfield form-item-frame10-2">
-										<label type="text" class="form-text" id="edit-frame10-2" name="frame10-2" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame10-2" name="frame10-2" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<td class="third score">
 									<div class="form-item form-type-textfield form-item-frame10-3">
-										<label type="text" class="form-text" id="edit-frame10-3" name="frame10-3" value="0" size="1" maxlength="1">&nbsp;</label>
+										<label class="form-text" id="edit-frame10-3" name="frame10-3" value="0" size="1" maxlength="1">&nbsp;</label>
 									</div></td>
 									<!--
 									<td rowspan="2" class="game-result">
 									<div class="form-item form-type-textfield form-item-game-result">
-									<label type="text" id="edit-game-result" name="game_result" value="0" size="10" maxlength="3">&nbsp;</label>
+									<label id="edit-game-result" name="game_result" value="0" size="10" maxlength="3">&nbsp;</label>
 									</div></td> -->
 								</tr>
 								<tr>
 									<td class="frame score" colspan="2">
 									<div class="form-item form-type-textfield form-item-frame1-res">
-										<label type="text" class="form-text" id="edit-frame1-res" name="frame1-res" value="0" size="3" maxlength="3">&nbsp;</label>
+										<label class="form-text" id="edit-frame1-res" name="frame1-res" value="0" size="3" maxlength="3">&nbsp;</label>
 									</div></td>
 									<td class="frame score" colspan="2">
 									<div class="form-item form-type-textfield form-item-frame2-res">
-										<label type="text" class="form-text" id="edit-frame2-res" name="frame2-res" value="0" size="3" maxlength="3">&nbsp;</label>
+										<label class="form-text" id="edit-frame2-res" name="frame2-res" value="0" size="3" maxlength="3">&nbsp;</label>
 									</div></td>
 									<td class="frame score" colspan="2">
 									<div class="form-item form-type-textfield form-item-frame3-res">
-										<label type="text" class="form-text" id="edit-frame3-res" name="frame3-res" value="0" size="3" maxlength="3">&nbsp;</label>
+										<label class="form-text" id="edit-frame3-res" name="frame3-res" value="0" size="3" maxlength="3">&nbsp;</label>
 									</div></td>
 									<td class="frame score" colspan="2">
 									<div class="form-item form-type-textfield form-item-frame4-res">
-										<label type="text" class="form-text" id="edit-frame4-res" name="frame4-res" value="0" size="3" maxlength="3">&nbsp;</label>
+										<label class="form-text" id="edit-frame4-res" name="frame4-res" value="0" size="3" maxlength="3">&nbsp;</label>
 									</div></td>
 									<td class="frame score" colspan="2">
 									<div class="form-item form-type-textfield form-item-frame5-res">
-										<label type="text" class="form-text" id="edit-frame5-res" name="frame5-res" value="0" size="3" maxlength="3">&nbsp;</label>
+										<label class="form-text" id="edit-frame5-res" name="frame5-res" value="0" size="3" maxlength="3">&nbsp;</label>
 									</div></td>
 									<td class="frame score" colspan="2">
 									<div class="form-item form-type-textfield form-item-frame6-res">
-										<label type="text" class="form-text" id="edit-frame6-res" name="frame6-res" value="0" size="3" maxlength="3">&nbsp;</label>
+										<label class="form-text" id="edit-frame6-res" name="frame6-res" value="0" size="3" maxlength="3">&nbsp;</label>
 									</div></td>
 									<td class="frame score" colspan="2">
 									<div class="form-item form-type-textfield form-item-frame7-res">
-										<label type="text" class="form-text" id="edit-frame7-res" name="frame7-res" value="0" size="3" maxlength="3">&nbsp;</label>
+										<label class="form-text" id="edit-frame7-res" name="frame7-res" value="0" size="3" maxlength="3">&nbsp;</label>
 									</div></td>
 									<td class="frame score" colspan="2">
 									<div class="form-item form-type-textfield form-item-frame8-res">
-										<label type="text" class="form-text" id="edit-frame8-res" name="frame8-res" value="0" size="3" maxlength="3">&nbsp;</label>
+										<label class="form-text" id="edit-frame8-res" name="frame8-res" value="0" size="3" maxlength="3">&nbsp;</label>
 									</div></td>
 									<td class="frame score" colspan="2">
 									<div class="form-item form-type-textfield form-item-frame9-res">
-										<label type="text" class="form-text" id="edit-frame9-res" name="frame9-res" value="0" size="3" maxlength="3">&nbsp;</label>
+										<label class="form-text" id="edit-frame9-res" name="frame9-res" value="0" size="3" maxlength="3">&nbsp;</label>
 									</div></td>
-									<td class="frame score" colspan="3">
+									<td class="last-frame score" colspan="3">
 									<div class="form-item form-type-textfield form-item-frame10-res">
-										<label type="text" class="form-text" id="edit-frame10-res" name="frame10-res" value="0" size="3" maxlength="3">&nbsp;</label>
+										<label class="form-text" id="edit-frame10-res" name="frame10-res" value="0" size="3" maxlength="3">&nbsp;</label>
 									</div></td>
 								</tr>
 							</table>
 						</div>
 
 						<div class="bowling-calc-buttons-container">
-							<table class="bowling-calc-buttons-table" style="border-collapse: separate;">
-								<tr class="bowling-calc-buttons-table-1"/>
+							<table class="bowling-calc-buttons-table ui-responsive" style="border-collapse: separate;">
+								<tr class="bowling-calc-buttons-table-1"></tr>
 
-								<tr class="bowling-calc-buttons-table-2"/>
+								<tr class="bowling-calc-buttons-table-2"></tr>
 							</table>
 							<div id="edit-final-res-container" class="final-res-container">
 								<h1 id="edit-final-res" class="final-res">0</h1>
 							</div>
-							<input type="button" name="b-erase" value="Erase" onclick="calc('edit','erase')" />
-							<input type="button" name="b-new" value="Clear" onclick="calc('edit','new')" />
-							<a href="#" onclick="saveScores();" data-role="button" data-icon="flat-man" data-theme="g">Save</a>
+							<fieldset class="ui-grid-b ui-responsive">
+								<div class="ui-block-a">
+									<a href="#" onclick="calc('edit','erase');" data-role="button" data-icon="flat-man" data-theme="i">Erase</a>
+
+								</div>
+								<div class="ui-block-b">
+									<a href="#" onclick="saveScores();" data-role="button" data-icon="flat-man" data-theme="g">Save</a>
+								</div>
+								<div class="ui-block-c">
+									<a href="#" onclick="calc('edit','new');" data-role="button" data-icon="flat-man" data-theme="m">Clear</a>
+								</div>
+							</fieldset>
 						</div>
 
 					</div>

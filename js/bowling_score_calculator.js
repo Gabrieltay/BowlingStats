@@ -303,11 +303,11 @@ function injectXBtn(num) {
 	for (var i = 0; i < num; i++) {
 		var tableId = parseInt(i / 6) + 1;
 		calcStr = "calc('edit','" + i + "')";
-		htmlString = '<td class="bowling-calc-buttons-container"><input type="button" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + ' /></td>';
+		htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="j" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + ' /></td>';
 		$('.bowling-calc-buttons-table-' + tableId).append(htmlString);
 	}
 	calcStr = "calc('edit','X')";
-	htmlString = '<td class="bowling-calc-buttons-container"><input type="button" name="b-X" value="X" onclick=' + calcStr + ' /></td>';
+	htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="j" name="b-X" value="X" onclick=' + calcStr + ' /></td>';
 	if (num >= 6)
 		$(".bowling-calc-buttons-table-2").append(htmlString);
 	else
@@ -324,11 +324,11 @@ function injectYBtn(num) {
 	for (var i = 0; i < num; i++) {
 		var tableId = parseInt(i / 6) + 1;
 		calcStr = "calc('edit','" + i + "')";
-		htmlString = '<td class="bowling-calc-buttons-container"><input type="button" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + ' /></td>';
+		htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="j" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + ' /></td>';
 		$('.bowling-calc-buttons-table-' + tableId).append(htmlString);
 	}
 	calcStr = "calc('edit','/')";
-	htmlString = '<td class="bowling-calc-buttons-container"><input type="button" name="b-/" value="/" onclick=' + calcStr + ' /></td>';
+	htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="j" name="b-/" value="/" onclick=' + calcStr + ' /></td>';
 	if (num >= 6)
 		$(".bowling-calc-buttons-table-2").append(htmlString);
 	else
