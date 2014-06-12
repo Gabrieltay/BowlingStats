@@ -5,6 +5,9 @@ const DBdisname = "listDB";
 const DBsize = 4000000;
 var mId = 0;
 var mCanvas = "";
+var mFile = "";
+var mStatus = "ready";
+
 var frameCols = "";
 for (var i = 2; i <= 22; i++) {
 	if (i <= 19)
@@ -137,6 +140,10 @@ function RefreshQuery(tx) {
 }
 
 function InsertQuery(tx) {
+	if ( mStatus != "ready" ){
+		alert("Phone not ready to save data!");
+		return;
+	}
 	var score = $("#scoreinput").val();
 	var date = $("#dateinput").val();
 	var dateString = new String(date);
@@ -148,11 +155,11 @@ function InsertQuery(tx) {
 
 	if (isCompleted() == 1 && $('#edit-final-res').text() == $("#scoreinput").val()) {
 		getScores();
-		tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "NULL", ' + getScores() + ')', [], function(tx, results) {
+		tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", '+ mFile +', ' + getScores() + ')', [], function(tx, results) {
 			$.mobile.back();
 		}, errorDB);
 	} else {
-		tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "NULL", "","","","","","","","","","","","","","","","","","","","","")', [], function(tx, results) {
+		tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", '+ mFile +', "","","","","","","","","","","","","","","","","","","","","")', [], function(tx, results) {
 
 			//tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "NULL", "1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","")', [], function(tx, results) {
 
@@ -216,12 +223,12 @@ function RemoveDate(e) {
 }
 
 function RemoveCurrentGame() {
-	alert(mId);
 	navigator.notification.confirm('Delete?', function(index) {
 		if (index == 1) {
 			var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 			db.transaction(function(tx) {
 				tx.executeSql('DELETE FROM blist WHERE id="' + mId + '"');
+				DateQuery($("#photo-header-text()"));
 				RefreshData();
 				$.mobile.back();
 			});
@@ -278,6 +285,7 @@ function FindPhoto() {
 			sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
 			destinationType : Camera.DestinationType.DATA_URL
 		});
+		mStatus = "busy";
 	}
 }
 
@@ -294,6 +302,7 @@ function TakePhoto() {
 			allowEdit : true,
 			destinationType : Camera.DestinationType.DATA_URL
 		});
+		mStatus = "busy";
 	}
 }
 
@@ -308,13 +317,9 @@ function onEditSuccess(imageData) {
 }
 
 function onNewSuccess(imageData) {
-	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
-	db.transaction(function(tx) {
-		tx.executeSql('UPDATE blist SET file="' + imageData + '" WHERE id="' + mId + '"');
-	});
-	var string = '<img class="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
-	$("#photo-content").html(string);
-	$('#photo-content').trigger("create");
+	mStatus = "ready";
+	mFile = "data:image/jpeg;base64," + imageData;
+	alert("Image Saved");
 }
 
 function errorDB(err) {
@@ -351,7 +356,8 @@ function freshList(id) {
 
 function resetFields() {
 	mCanvas = "";
-
+	mFile = "";
+	
 	$("#scoreinput").val("");
 
 	$('#scoreinput').trigger("create");
@@ -405,6 +411,7 @@ function shareCapture() {
 		html2canvas($("#view-bowling-calc-score-container"), {
 			onrendered : function(canvas) {
 				mCanvas = canvas.toDataURL("image/jepg");
+				share();
 			}
 		});
 	}
