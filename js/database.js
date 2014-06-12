@@ -438,6 +438,7 @@ function saveCapture() {
 
 function showPhoto() {
 	if (mFile != "") {
+		alert("mFile");
 		var string = '<img class="game-photo" src="' + mFile + '"></img>';
 		$("#photo-content").html(string);
 		$('#photo-content').trigger("create");
