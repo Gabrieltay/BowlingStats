@@ -6,6 +6,7 @@ const DBsize = 4000000;
 var mId = 0;
 var mCanvas = "";
 var mFile = "";
+var mDate = "";
 var mStatus = "ready";
 
 var frameCols = "";
@@ -172,22 +173,26 @@ function InsertQuery(tx) {
 }
 
 function DateQuery(dateValue) {
+	mDate = dateValue;
 	var date = new Date(dateValue);
 	var dateString = dateToYMD(date);
-
 	$('.date-header').text(date.toDateString());
 	$("#date_list").empty();
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
 		tx.executeSql('SELECT id, score FROM blist WHERE date="' + dateString + '" ORDER BY id', [], function(tx, results) {
 			var len = results.rows.length;
-			for (var i = 0; i < len; i++) {
-				var id = results.rows.item(i).id;
-				var score = results.rows.item(i).score;
-				var string = '<li id="all_' + id + '" data-icon="flat-camera" data-iconpos="right"><a href="#record-page" data-rel="page" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
-				$("#date_list").append(string);
-			};
-			freshList("date_list");
+			if (len > 0) {
+				for (var i = 0; i < len; i++) {
+					var id = results.rows.item(i).id;
+					var score = results.rows.item(i).score;
+					var string = '<li id="all_' + id + '" data-icon="flat-camera" data-iconpos="right"><a href="#record-page" data-rel="page" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
+					$("#date_list").append(string);
+				};
+				freshList("date_list");
+			} else {
+				$.mobile.back();
+			}
 		});
 	});
 }
@@ -228,10 +233,10 @@ function RemoveCurrentGame() {
 			var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 			db.transaction(function(tx) {
 				tx.executeSql('DELETE FROM blist WHERE id="' + mId + '"');
-				DateQuery($(".date-header").text());
-				RefreshData();
-				$.mobile.back();
 			});
+			DateQuery(mDate);
+			RefreshData();
+			$.mobile.back();
 		}
 	});
 }
@@ -254,6 +259,7 @@ function GetImage(id) {
 				 $('#photo-content').trigger("create");
 				 } else {*/
 				if (imageData != "NULL" || imageData != "") {
+					alert(imageData);
 					//var string = '<img class="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
 					var string = '<img class="game-photo" src="' + imageData + '"></img>';
 					$("#photo-content").html(string);
