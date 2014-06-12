@@ -215,6 +215,20 @@ function RemoveDate(e) {
 	});
 }
 
+function RemoveCurrentGame() {
+	alert(mId);
+	navigator.notification.confirm('Delete?', function(index) {
+		if (index == 1) {
+			var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
+			db.transaction(function(tx) {
+				tx.executeSql('DELETE FROM blist WHERE id="' + mId + '"');
+				RefreshData();
+				$.mobile.back();
+			});
+		}
+	});
+}
+
 function GetImage(id) {
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
@@ -224,10 +238,11 @@ function GetImage(id) {
 				var imageData = results.rows.item(0).file;
 				var date = new Date(results.rows.item(0).date);
 				var score = results.rows.item(0).score;
-				$("#photo-header-text").text(date);
+				$("#photo-header-text").text(date.toDateString());
 				mId = id;
+				/*
 				if (imageData == "NULL") {
-					var string = '<div class="ui-block-a"><a href="#" data-role="button" data-theme="c" onclick=\"TakePhoto()\"><img src="images/camera.png"></a></div>' + '<div class="ui-block-b"><a href="#" data-role="button" data-theme="c" onclick="FindPhoto()"><img src="images/library.png"></a></div>';
+					var string = '<div class="ui-block-a"><a href="#" data-role="button" data-theme="c" onclick="TakePhoto()"><img src="images/camera.png"></a></div>' + '<div class="ui-block-b"><a href="#" data-role="button" data-theme="c" onclick="FindPhoto()"><img src="images/library.png"></a></div>';
 					$("#photo-content").html(string);
 					$('#photo-content').trigger("create");
 				} else {
@@ -235,7 +250,9 @@ function GetImage(id) {
 					$("#photo-content").html(string);
 					$('#photo-content').trigger("create");
 				}
+				*/
 				populateScores(results.rows.item(0));
+				$("#view-final-res").text(score);
 			}
 		});
 	});
@@ -382,7 +399,18 @@ function share() {
 	}
 }
 
-function capture() {
+function shareCapture() {
+	mCanvas = "";
+	if ($("#view-frame1-res").text().trim() != "") {
+		html2canvas($("#view-bowling-calc-score-container"), {
+			onrendered : function(canvas) {
+				mCanvas = canvas.toDataURL("image/jepg");
+			}
+		});
+	}
+}
+
+function saveCapture() {
 	html2canvas($("#edit-bowling-calc-score-container"), {
 		onrendered : function(canvas) {
 			mCanvas = canvas.toDataURL("image/jepg");

@@ -26,7 +26,6 @@
 		<script src="js/swipeout.js"></script>
 		<script src="js/fastclick.js"></script>
 		<script src="js/html2canvas.js"></script>
-		<script src="js/jquery.plugin.html2canvas.js"></script>
 		<script language="javascript" type="text/javascript" src="js/jquery.flot.js"></script>
 		<script language="javascript" type="text/javascript" src="js/jquery.flot.resize.js"></script>
 		<script src="js/bowling_score_calculator.js"></script>
@@ -48,7 +47,7 @@
 				<a href="#dialog" id="add" data-rel="page" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
 				-->
 				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="gg" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
-				<!--
+				
 				<div >
 				<a href="#" data-role="button" data-inline="true" data-theme="a">a</a>
 				<a href="#" data-role="button" data-inline="true" data-theme="b">b</a>
@@ -65,7 +64,7 @@
 				<a href="#" data-role="button" data-inline="true" data-theme="m">m</a>
 				<a href="#" data-role="button" data-inline="true" data-theme="n">n</a>
 				</div>
-				-->
+				
 			</div>
 			<script>
 				RefreshData();
@@ -341,6 +340,17 @@
 				</form>
 				<fieldset class="ui-grid-a" id="photo-content">
 
+				</fieldset>
+				<fieldset class="ui-grid-b">
+						<div class="ui-block-a">
+							<a href="" data-role="button" data-icon="flat-cross" data-iconpos="middle" data-theme="m" onclick="RemoveCurrentGame()"></a>
+						</div>
+						<div class="ui-block-b">
+							<a href="#" data-role="button" data-icon="flat-man" data-iconpos="middle" data-theme="j" onclick="shareCapture()"></a>
+						</div>
+						<div class="ui-block-b">
+							<a href="#" data-role="button" data-icon="flat-camera" data-iconpos="middle" data-theme="k" onclick="TakePhoto('new')"></a>
+						</div>
 				</fieldset>
 			</div>
 			<!--
@@ -661,7 +671,7 @@
 								</div>
 								<div class="ui-block-b">
 									<!--<a href="#" onclick="saveScores();" data-role="button" data-icon="flat-man" data-theme="g">Save</a>-->
-									<a href="#" onclick="capture();" data-role="button" data-icon="flat-man" data-theme="g">Save</a>
+									<a href="#" onclick="saveCapture();" data-role="button" data-icon="flat-man" data-theme="g">Save</a>
 								</div>
 								<div class="ui-block-c">
 									<a href="#" onclick="calc('edit','new');" data-role="button" data-icon="flat-man" data-theme="m">Clear</a>
