@@ -8,21 +8,12 @@
    	-webkit-highlight: none;
 }
 
-#home
+#home-page
 {
 	background-image:url("../images/bg.png");
 	background-repeat:no-repeat;
 	background-position:center;
 	background-size: 100% 100%;
-}
-
-.game-photo
-{
-	max-width: 100%;
-    height: auto;
-    width: auto\9; /* ie8 */
-  display: block;
-    margin: 0px auto;
 }
 
 .field-container {
@@ -35,6 +26,15 @@
 	margin: 0px auto;
 }
 
+.game-photo
+{
+	max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+  display: block;
+    margin: 0px auto;
+}
+
 .game-photo2
 {
 
@@ -43,7 +43,6 @@
     margin-left: auto;
     margin-right: auto
 }
-
 
 .stats-score
 {

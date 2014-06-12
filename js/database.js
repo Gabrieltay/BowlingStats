@@ -40,7 +40,7 @@ var init = function() {
 
 $(document).ready(init);
 
-$(document).on("pagebeforeshow", "#photo-data", function() {
+$(document).on("pagebeforeshow", "#record-page", function() {
 	$("#photo-content").empty();
 });
 
@@ -132,7 +132,7 @@ function RefreshQuery(tx) {
 			var avg = Math.floor(results.rows.item(i).a);
 			var count = results.rows.item(i).c;
 			var date = new Date(dateString);
-			var string = '<li id="all_' + i + '"><a href="#date-data" data-rel="page" onclick="DateQuery(' + date.valueOf() + ');" class="ui-link-inherit"> [' + dateToYMD(date) + '] ' + count + ' games Avg - ' + avg + '</a></li>';
+			var string = '<li id="all_' + i + '"><a href="#date-page" data-rel="page" onclick="DateQuery(' + date.valueOf() + ');" class="ui-link-inherit"> [' + dateToYMD(date) + '] ' + count + ' games Avg - ' + avg + '</a></li>';
 			$("#bowl_list").append(string);
 		};
 		freshList("bowl_list");
@@ -140,7 +140,7 @@ function RefreshQuery(tx) {
 }
 
 function InsertQuery(tx) {
-	if ( mStatus != "ready" ){
+	if (mStatus != "ready") {
 		alert("Phone not ready to save data!");
 		return;
 	}
@@ -155,11 +155,11 @@ function InsertQuery(tx) {
 
 	if (isCompleted() == 1 && $('#edit-final-res').text() == $("#scoreinput").val()) {
 		getScores();
-		tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", '+ mFile +', ' + getScores() + ')', [], function(tx, results) {
+		tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "' + mFile + '", ' + getScores() + ')', [], function(tx, results) {
 			$.mobile.back();
 		}, errorDB);
 	} else {
-		tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", '+ mFile +', "","","","","","","","","","","","","","","","","","","","","")', [], function(tx, results) {
+		tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "' + mFile + '", "","","","","","","","","","","","","","","","","","","","","")', [], function(tx, results) {
 
 			//tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "NULL", "1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","")', [], function(tx, results) {
 
@@ -175,7 +175,7 @@ function DateQuery(dateValue) {
 	var date = new Date(dateValue);
 	var dateString = dateToYMD(date);
 
-	$('#date-header > h1').text(date.toDateString());
+	$('.date-header').text(date.toDateString());
 	$("#date_list").empty();
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
@@ -184,7 +184,7 @@ function DateQuery(dateValue) {
 			for (var i = 0; i < len; i++) {
 				var id = results.rows.item(i).id;
 				var score = results.rows.item(i).score;
-				var string = '<li id="all_' + id + '" data-icon="flat-camera" data-iconpos="right"><a href="#photo-data" data-rel="page" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
+				var string = '<li id="all_' + id + '" data-icon="flat-camera" data-iconpos="right"><a href="#record-page" data-rel="page" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
 				$("#date_list").append(string);
 			};
 			freshList("date_list");
@@ -228,7 +228,7 @@ function RemoveCurrentGame() {
 			var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 			db.transaction(function(tx) {
 				tx.executeSql('DELETE FROM blist WHERE id="' + mId + '"');
-				DateQuery($("#photo-header-text()"));
+				DateQuery($(".date-header").text());
 				RefreshData();
 				$.mobile.back();
 			});
@@ -245,19 +245,21 @@ function GetImage(id) {
 				var imageData = results.rows.item(0).file;
 				var date = new Date(results.rows.item(0).date);
 				var score = results.rows.item(0).score;
-				$("#photo-header-text").text(date.toDateString());
+				$(".date-header").text(date.toDateString());
 				mId = id;
 				/*
-				if (imageData == "NULL") {
-					var string = '<div class="ui-block-a"><a href="#" data-role="button" data-theme="c" onclick="TakePhoto()"><img src="images/camera.png"></a></div>' + '<div class="ui-block-b"><a href="#" data-role="button" data-theme="c" onclick="FindPhoto()"><img src="images/library.png"></a></div>';
-					$("#photo-content").html(string);
-					$('#photo-content').trigger("create");
-				} else {
-					var string = '<img class="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
+				 if (imageData == "NULL") {
+				 var string = '<div class="ui-block-a"><a href="#" data-role="button" data-theme="c" onclick="TakePhoto()"><img src="images/camera.png"></a></div>' + '<div class="ui-block-b"><a href="#" data-role="button" data-theme="c" onclick="FindPhoto()"><img src="images/library.png"></a></div>';
+				 $("#photo-content").html(string);
+				 $('#photo-content').trigger("create");
+				 } else {*/
+				if (imageData != "NULL" || imageData != "") {
+					//var string = '<img class="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
+					var string = '<img class="game-photo" src="' + imageData + '"></img>';
 					$("#photo-content").html(string);
 					$('#photo-content').trigger("create");
 				}
-				*/
+
 				populateScores(results.rows.item(0));
 				$("#view-final-res").text(score);
 			}
@@ -357,7 +359,7 @@ function freshList(id) {
 function resetFields() {
 	mCanvas = "";
 	mFile = "";
-	
+
 	$("#scoreinput").val("");
 
 	$('#scoreinput').trigger("create");
@@ -402,6 +404,8 @@ function share() {
 				alert("Social Plugin not available");
 			}
 		});
+	} else {
+		//To Continue Sharing something else??
 	}
 }
 
