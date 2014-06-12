@@ -4,6 +4,7 @@ const DBversion = "1,0";
 const DBdisname = "listDB";
 const DBsize = 4000000;
 var mId = 0;
+var mCanvas = "";
 var frameCols = "";
 for (var i = 2; i <= 22; i++) {
 	if (i <= 19)
@@ -253,8 +254,7 @@ function FindPhoto() {
 			sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
 			destinationType : Camera.DestinationType.DATA_URL
 		});
-	}
-	else {
+	} else {
 		navigator.camera.getPicture(onNewSuccess, onCameraError, {
 			quality : 40,
 			allowEdit : true,
@@ -271,8 +271,7 @@ function TakePhoto() {
 			allowEdit : true,
 			destinationType : Camera.DestinationType.DATA_URL
 		});
-	}
-	else {
+	} else {
 		navigator.camera.getPicture(onNewSuccess, onCameraError, {
 			quality : 40,
 			allowEdit : true,
@@ -334,6 +333,8 @@ function freshList(id) {
 }
 
 function resetFields() {
+	mCanvas = "";
+
 	$("#scoreinput").val("");
 
 	$('#scoreinput').trigger("create");
@@ -367,3 +368,28 @@ function socialsharing() {
 
 }
 
+function share() {
+	if (mCanvas != "") {
+		//var htmlString = '<img class="game-photo" src="' + mCanvas + '"></img>';
+		//$('#photo-container').html(htmlString);
+		window.plugins.socialsharing.available(function(isAvailable) {
+			if (isAvailable) {
+				window.plugins.socialsharing.share('Sharing my score via Pro Bowl app', "My Name", mCanvas, null);
+			} else {
+				alert("Social Plugin not available");
+			}
+		});
+	}
+}
+
+function capture() {
+	html2canvas($("#edit-bowling-calc-score-container"), {
+		onrendered : function(canvas) {
+			mCanvas = canvas.toDataURL("image/jepg");
+			$.mobile.back();
+			$("#scoreinput").val($('#edit-final-res').text());
+			//var htmlString = '<img class="game-photo" src="' + canvas.toDataURL("image/png") + '"></img>';
+			//$('#photo-container').html(htmlString);
+		}
+	});
+}

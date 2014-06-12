@@ -38,7 +38,7 @@
 .game-photo2
 {
 
-    max-height: 25%;
+    height: 100%;
     display: block;
     margin-left: auto;
     margin-right: auto
@@ -83,9 +83,8 @@ float:right;
 /*
 ​.bowling-calc-score-container .first {
 	border-top: 2px solid black;
-	padding-bottom: 0px;
-}*/
-
+}
+*/
 .bowling-calc-score-container .second {
 	border-left: 2px solid black;
 	border-bottom: 2px solid black;
@@ -100,18 +99,19 @@ float:right;
 	border-right: 2px solid black;
 }
 
-
 .bowling-calc-score-container .frame-no {
 	border-right: 2px solid black;
-	border-bottom: 2px solid black;
 
 }
 
 .bowling-calc-score-container .top-frame {
 	border-radius: 8px 8px 0 0;
-	border-bottom: 2px solid black;
 	background: #8E8E93;
 	color: #FFFFFF;
+}
+
+.bowling-calc-score-container .middle-frame {
+	border-top: 2px solid black;
 }
 
 .bowling-calc-score-container .first-frame-no {

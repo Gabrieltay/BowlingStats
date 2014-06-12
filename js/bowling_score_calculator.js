@@ -405,8 +405,7 @@ function populateScores(record) {
 
 function saveScores() {
 	if (complete == 1) {
-		$.mobile.back();
-		$("#scoreinput").val($('#edit-final-res').text());
+		capture();
 	} else {
 		alert("Game is not finished!");
 	}

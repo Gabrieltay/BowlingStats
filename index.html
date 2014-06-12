@@ -25,6 +25,8 @@
 		<script src="js/hammer.js"></script>
 		<script src="js/swipeout.js"></script>
 		<script src="js/fastclick.js"></script>
+		<script src="js/html2canvas.js"></script>
+		<script src="js/jquery.plugin.html2canvas.js"></script>
 		<script language="javascript" type="text/javascript" src="js/jquery.flot.js"></script>
 		<script language="javascript" type="text/javascript" src="js/jquery.flot.resize.js"></script>
 		<script src="js/bowling_score_calculator.js"></script>
@@ -36,13 +38,15 @@
 		<section data-role="page" id="home" class="ui-responsive-panel">
 
 			<header data-role="header" data-position="fixed" data-theme="f">
-				<a data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
+				<a href="#dialog" data-rel="page" data-iconpos="notext" data-role="button" data-icon="plus" title="Home" onclick="resetFields()">Home</a>
 				<h1>Pro Bowl</h1>
 				<a href="#stats-data" id="stats-btn" data-rel="page" data-iconpos="notext" data-role="button" data-icon="flat-menu" onclick="StatsData()"></a>
 			</header>
 
 			<div data-role="content">
+				<!--
 				<a href="#dialog" id="add" data-rel="page" data-role="button" data-icon="flat-plus" data-iconpos="right" data-theme="a" onclick="resetFields()">New Game</a>
+				-->
 				<ul data-role="listview" id="bowl_list" data-inset="true" data-theme="gg" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 				<!--
 				<div >
@@ -66,60 +70,64 @@
 			<script>
 				RefreshData();
 			</script>
+			<!--
 			<footer data-role="footer" data-position="fixed">
-				<h1>GT Copyright 2014</h1>
+			<h1>GT Copyright 2014</h1>
 			</footer>
+			-->
 		</section>
 		<!-- End of Home Page -->
 		<!-- Add Page -->
 		<section data-role="page" id="dialog">
-			<header data-role="header" data-theme="f" class="ui-corner-all">
+			<header data-role="header" data-theme="f">
 				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
 				<h1>New Game</h1>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
 				<form>
-					<table class="field-container">
-						<tr>
-							<td class="left">
-							<div class="ui-field-contain">
-								<label for="scoreinput">Score:</label>
-								<input name="scoreinput" id="scoreinput" placeholder="Your score" data-clear-btn="true" type="number" min="1" max="300" />
-							</div>
-							<div class="ui-field-contain">
-								<label for="dateinput">Date:</label>
-								<input type="date" name="date" id="dateinput" value="">
-							</div></td>
-							<td class="right"><img class="game-photo2" src="images/bg.png"></img></td>
-						</tr>
-					</table>
+
+					<div class="ui-field-contain">
+						<label for="scoreinput">Score:</label>
+						<input name="scoreinput" id="scoreinput" placeholder="Your score" data-clear-btn="true" type="number" min="1" max="300" />
+					</div>
+					<div class="ui-field-contain">
+						<label for="dateinput">Date:</label>
+						<input type="date" name="date" id="dateinput" value="">
+					</div></td>
+
 					<fieldset class="ui-grid-b">
 						<div class="ui-block-a">
-							<a href="#score-data" data-role="button" data-icon="flat-new" data-iconpos="right" data-theme="i" onclick="calcs('new')">Score</a>
+							<a href="#score-data" data-role="button" data-icon="flat-new" data-iconpos="middle" data-theme="i" onclick="calcs('new')"></a>
 						</div>
 						<div class="ui-block-b">
-							<a href="#" data-role="button" data-icon="flat-eye" data-iconpos="right" data-theme="j">Choose Photo</a>
+							<a href="#" data-role="button" data-icon="flat-man" data-iconpos="middle" data-theme="j" onclick="share()"></a>
 						</div>
 						<div class="ui-block-b">
-							<a href="#" data-role="button" data-icon="flat-camera" data-iconpos="right" data-theme="k" onclick="TakePhoto('new')">Take Photo</a>
+							<a href="#" data-role="button" data-icon="flat-camera" data-iconpos="middle" data-theme="k" onclick="TakePhoto('new')"></a>
 						</div>
 					</fieldset>
 					<a href="#" onclick="InsertData();" id="submit" data-role="button" data-icon="flat-man" data-theme="g">Confirm</a>
-
+					<!--
+					<div id="photo-container">
+						<img  class="game-photo2" src="images/bg.png"></img>
+					</div>
+					-->
 				</form>
 			</div>
+			<!--
 			<footer data-role="footer" data-position="fixed" class="ui-corner-all">
-				<h4><span id="current_date"></span></h4>
-				<script>
-					$("#current_date").text(new Date().toDateString())
-				</script>
+			<h4><span id="current_date"></span></h4>
+			<script>
+			$("#current_date").text(new Date().toDateString())
+			</script>
 			</footer>
+			-->
 		</section>
 		<!-- End of Add Page -->
 
 		<!-- View Page -->
 		<section data-role="page" id="date-data" >
-			<header id="date-header" data-role="header" data-theme="f" class="ui-corner-all">
+			<header id="date-header" data-role="header" data-theme="f">
 				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
 				<h1>Current Date</h1>
 			</header>
@@ -127,14 +135,16 @@
 				<ul data-role="listview" id="date_list" data-inset="true" data-theme="gg" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
 			</div>
 
+			<!--
 			<footer data-role="footer" data-position="fixed" class="ui-corner-all">
-				<h1>GT Copyright 2014</h1>
+			<h1>GT Copyright 2014</h1>
 			</footer>
+			-->
 		</section>
 		<!-- End of View Page -->
 		<!-- Photo Page -->
 		<section data-role="page" id="photo-data">
-			<header id="photo-header" data-role="header" data-theme="f" class="ui-corner-all">
+			<header id="photo-header" data-role="header" data-theme="f">
 				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
 				<h1 id="photo-header-text">Current Photo</h1>
 				<a onclick="socialsharing()" data-iconpos="notext" data-role="button" data-icon="heart" data-iconpos="right"></a>
@@ -186,7 +196,7 @@
 										<label type="text" class="form-text" id="view-frame10-no" name="frame10-res" value="0" size="2" maxlength="2">10</label>
 									</div></td>
 								</tr>
-								<tr>
+								<tr class="middle-frame">
 									<td class="first score">
 									<div class="form-item form-type-textfield form-item-frame1-1">
 										<label type="text" class="form-text" id="view-frame1-1" name="frame1-1" value="0" size="1" maxlength="1">&nbsp;</label>
@@ -333,9 +343,11 @@
 
 				</fieldset>
 			</div>
+			<!--
 			<footer data-role="footer" data-position="fixed" class="ui-corner-all">
-				<h1>GT Copyright 2014</h1>
+			<h1>GT Copyright 2014</h1>
 			</footer>
+			-->
 		</section>
 		<!-- End of Photo Page -->
 		<!-- Stats Page -->
@@ -436,9 +448,11 @@
 				<a href="#" onclick="ConfirmClear();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="d">Clear All Data</a>
 			</div>
 
+			<!--
 			<footer data-role="footer" data-position="fixed">
-				<h1>GT Copyright 2014</h1>
+			<h1>GT Copyright 2014</h1>
 			</footer>
+			-->
 		</section>
 		<!-- End of Stats Page -->
 
@@ -495,7 +509,7 @@
 										<label class="form-text" id="edit-frame10-no" name="frame10-res" value="0" size="2" maxlength="2">10</label>
 									</div></td>
 								</tr>
-								<tr>
+								<tr class="middle-frame">
 									<td class="first score">
 									<div class="form-item form-type-textfield form-item-frame1-1">
 										<label class="form-text" id="edit-frame1-1" name="frame1-1" value="0" size="1" maxlength="1">&nbsp;</label>
@@ -646,7 +660,8 @@
 
 								</div>
 								<div class="ui-block-b">
-									<a href="#" onclick="saveScores();" data-role="button" data-icon="flat-man" data-theme="g">Save</a>
+									<!--<a href="#" onclick="saveScores();" data-role="button" data-icon="flat-man" data-theme="g">Save</a>-->
+									<a href="#" onclick="capture();" data-role="button" data-icon="flat-man" data-theme="g">Save</a>
 								</div>
 								<div class="ui-block-c">
 									<a href="#" onclick="calc('edit','new');" data-role="button" data-icon="flat-man" data-theme="m">Clear</a>
@@ -657,10 +672,11 @@
 					</div>
 				</form>
 			</div>
-
+			<!--
 			<footer data-role="footer" data-position="fixed">
-				<h1>GT Copyright 2014</h1>
+			<h1>GT Copyright 2014</h1>
 			</footer>
+			-->
 		</section>
 		<!-- End of Score Page -->
 	</body>
