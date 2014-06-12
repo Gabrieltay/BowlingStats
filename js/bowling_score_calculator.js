@@ -298,17 +298,19 @@ function end_game() {
 function injectXBtn(num) {
 	var htmlString = "";
 	var calcStr = "";
+	var tableId = 1;
 	$(".bowling-calc-buttons-table-1").empty();
 	$(".bowling-calc-buttons-table-2").empty();
 	for (var i = 0; i < num; i++) {
-		var tableId = parseInt(i / 6) + 1;
+		if (! isLandscape())
+			tableId = parseInt(i / 6) + 1;
 		calcStr = "calc('edit','" + i + "')";
 		htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="j" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + ' /></td>';
 		$('.bowling-calc-buttons-table-' + tableId).append(htmlString);
 	}
 	calcStr = "calc('edit','X')";
 	htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="j" name="b-X" value="X" onclick=' + calcStr + ' /></td>';
-	if (num >= 6)
+	if (num >= 6 && !isLandscape())
 		$(".bowling-calc-buttons-table-2").append(htmlString);
 	else
 		$(".bowling-calc-buttons-table-1").append(htmlString);
@@ -319,17 +321,19 @@ function injectXBtn(num) {
 function injectYBtn(num) {
 	var htmlString = "";
 	var calcStr = "";
+	var tableId = 1;
 	$(".bowling-calc-buttons-table-1").empty();
 	$(".bowling-calc-buttons-table-2").empty();
 	for (var i = 0; i < num; i++) {
-		var tableId = parseInt(i / 6) + 1;
+		if (! isLandscape())
+			var tableId = parseInt(i / 6) + 1;
 		calcStr = "calc('edit','" + i + "')";
 		htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="j" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + ' /></td>';
 		$('.bowling-calc-buttons-table-' + tableId).append(htmlString);
 	}
 	calcStr = "calc('edit','/')";
 	htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="j" name="b-/" value="/" onclick=' + calcStr + ' /></td>';
-	if (num >= 6)
+	if (num >= 6 && !isLandscape())
 		$(".bowling-calc-buttons-table-2").append(htmlString);
 	else
 		$(".bowling-calc-buttons-table-1").append(htmlString);

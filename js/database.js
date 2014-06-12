@@ -242,6 +242,7 @@ function RemoveCurrentGame() {
 }
 
 function GetImage(id) {
+	mFile = "";
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
 		tx.executeSql('SELECT file,date,score,' + frameCols + ' FROM blist WHERE id="' + id + '"', [], function(tx, results) {
@@ -259,11 +260,7 @@ function GetImage(id) {
 				 $('#photo-content').trigger("create");
 				 } else {*/
 				if (imageData != "NULL" || imageData != "") {
-					alert(imageData);
-					//var string = '<img class="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
-					var string = '<img class="game-photo" src="' + imageData + '"></img>';
-					$("#photo-content").html(string);
-					$('#photo-content').trigger("create");
+					mFile = imageData;
 				}
 
 				populateScores(results.rows.item(0));
@@ -437,4 +434,16 @@ function saveCapture() {
 			//$('#photo-container').html(htmlString);
 		}
 	});
+}
+
+function showPhoto() {
+	if (mFile != "") {
+		var string = '<img class="game-photo" src="' + mFile + '"></img>';
+		$("#photo-content").html(string);
+		$('#photo-content').trigger("create");
+	}
+}
+
+function isLandscape(){
+	return ($(window).width() > $(window).height());
 }
