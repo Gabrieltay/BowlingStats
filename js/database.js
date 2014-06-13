@@ -155,7 +155,7 @@ function RefreshQuery(tx) {
 			var avg = Math.floor(results.rows.item(i).a);
 			var count = results.rows.item(i).c;
 			var date = new Date(dateString);
-			var string = '<li id="all_' + i + '"><a href="#date-page" data-rel="page" onclick="DateQuery(' + date.valueOf() + ');" class="ui-link-inherit"> [' + dateToYMD(date) + '] ' + count + ' games Avg - ' + avg + '</a></li>';
+			var string = '<li id="all_' + i + '"><a href="#date-page" data-transition="slide" data-rel="page" onclick="DateQuery(' + date.valueOf() + ');" class="ui-link-inherit"> [' + dateToYMD(date) + '] ' + count + ' games Avg - ' + avg + '</a></li>';
 			$("#bowl_list").append(string);
 		};
 		freshList("bowl_list");
@@ -471,7 +471,7 @@ function showPhoto(){
 	}
 	else
 	{
-		string = '<img class="game-photo" src="../images/bg.png"></img>';
+		string = '<img class="game-photo" src="images/bg.png"></img>';
 	}
 		$("#photo-content").html(string);
 		$('#photo-content').trigger("create");
