@@ -10,7 +10,7 @@
 
 #home-page
 {
-	background-image:url("../images/bg.png");
+	/*background-image:url("../images/bg.png");*/
 	background-repeat:no-repeat;
 	background-position:center;
 	background-size: 100% 100%;
@@ -28,11 +28,11 @@
 
 .game-photo
 {
-	max-width: 100%;
-    height: auto;
-    width: auto\9; /* ie8 */
+    max-height: 80%;
+
   display: block;
-    margin: 0px auto;
+    margin-left: auto;
+    margin-right: auto
 }
 
 .game-photo2
@@ -109,6 +109,11 @@ float:right;
 	color: #FFFFFF;
 }
 
+.bowling-calc-score-container .frame-no:nth-child(even) {
+
+	background: #555558;
+}
+
 .bowling-calc-score-container .middle-frame {
 	border-top: 2px solid black;
 }
@@ -121,7 +126,7 @@ float:right;
 
 .bowling-calc-score-container .last-frame-no {
 	border-radius: 0 8px 0 0;
-	background: #8E8E93;
+	background: #555558;
 }
 
 .bowling-calc-score-container {

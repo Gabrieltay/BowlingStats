@@ -4232,6 +4232,22 @@ html .ui-page-theme-f .ui-btn.ui-btn-active,html .ui-bar-f .ui-btn.ui-btn-active
 html .ui-page-theme-f .ui-checkbox-on:after,html .ui-bar-f .ui-checkbox-on:after,html .ui-body-f .ui-checkbox-on:after,html body .ui-group-theme-f .ui-checkbox-on:after,html .ui-btn.ui-checkbox-on.ui-btn-f:after,html background-color: primary_color{border-color:#3498db;color:#fff}
 html .ui-page-theme-f .ui-radio-on:after,html .ui-bar-f .ui-radio-on:after,html .ui-body-f .ui-radio-on:after,html body .ui-group-theme-f .ui-radio-on:after,html .ui-btn.ui-radio-on.ui-btn-f:after{background-color:#3498db;color:#fff}
 
+html .ui-bar-ff,html .ui-page-theme-ff .ui-bar-inherit,html .ui-bar-ff .ui-bar-inherit,html .ui-body-ff .ui-bar-inherit,html body .ui-group-theme-ff .ui-bar-inherit{background:#3498db;border-color:#3498db;color:#fff;font-weight:bold}
+html .ui-bar-ff{border-width:1px;border-style:solid}
+html .ui-overlay-ff,html .ui-page-theme-ff,html .ui-page-theme-ff .ui-panel-wrapper{background:#f9f9f9;border-color:#bbb;color:#333}
+html .ui-body-ff,html .ui-page-theme-ff .ui-body-inherit,html .ui-bar-ff .ui-body-inherit,html .ui-body-ff .ui-body-inherit,html body .ui-group-theme-ff .ui-body-inherit,html .ui-panel-page-container-ff{background:#fff;border-color:#3498db;color:#333}
+html .ui-body-ff{border-width:1px;border-style:solid}
+html .ui-page-theme-ff a,html .ui-bar-ff a,html .ui-body-ff a,html body .ui-group-theme-ff a{color:#3498db;font-weight:bold}
+html .ui-page-theme-ff a:visited,html .ui-bar-ff a:visited,html .ui-body-ff a:visited,html body .ui-group-theme-ff a:visited{color:#3498db}
+html .ui-page-theme-ff a:hover,html .ui-bar-ff a:hover,html .ui-body-ff a:hover,html body .ui-group-theme-ff a:hover{color:#3498db}
+html .ui-page-theme-ff a:active,html .ui-bar-ff a:active,html .ui-body-ff a:active,html body .ui-group-theme-ff a:active{color:#3498db}
+html .ui-page-theme-ff .ui-btn,html .ui-bar-ff .ui-btn,html .ui-body-ff .ui-btn,html body .ui-group-theme-ff .ui-btn,html body .ui-btn.ui-btn-ff,html .ui-page-theme-ff .ui-btn:visited,html .ui-bar-ff .ui-btn:visited,html .ui-body-ff .ui-btn:visited,html body .ui-group-theme-ff .ui-btn:visited,html body .ui-btn.ui-btn-ff:visited{background:#3498db;border-color:#3498db;color:#fff}
+html .ui-page-theme-ff .ui-btn:hover,html .ui-bar-ff .ui-btn:hover,html .ui-body-ff .ui-btn:hover,html body .ui-group-theme-ff .ui-btn:hover,html body .ui-btn.ui-btn-ff:hover{background:#3498db;border-color:#3498db;color:#fff}
+html .ui-page-theme-ff .ui-btn:active,html .ui-bar-ff .ui-btn:active,html .ui-body-ff .ui-btn:active,html body .ui-group-theme-ff .ui-btn:active,html body .ui-btn.ui-btn-ff:active{background:#3498db;border-color:#3498db;color:#fff}
+html .ui-page-theme-ff .ui-btn.ui-btn-active,html .ui-bar-ff .ui-btn.ui-btn-active,html .ui-body-ff .ui-btn.ui-btn-active,html body .ui-group-theme-ff .ui-btn.ui-btn-active,html body .ui-btn.ui-btn-ff.ui-btn-active,html .ui-page-theme-ff .ui-flipswitch-active,html .ui-bar-ff .ui-flipswitch-active,html .ui-body-ff .ui-flipswitch-active,html body .ui-group-theme-ff .ui-flipswitch-active,html body .ui-flipswitch.ui-bar-ff.ui-flipswitch-active,html .ui-page-theme-ff .ui-slider-track .ui-btn-active,html .ui-bar-ff .ui-slider-track .ui-btn-active,html .ui-body-ff .ui-slider-track .ui-btn-active,html body .ui-group-theme-ff .ui-slider-track .ui-btn-active,html body div.ui-slider-track.ui-body-ff .ui-btn-active{background-color:#3498db;border-color:#3498db;color:#fff}
+html .ui-page-theme-ff .ui-checkbox-on:after,html .ui-bar-ff .ui-checkbox-on:after,html .ui-body-ff .ui-checkbox-on:after,html body .ui-group-theme-ff .ui-checkbox-on:after,html .ui-btn.ui-checkbox-on.ui-btn-ff:after,html background-color: primary_color{border-color:#3498db;color:#fff}
+html .ui-page-theme-ff .ui-radio-on:after,html .ui-bar-ff .ui-radio-on:after,html .ui-body-ff .ui-radio-on:after,html body .ui-group-theme-ff .ui-radio-on:after,html .ui-btn.ui-radio-on.ui-btn-ff:after{background-color:#3498db;color:#fff}
+
 html .ui-bar-g,html .ui-page-theme-g .ui-bar-inherit,html .ui-bar-g .ui-bar-inherit,html .ui-body-g .ui-bar-inherit,html body .ui-group-theme-g .ui-bar-inherit{background:#2ecc71;border-color:#2ecc71;color:#fff;font-weight:bold}
 html .ui-bar-g{border-width:1px;border-style:solid}
 html .ui-overlay-g,html .ui-page-theme-g,html .ui-page-theme-g .ui-panel-wrapper{background:#f9f9f9;border-color:#bbb;color:#333}

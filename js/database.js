@@ -42,7 +42,12 @@ var init = function() {
 $(document).ready(init);
 
 $(document).on("pagebeforeshow", "#record-page", function() {
-	$("#photo-content").empty();
+	if (mFile != "") {
+		var string = '<img class="game-photo" src="' + mFile + '"></img>';
+		$("#photo-content").html(string);
+		$('#photo-content').trigger("create");
+	}
+	//$("#photo-content").empty();
 });
 
 function transactionDB(query) {
@@ -108,22 +113,22 @@ function StatsQuery(tx) {
 		var ta = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$("#ta-val").text(Math.floor(ta));
 	}, errorDB);
-	
+
 	tx.executeSql('SELECT SUM(strikes) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
 		var tsk = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$("#tsk-val").text(Math.floor(tsk));
 	}, errorDB);
-	
+
 	tx.executeSql('SELECT AVG(strikes) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
 		var ask = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$("#ask-val").text(Math.floor(ask));
 	}, errorDB);
-	
+
 	tx.executeSql('SELECT SUM(spares) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
 		var tsp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$("#tsp-val").text(Math.floor(tsp));
 	}, errorDB);
-	
+
 	tx.executeSql('SELECT AVG(spares) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
 		var asp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$("#asp-val").text(Math.floor(asp));
@@ -176,7 +181,7 @@ function InsertQuery(tx) {
 
 	if (isCompleted() == 1 && $('#edit-final-res').text() == $("#scoreinput").val()) {
 		//getScores();
-		tx.executeSql('INSERT INTO blist (score,date,file,frames,strikes,spares,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "' + mFile + '", "true",' + getStrikes() +',' + getSpares() + ',' + getScores() + ')', [], function(tx, results) {
+		tx.executeSql('INSERT INTO blist (score,date,file,frames,strikes,spares,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "' + mFile + '", "true",' + getStrikes() + ',' + getSpares() + ',' + getScores() + ')', [], function(tx, results) {
 			$.mobile.back();
 		}, errorDB);
 	} else {
@@ -206,7 +211,7 @@ function DateQuery(dateValue) {
 				for (var i = 0; i < len; i++) {
 					var id = results.rows.item(i).id;
 					var score = results.rows.item(i).score;
-					var string = '<li id="all_' + id + '" data-icon="flat-camera" data-iconpos="right"><a href="#record-page" data-rel="page" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
+					var string = '<li id="all_' + id + '" data-icon="flat-new" data-iconpos="right"><a href="#record-page" data-rel="page" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
 					$("#date_list").append(string);
 				};
 				freshList("date_list");
@@ -272,7 +277,6 @@ function GetImage(id) {
 				var date = new Date(results.rows.item(0).date);
 				var score = results.rows.item(0).score;
 				var frames = results.rows.item(0).frames;
-				alert(frames);
 				$(".date-header").text(date.toDateString());
 				mId = id;
 				/*
@@ -346,7 +350,6 @@ function onEditSuccess(imageData) {
 function onNewSuccess(imageData) {
 	mStatus = "ready";
 	mFile = "data:image/jpeg;base64," + imageData;
-	alert("Image Saved");
 }
 
 function errorDB(err) {
@@ -447,26 +450,19 @@ function shareCapture() {
 }
 
 function saveCapture() {
-	html2canvas($("#edit-bowling-calc-score-container"), {
-		onrendered : function(canvas) {
-			mCanvas = canvas.toDataURL("image/jepg");
-			$.mobile.back();
-			$("#scoreinput").val($('#edit-final-res').text());
-			//var htmlString = '<img class="game-photo" src="' + canvas.toDataURL("image/png") + '"></img>';
-			//$('#photo-content').html(htmlString);
-		}
-	});
-}
-
-function showPhoto() {
-	if (mFile != "") {
-		alert(mFile);
-		var string = '<img class="game-photo" src="' + mFile + '"></img>';
-		$("#photo-content").html(string);
-		$('#photo-content').trigger("create");
+	if (isCompleted()) {
+		html2canvas($("#edit-bowling-calc-score-container"), {
+			onrendered : function(canvas) {
+				mCanvas = canvas.toDataURL("image/jepg");
+				$.mobile.back();
+				$("#scoreinput").val($('#edit-final-res').text());
+				//var htmlString = '<img class="game-photo" src="' + canvas.toDataURL("image/png") + '"></img>';
+				//$('#photo-content').html(htmlString);
+			}
+		});
 	}
 }
 
-function isLandscape(){
+function isLandscape() {
 	return ($(window).width() > $(window).height());
 }
