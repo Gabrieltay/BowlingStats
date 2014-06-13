@@ -352,11 +352,13 @@ function onEditSuccess(imageData) {
 	var string = '<img class="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
 	$("#photo-content").html(string);
 	$('#photo-content').trigger("create");
+  StatusBar.hide();
 }
 
 function onNewSuccess(imageData) {
 	mStatus = "ready";
 	mFile = "data:image/jpeg;base64," + imageData;
+  StatusBar.hide();
 }
 
 function errorDB(err) {
@@ -369,6 +371,7 @@ function successDB() {
 
 function onCameraError(message) {
 	alert('Failed because: ' + message);
+  StatusBar.hide();
 }
 
 function success() {
