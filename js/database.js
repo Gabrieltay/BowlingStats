@@ -208,7 +208,7 @@ function DateQuery(dateValue) {
 				for (var i = 0; i < len; i++) {
 					var id = results.rows.item(i).id;
 					var score = results.rows.item(i).score;
-					var string = '<li id="all_' + id + '" data-icon="flat-new" data-iconpos="right"><a href="#record-page" data-rel="page" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
+					var string = '<li id="all_' + id + '" data-icon="flat-new" data-iconpos="right"><a href="#record-page" data-rel="page" data-transition="slide" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
 					$("#date_list").append(string);
 				};
 				freshList("date_list");
