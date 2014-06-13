@@ -52,8 +52,9 @@ $(document).on("pagebeforeshow", "#record-page", function() {
 	}
 		$("#photo-content").html(string);
 		$('#photo-content').trigger("create");
-	
+
 	//$("#photo-content").empty();
+
 });
 
 function transactionDB(query) {
@@ -293,7 +294,7 @@ function GetImage(id) {
 				 } else {*/
 				if (imageData != "NULL" || imageData != "") {
 					mFile = imageData;
-				}	
+				}
 
 				populateScores(results.rows.item(0));
 				$("#view-final-res").text(score);
@@ -441,6 +442,7 @@ function share() {
 	} else {
 		//To Continue Sharing something else??
 	}
+  StatusBar.hide();
 }
 
 function shareCapture() {
