@@ -42,11 +42,17 @@ var init = function() {
 $(document).ready(init);
 
 $(document).on("pagebeforeshow", "#record-page", function() {
+	var string = "";
 	if (mFile != "") {
-		var string = '<img class="game-photo" src="' + mFile + '"></img>';
+		string = '<img class="game-photo" src="' + mFile + '"></img>';
+	}
+	else
+	{
+		string = '<img class="game-photo" src="../images/bg.png"></img>';
+	}
 		$("#photo-content").html(string);
 		$('#photo-content').trigger("create");
-	}
+	
 	//$("#photo-content").empty();
 });
 
@@ -287,7 +293,7 @@ function GetImage(id) {
 				 } else {*/
 				if (imageData != "NULL" || imageData != "") {
 					mFile = imageData;
-				}
+				}	
 
 				populateScores(results.rows.item(0));
 				$("#view-final-res").text(score);
