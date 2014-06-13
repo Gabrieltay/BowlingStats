@@ -118,7 +118,7 @@ function CreatQuery(tx) {
 		else
 			sqlStr = sqlStr + 'frame_10_3 varchar(1)';
 	}
-	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar,' + sqlStr + ')', [], function(tx, results) {
+	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar, frames ,' + sqlStr + ')', [], function(tx, results) {
 		//tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar, frame_1_1 varchar(1), frame_1_2 varchar(1))', [], function(tx, results) {
 	}, errorDB);
 }
