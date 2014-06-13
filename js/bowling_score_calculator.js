@@ -428,6 +428,31 @@ function getScores() {
 	return resultStr;
 }
 
+function getStrikes() {
+	var result = 0;
+	for (var f = 1; f <= 10; f++)
+		for (var t = 1; t < 3; t++) {
+			frameStr = $('#edit-frame' + f + '-' + t).text();
+			if ( frameStr == 'X')
+				result++;
+		}
+	if ($('#edit-frame10-3').text() == 'X')
+		result++;
+	return result;
+}
+
+function getSpares() {
+	var result = 0;
+	for (var f = 1; f <= 10; f++) {
+		frameStr = $('#edit-frame' + f + '-2').text();
+		if ( frameStr == '/')
+			result++;
+	}
+	if ($('#edit-frame10-3').text() == '/')
+		result++;
+	return result;
+}
+
 function isCompleted() {
 	return complete;
 }

@@ -108,6 +108,26 @@ function StatsQuery(tx) {
 		var ta = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$("#ta-val").text(Math.floor(ta));
 	}, errorDB);
+	
+	tx.executeSql('SELECT SUM(strikes) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
+		var tsk = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$("#tsk-val").text(Math.floor(tsk));
+	}, errorDB);
+	
+	tx.executeSql('SELECT AVG(strikes) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
+		var ask = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$("#ask-val").text(Math.floor(ask));
+	}, errorDB);
+	
+	tx.executeSql('SELECT SUM(spares) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
+		var tsp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$("#tsp-val").text(Math.floor(tsp));
+	}, errorDB);
+	
+	tx.executeSql('SELECT AVG(spares) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
+		var asp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$("#asp-val").text(Math.floor(asp));
+	}, errorDB);
 }
 
 function CreatQuery(tx) {
@@ -118,7 +138,7 @@ function CreatQuery(tx) {
 		else
 			sqlStr = sqlStr + 'frame_10_3 varchar(1)';
 	}
-	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar, frames ,' + sqlStr + ')', [], function(tx, results) {
+	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar, frames varchar, strikes Integer, spares Integer,' + sqlStr + ')', [], function(tx, results) {
 		//tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar, frame_1_1 varchar(1), frame_1_2 varchar(1))', [], function(tx, results) {
 	}, errorDB);
 }
@@ -155,12 +175,12 @@ function InsertQuery(tx) {
 	}
 
 	if (isCompleted() == 1 && $('#edit-final-res').text() == $("#scoreinput").val()) {
-		getScores();
-		tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "' + mFile + '", ' + getScores() + ')', [], function(tx, results) {
+		//getScores();
+		tx.executeSql('INSERT INTO blist (score,date,file,frames,strikes,spares,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "' + mFile + '", "true",' + getStrikes() +',' + getSpares() + ',' + getScores() + ')', [], function(tx, results) {
 			$.mobile.back();
 		}, errorDB);
 	} else {
-		tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "' + mFile + '", "","","","","","","","","","","","","","","","","","","","","")', [], function(tx, results) {
+		tx.executeSql('INSERT INTO blist (score,date,file,frames,strikes,spares,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "' + mFile + '", "false",0,0, "","","","","","","","","","","","","","","","","","","","","")', [], function(tx, results) {
 
 			//tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "NULL", "1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","")', [], function(tx, results) {
 
@@ -193,7 +213,7 @@ function DateQuery(dateValue) {
 			} else {
 				$.mobile.back();
 			}
-		});
+		}, errorDB);
 	});
 }
 
@@ -245,12 +265,14 @@ function GetImage(id) {
 	mFile = "";
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
-		tx.executeSql('SELECT file,date,score,' + frameCols + ' FROM blist WHERE id="' + id + '"', [], function(tx, results) {
+		tx.executeSql('SELECT file,date,score,frames,' + frameCols + ' FROM blist WHERE id="' + id + '"', [], function(tx, results) {
 			var len = results.rows.length;
 			if (len > 0) {
 				var imageData = results.rows.item(0).file;
 				var date = new Date(results.rows.item(0).date);
 				var score = results.rows.item(0).score;
+				var frames = results.rows.item(0).frames;
+				alert(frames);
 				$(".date-header").text(date.toDateString());
 				mId = id;
 				/*
@@ -399,7 +421,7 @@ function socialsharing() {
 function share() {
 	if (mCanvas != "") {
 		//var htmlString = '<img class="game-photo" src="' + mCanvas + '"></img>';
-		//$('#photo-container').html(htmlString);
+		//$('#photo-content').html(htmlString);
 		window.plugins.socialsharing.available(function(isAvailable) {
 			if (isAvailable) {
 				window.plugins.socialsharing.share('Sharing my score via Pro Bowl app', "My Name", mCanvas, null);
@@ -431,14 +453,14 @@ function saveCapture() {
 			$.mobile.back();
 			$("#scoreinput").val($('#edit-final-res').text());
 			//var htmlString = '<img class="game-photo" src="' + canvas.toDataURL("image/png") + '"></img>';
-			//$('#photo-container').html(htmlString);
+			//$('#photo-content').html(htmlString);
 		}
 	});
 }
 
 function showPhoto() {
 	if (mFile != "") {
-		alert("mFile");
+		alert(mFile);
 		var string = '<img class="game-photo" src="' + mFile + '"></img>';
 		$("#photo-content").html(string);
 		$('#photo-content').trigger("create");

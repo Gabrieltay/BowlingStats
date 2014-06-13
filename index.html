@@ -337,23 +337,25 @@
 						</div>
 
 					</div>
+
+					<fieldset class="ui-grid-b">
+						<div class="ui-block-a">
+							<a href="" data-role="button" data-icon="flat-cross" data-iconpos="middle" data-theme="m" onclick="RemoveCurrentGame()"></a>
+						</div>
+						<div class="ui-block-b">
+							<a href="#" data-role="button" data-icon="flat-man" data-iconpos="middle" data-theme="j" onclick="shareCapture()"></a>
+						</div>
+						<div class="ui-block-b">
+							<a href="#photo-page" data-role="button" data-rel="dialog" data-icon="flat-camera" data-iconpos="middle" data-theme="k" onclick="showPhoto()"></a>
+						</div>
+					</fieldset>
 				</form>
 				<!--
 				<fieldset class="ui-grid-a" id="photo-content">
 
 				</fieldset>
 				-->
-				<fieldset class="ui-grid-b">
-					<div class="ui-block-a">
-						<a href="" data-role="button" data-icon="flat-cross" data-iconpos="middle" data-theme="m" onclick="RemoveCurrentGame()"></a>
-					</div>
-					<div class="ui-block-b">
-						<a href="#" data-role="button" data-icon="flat-man" data-iconpos="middle" data-theme="j" onclick="shareCapture()"></a>
-					</div>
-					<div class="ui-block-b">
-						<a href="#photo-page" data-role="button" data-rel="dialog" data-icon="flat-camera" data-iconpos="middle" data-theme="k" onclick="showPhoto()"></a>
-					</div>
-				</fieldset>
+
 			</div>
 			<!--
 			<footer data-role="footer" data-position="fixed" class="ui-corner-all">
@@ -439,7 +441,7 @@
 								Average Strikes:
 							</div>
 
-							<div id="lsk-val" class="stats-score ui-block-e">
+							<div id="ask-val" class="stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -453,7 +455,7 @@
 								Total Spares:
 							</div>
 
-							<div id="tsk-val" class="stats-score ui-block-e">
+							<div id="tsp-val" class="stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -465,7 +467,7 @@
 								Average Spares:
 							</div>
 
-							<div id="lsk-val" class="stats-score ui-block-e">
+							<div id="asp-val" class="stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -751,7 +753,7 @@
 				<h1>New Game</h1>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
-				<div id="photo-container">
+				<div id="photo-content">
 					<img  class="game-photo" src="images/bg.png"></img>
 				</div>
 			</div>
