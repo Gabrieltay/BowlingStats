@@ -42,16 +42,6 @@ var init = function() {
 $(document).ready(init);
 
 $(document).on("pagebeforeshow", "#record-page", function() {
-	var string = "";
-	if (mFile != "") {
-		string = '<img class="game-photo" src="' + mFile + '"></img>';
-	}
-	else
-	{
-		string = '<img class="game-photo" src="../images/bg.png"></img>';
-	}
-		$("#photo-content").html(string);
-		$('#photo-content').trigger("create");
 
 	//$("#photo-content").empty();
 
@@ -472,6 +462,20 @@ function saveCapture() {
 			}
 		});
 	}
+}
+
+function showPhoto(){
+  	var string = "";
+	if (mFile != "") {
+		string = '<img class="game-photo" src="' + mFile + '"></img>';
+	}
+	else
+	{
+		string = '<img class="game-photo" src="../images/bg.png"></img>';
+	}
+		$("#photo-content").html(string);
+		$('#photo-content').trigger("create");
+
 }
 
 function isLandscape() {
