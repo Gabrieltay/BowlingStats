@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
 		<title>Bowling Scores</title>
 
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
@@ -36,7 +36,7 @@
 		<section data-role="page" id="home-page" class="ui-responsive-panel">
 
 			<header data-role="header" data-position="fixed" data-theme="ff">
-				<a href="#add-page" data-rel="page" data-transition="slideup" data-iconpos="notext" data-role="button" data-icon="plus" title="Home" onclick="resetFields()">Home</a>
+				<a href="#add-page" data-rel="page" data-transition="slideup" data-role="button" data-icon="plus" title="Home" onclick="resetFields()">Add</a>
 				<h1>Pro Bowl</h1>
 				<a href="#stats-page" id="stats-btn" data-rel="page" data-transition="slide" data-iconpos="notext" data-role="button" data-icon="flat-menu" onclick="StatsData()"></a>
 			</header>
@@ -78,7 +78,7 @@
 		<!-- Add Page -->
 		<section data-role="page" id="add-page">
 			<header data-role="header" data-theme="ff">
-				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
+				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>
 				<h1>New Game</h1>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
@@ -93,18 +93,20 @@
 						<input type="date" name="date" id="dateinput" value="">
 					</div></td>
 
-					<fieldset class="ui-grid-b">
+					<fieldset class="ui-grid-a ui-responsive">
 						<div class="ui-block-a">
-							<a href="#score-page" data-role="button" data-icon="flat-new" data-iconpos="middle" data-theme="k" onclick="calcs('new')"></a>
+							<a href="#score-page" data-role="button" data-icon="flat-new" data-iconpos="left" data-theme="k" onclick="calcs('new')">Frames</a>
 						</div>
 						<div class="ui-block-b">
-							<a href="#" data-role="button" data-icon="flat-man" data-iconpos="middle" data-theme="j" onclick="share()"></a>
+							<a href="#" data-role="button" data-icon="flat-man" data-iconpos="left" data-theme="j" onclick="share()">Share</a>
 						</div>
+                        <!--
 						<div class="ui-block-b">
 							<a href="#" data-role="button" data-icon="flat-camera" data-iconpos="middle" data-theme="i" onclick="FindPhoto('new')"></a>
 						</div>
+                        -->
 					</fieldset>
-					<a href="#" onclick="InsertData();" id="submit" data-role="button" data-icon="flat-man" data-theme="g">Confirm</a>
+					<a href="#" onclick="InsertData();" id="submit" data-role="button" data-icon="flat-checkround" data-theme="g">Confirm</a>
 					<!--
 					<div id="photo-container">
 					<img  class="game-photo2" src="images/bg.png"></img>
@@ -126,7 +128,7 @@
 		<!-- View Page -->
 		<section data-role="page" id="date-page" >
 			<header data-role="header" data-theme="ff">
-				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
+				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>
 				<h1 class="date-header">Current Date</h1>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
@@ -143,7 +145,7 @@
 		<!-- Record Page -->
 		<section data-role="page" id="record-page">
 			<header data-role="header" data-theme="ff">
-				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Home</a>
+				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>
 				<h1 class="date-header">Current Photo</h1>
 				<!--<a onclick="socialsharing()" data-iconpos="notext" data-role="button" data-icon="heart" data-iconpos="right"></a>-->
 			</header>
@@ -337,16 +339,18 @@
 
 					</div>
 
-					<fieldset class="ui-grid-b">
+					<fieldset class="ui-grid-a">
 						<div class="ui-block-a">
 							<a href="" data-role="button" data-icon="flat-cross" data-iconpos="middle" data-theme="m" onclick="RemoveCurrentGame()"></a>
 						</div>
 						<div class="ui-block-b">
 							<a href="#" data-role="button" data-icon="flat-man" data-iconpos="middle" data-theme="j" onclick="shareCapture()"></a>
 						</div>
+                        <!--
 						<div class="ui-block-b">
 							<a href="#photo-page" data-role="button" data-rel="page" data-transition="slide" data-icon="flat-camera" data-iconpos="middle" data-theme="i" onclick="showPhoto()"></a>
 						</div>
+                        -->
 					</fieldset>
 				</form>
 				<!--
@@ -366,7 +370,7 @@
 		<!-- Stats Page -->
 		<section data-role="page" id="stats-page">
 			<header data-role="header" data-position="fixed" data-theme="ff">
-				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Stats">Stats</a>
+				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Stats">Back</a>
 				<h1>Statistics</h1>
 			</header>
 			<div data-role="content">
@@ -524,7 +528,7 @@
 		<!-- Score Page -->
 		<section data-role="page" id="score-page">
 			<header data-role="header" data-position="fixed" data-theme="ff">
-				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Scores">Scores</a>
+				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Scores">Back</a>
 				<h1>Score Sheet</h1>
 			</header>
 			<div data-role="content">
@@ -721,15 +725,15 @@
 							</div>
 							<fieldset class="ui-grid-b ui-responsive">
 								<div class="ui-block-a">
-									<a href="#" onclick="calc('edit','erase');" data-role="button" data-icon="flat-man" data-theme="i">Erase</a>
+									<a href="#" onclick="calc('edit','erase');" data-role="button" data-icon="arrow-l" data-theme="i">Erase</a>
 
 								</div>
 								<div class="ui-block-b">
 									<!--<a href="#" onclick="saveScores();" data-role="button" data-icon="flat-man" data-theme="g">Save</a>-->
-									<a href="#" onclick="saveCapture();" data-role="button" data-icon="flat-man" data-theme="g">Save</a>
+									<a href="#" onclick="saveCapture();" data-role="button" data-icon="flat-checkround" data-theme="g">Save</a>
 								</div>
 								<div class="ui-block-c">
-									<a href="#" onclick="calc('edit','new');" data-role="button" data-icon="flat-man" data-theme="m">Clear</a>
+									<a href="#" onclick="calc('edit','new');" data-role="button" data-icon="flat-cross" data-theme="m">Clear</a>
 								</div>
 							</fieldset>
 						</div>
@@ -748,7 +752,7 @@
 		<!-- Photo Page -->
 		<section data-role="page" id="photo-page">
 			<header data-role="header" data-theme="ff">
-				<a data-rel="back" data-iconpos="notext" data-role="button" data-icon="arrow-l" title="Home">Photo</a>
+				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>
 				<h1>Photo</h1>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">

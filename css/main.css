@@ -26,13 +26,29 @@
 	margin: 0px auto;
 }
 
+#photo-content {
+    width: 40%;
+    height: 40%;
+    background: #444;
+    margin: 0 auto;
+}
+#photo-content img.wide {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+}
+#photo-content img.tall {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+}
+
 .game-photo
 {
-    max-height: 80%;
 
   display: block;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
 }
 
 .game-photo2

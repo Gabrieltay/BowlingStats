@@ -37,6 +37,7 @@ var init = function() {
 	});
 
 	FastClick.attach(document.body);
+
 };
 
 $(document).ready(init);
@@ -342,13 +343,13 @@ function onEditSuccess(imageData) {
 	var string = '<img class="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
 	$("#photo-content").html(string);
 	$('#photo-content').trigger("create");
-  StatusBar.hide();
+  //StatusBar.hide();
 }
 
 function onNewSuccess(imageData) {
 	mStatus = "ready";
 	mFile = "data:image/jpeg;base64," + imageData;
-  StatusBar.hide();
+  //StatusBar.hide();
 }
 
 function errorDB(err) {
@@ -361,7 +362,7 @@ function successDB() {
 
 function onCameraError(message) {
 	alert('Failed because: ' + message);
-  StatusBar.hide();
+  //StatusBar.hide();
 }
 
 function success() {
@@ -435,7 +436,7 @@ function share() {
 	} else {
 		//To Continue Sharing something else??
 	}
-  StatusBar.hide();
+  //StatusBar.hide();
 }
 
 function shareCapture() {
@@ -471,7 +472,7 @@ function showPhoto(){
 	}
 	else
 	{
-		string = '<img class="game-photo" src="images/bg.png"></img>';
+		string = '<img class="game-photo" class="wide" src="images/bg.png"></img>';
 	}
 		$("#photo-content").html(string);
 		$('#photo-content').trigger("create");
