@@ -130,6 +130,7 @@
 			<header data-role="header" data-theme="ff">
 				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>
 				<h1 class="date-header">Current Date</h1>
+                <a href="#sess-page" id="stats-btn" data-rel="page" data-transition="slide" data-iconpos="notext" data-role="button" data-icon="flat-menu" onclick="StatsSessionData()"></a>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
 				<ul data-role="listview" id="date_list" data-inset="true" data-theme="gg" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
@@ -371,7 +372,7 @@
 		<section data-role="page" id="stats-page">
 			<header data-role="header" data-position="fixed" data-theme="ff">
 				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Stats">Back</a>
-				<h1>Statistics</h1>
+				<h1 class="stats-header">Statistics</h1>
 			</header>
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true" data-theme="e">
@@ -381,7 +382,7 @@
 								Highest Score:
 							</div>
 
-							<div id="hs-val" class="stats-score ui-block-e">
+							<div class="hs-val" class="stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -392,7 +393,7 @@
 								Lowest Score:
 							</div>
 
-							<div id="ls-val" class="stats-score ui-block-e">
+							<div class="ls-val" class="stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -406,7 +407,7 @@
 								Highest Average:
 							</div>
 
-							<div id="ha-val" class="stats-score ui-block-e">
+							<div class="ha-val" class="stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -418,7 +419,7 @@
 								Lowest Average:
 							</div>
 
-							<div id="la-val" class="stats-score ui-block-e">
+							<div class="la-val" class="stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -432,7 +433,7 @@
 								Total Strikes:
 							</div>
 
-							<div id="tsk-val" class="stats-score ui-block-e">
+							<div class="tsk-val" class="stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -444,7 +445,7 @@
 								Average Strikes:
 							</div>
 
-							<div id="ask-val" class="stats-score ui-block-e">
+							<div class="ask-val" class="stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -458,7 +459,7 @@
 								Total Spares:
 							</div>
 
-							<div id="tsp-val" class="stats-score ui-block-e">
+							<div class="tsp-val" class="stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -470,7 +471,7 @@
 								Average Spares:
 							</div>
 
-							<div id="asp-val" class="stats-score ui-block-e">
+							<div class="asp-val" class="stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -484,7 +485,7 @@
 								Total Pins:
 							</div>
 
-							<div id="tp-val" class="stats-score ui-block-e">
+							<div class="tp-val" class="stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -496,7 +497,7 @@
 								Total Games:
 							</div>
 
-							<div id="tg-val" class="stats-score ui-block-e">
+							<div class="tg-val" class="stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -508,7 +509,7 @@
 								Total Average Score:
 							</div>
 
-							<div id="ta-val" class="stats-score ui-block-e">
+							<div class="ta-val" class="stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -770,5 +771,151 @@
 			-->
 		</section>
 		<!-- End of Photo Page -->
+
+        <!-- Stats Page -->
+		<section data-role="page" id="sess-page">
+			<header data-role="header" data-position="fixed" data-theme="ff">
+				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Stats">Back</a>
+				<h1 class="stats-header">Statistics</h1>
+			</header>
+			<div data-role="content">
+                				<ul data-role="listview" data-inset="true" data-theme="d">
+					<li>
+						<fieldset class="ui-grid-a">
+							<div class="ui-block-a">
+								Highest Average:
+							</div>
+
+							<div class="ha-val" class="stats-score ui-block-e">
+								123
+							</div>
+						</fieldset>
+					</li>
+				</ul>
+
+				<ul data-role="listview" data-inset="true" data-theme="e">
+					<li>
+						<fieldset class="ui-grid-a">
+							<div class="ui-block-a">
+								Highest Score:
+							</div>
+
+							<div class="hs-val" class="stats-score ui-block-e">
+								123
+							</div>
+						</fieldset>
+					</li>
+					<li>
+						<fieldset class="ui-grid-a">
+							<div class="ui-block-a">
+								Lowest Score:
+							</div>
+
+							<div class="ls-val" class="stats-score ui-block-e">
+								123
+							</div>
+						</fieldset>
+					</li>
+				</ul>
+
+				<ul data-role="listview" data-inset="true" data-theme="i">
+					<li>
+						<fieldset class="ui-grid-a">
+							<div class="ui-block-a">
+								Total Strikes:
+							</div>
+
+							<div class="tsk-val" class="stats-score ui-block-e">
+								###
+							</div>
+						</fieldset>
+					</li>
+
+					<li>
+						<fieldset class="ui-grid-a">
+							<div class="ui-block-a">
+								Average Strikes:
+							</div>
+
+							<div class="ask-val" class="stats-score ui-block-e">
+								###
+							</div>
+						</fieldset>
+					</li>
+				</ul>
+
+				<ul data-role="listview" data-inset="true" data-theme="n">
+					<li>
+						<fieldset class="ui-grid-a">
+							<div class="ui-block-a">
+								Total Spares:
+							</div>
+
+							<div class="tsp-val" class="stats-score ui-block-e">
+								###
+							</div>
+						</fieldset>
+					</li>
+
+					<li>
+						<fieldset class="ui-grid-a">
+							<div class="ui-block-a">
+								Average Spares:
+							</div>
+
+							<div class="asp-val" class="stats-score ui-block-e">
+								###
+							</div>
+						</fieldset>
+					</li>
+				</ul>
+
+				<ul data-role="listview" data-inset="true" data-theme="b">
+					<li>
+						<fieldset class="ui-grid-a">
+							<div class="ui-block-a">
+								Total Pins:
+							</div>
+
+							<div class="tp-val" class="stats-score ui-block-e">
+								123
+							</div>
+						</fieldset>
+					</li>
+
+					<li>
+						<fieldset class="ui-grid-a">
+							<div class="ui-block-a">
+								Total Games:
+							</div>
+
+							<div class="tg-val" class="stats-score ui-block-e">
+								123
+							</div>
+						</fieldset>
+					</li>
+
+					<li>
+						<fieldset class="ui-grid-a">
+							<div class="ui-block-a">
+								Total Average Score:
+							</div>
+
+							<div class="ta-val" class="stats-score ui-block-e">
+								123
+							</div>
+						</fieldset>
+					</li>
+				</ul>
+				<a href="#" onclick="ConfirmClear();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="m">Clear All Data</a>
+			</div>
+
+			<!--
+			<footer data-role="footer" data-position="fixed">
+			<h1>GT Copyright 2014</h1>
+			</footer>
+			-->
+		</section>
+		<!-- End of Stats Page -->
 	</body>
 </html>

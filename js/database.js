@@ -74,62 +74,125 @@ function RefreshData() {
 
 function StatsData() {
 	transactionDB(StatsQuery);
+  $(".stats-header").text("Overall Statistics");
+}
+
+function StatsSessionData() {
+	transactionDB(StatsQuery);
+  $(".stats-header").text("Session Statistics");
 }
 
 function StatsQuery(tx) {
 	tx.executeSql('SELECT MAX(score) AS s FROM blist', [], function(tx, results) {
 		var hs = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
-		$("#hs-val").text(hs);
+		$(".hs-val").text(hs);
 	}, errorDB);
 
 	tx.executeSql('SELECT MIN(score) AS s FROM blist', [], function(tx, results) {
 		var ls = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
-		$("#ls-val").text(ls);
+		$(".ls-val").text(ls);
 	}, errorDB);
 
 	tx.executeSql('SELECT MAX(a) AS s FROM (SELECT AVG(score) AS a FROM blist GROUP BY date);', [], function(tx, results) {
 		var ha = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
-		$("#ha-val").text(Math.floor(ha));
+		$(".ha-val").text(Math.floor(ha));
 	}, errorDB);
 
 	tx.executeSql('SELECT MIN(a) AS s FROM (SELECT AVG(score) AS a FROM blist GROUP BY date);', [], function(tx, results) {
 		var la = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
-		$("#la-val").text(Math.floor(la));
+		$(".la-val").text(Math.floor(la));
 	}, errorDB);
 
 	tx.executeSql('SELECT SUM(score) AS s FROM blist', [], function(tx, results) {
 		var tp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
-		$("#tp-val").text(tp);
+		$(".tp-val").text(tp);
 	}, errorDB);
 
 	tx.executeSql('SELECT COUNT(score) AS s FROM blist', [], function(tx, results) {
 		var tg = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
-		$("#tg-val").text(tg);
+		$(".tg-val").text(tg);
 	}, errorDB);
 
 	tx.executeSql('SELECT AVG(score) AS s FROM blist', [], function(tx, results) {
 		var ta = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
-		$("#ta-val").text(Math.floor(ta));
+		$(".ta-val").text(Math.floor(ta));
 	}, errorDB);
 
 	tx.executeSql('SELECT SUM(strikes) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
 		var tsk = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
-		$("#tsk-val").text(Math.floor(tsk));
+		$(".tsk-val").text(Math.floor(tsk));
 	}, errorDB);
 
 	tx.executeSql('SELECT AVG(strikes) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
 		var ask = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
-		$("#ask-val").text(Math.floor(ask));
+		$(".ask-val").text(Math.floor(ask));
 	}, errorDB);
 
 	tx.executeSql('SELECT SUM(spares) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
 		var tsp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
-		$("#tsp-val").text(Math.floor(tsp));
+		$(".tsp-val").text(Math.floor(tsp));
 	}, errorDB);
 
 	tx.executeSql('SELECT AVG(spares) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
 		var asp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
-		$("#asp-val").text(Math.floor(asp));
+		$(".asp-val").text(Math.floor(asp));
+	}, errorDB);
+}
+
+function StatsSessionQuery(tx) {
+	tx.executeSql('SELECT MAX(score) AS s FROM blist', [], function(tx, results) {
+		var hs = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$(".hs-val").text(hs);
+	}, errorDB);
+
+	tx.executeSql('SELECT MIN(score) AS s FROM blist', [], function(tx, results) {
+		var ls = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$(".ls-val").text(ls);
+	}, errorDB);
+
+	tx.executeSql('SELECT MAX(a) AS s FROM (SELECT AVG(score) AS a FROM blist GROUP BY date);', [], function(tx, results) {
+		var ha = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$(".ha-val").text(Math.floor(ha));
+	}, errorDB);
+
+	tx.executeSql('SELECT MIN(a) AS s FROM (SELECT AVG(score) AS a FROM blist GROUP BY date);', [], function(tx, results) {
+		var la = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$(".la-val").text(Math.floor(la));
+	}, errorDB);
+
+	tx.executeSql('SELECT SUM(score) AS s FROM blist', [], function(tx, results) {
+		var tp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$(".tp-val").text(tp);
+	}, errorDB);
+
+	tx.executeSql('SELECT COUNT(score) AS s FROM blist', [], function(tx, results) {
+		var tg = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$(".tg-val").text(tg);
+	}, errorDB);
+
+	tx.executeSql('SELECT AVG(score) AS s FROM blist', [], function(tx, results) {
+		var ta = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$(".ta-val").text(Math.floor(ta));
+	}, errorDB);
+
+	tx.executeSql('SELECT SUM(strikes) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
+		var tsk = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$(".tsk-val").text(Math.floor(tsk));
+	}, errorDB);
+
+	tx.executeSql('SELECT AVG(strikes) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
+		var ask = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$(".ask-val").text(Math.floor(ask));
+	}, errorDB);
+
+	tx.executeSql('SELECT SUM(spares) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
+		var tsp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$(".tsp-val").text(Math.floor(tsp));
+	}, errorDB);
+
+	tx.executeSql('SELECT AVG(spares) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
+		var asp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+		$(".asp-val").text(Math.floor(asp));
 	}, errorDB);
 }
 
