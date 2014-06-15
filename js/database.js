@@ -48,11 +48,10 @@ $(document).on("pagebeforeshow", "#record-page", function() {
 
 });
 
-$(".game-form").on('submit', function(event) {
+function onProfileSubmit(event) {
   event.preventDefault();
-  alert("Submit pressed");
   InsertData();
-});
+}
 
 function transactionDB(query) {
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
@@ -340,8 +339,9 @@ function RemoveCurrentSession() {
 	db.transaction(function(tx) {
 		tx.executeSql('DELETE FROM blist WHERE date="' + dateString + '"');
 	});
+  DateQuery(mDate);
   RefreshData();
-  $.mobile.back();$.mobile.back(); // Return to Home
+  $.mobile.back();
 }
 
 function GetImage(id) {
