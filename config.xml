@@ -94,20 +94,20 @@ version   = "0.1.0">
 	-->
 	<icon src="res/icon.png"/>
 	<!-- iPhone / iPod Touch  -->
-	<icon src="res/icon/ios/icon-60.png" gap:platform="ios" width="60" height="60" />
-	<icon src="res/icon/ios/icon-60@2x.png" gap:platform="ios" width="120" height="120" />
+	<icon src="res/icon/ios/Icon-60.png" gap:platform="ios" width="60" height="60" />
+	<icon src="res/icon/ios/Icon-60@2x.png" gap:platform="ios" width="120" height="120" />
 
 	<!-- iPad -->
-	<icon src="res/icon/ios/icon-76.png" gap:platform="ios" width="76" height="76" />
-	<icon src="res/icon/ios/icon-76@2x.png" gap:platform="ios" width="152" height="152" />
+	<icon src="res/icon/ios/Icon-76.png" gap:platform="ios" width="76" height="76" />
+	<icon src="res/icon/ios/Icon-76@2x.png" gap:platform="ios" width="152" height="152" />
 
 	<!-- Settings Icon -->
-	<icon src="res/icon/ios/icon-small.png" gap:platform="ios" width="29" height="29" />
-	<icon src="res/icon/ios/icon-small@2x.png" gap:platform="ios" width="58" height="58" />
+	<icon src="res/icon/ios/Icon-small.png" gap:platform="ios" width="29" height="29" />
+	<icon src="res/icon/ios/Icon-small@2x.png" gap:platform="ios" width="58" height="58" />
 
 	<!-- Spotlight Icon -->
-	<icon src="res/icon/ios/icon-40.png" gap:platform="ios" width="40" height="40" />
-	<icon src="res/icon/ios/icon-40@2x.png" gap:platform="ios" width="80" height="80" />
+	<icon src="res/icon/ios/Icon-40.png" gap:platform="ios" width="40" height="40" />
+	<icon src="res/icon/ios/Icon-40@2x.png" gap:platform="ios" width="80" height="80" />
 	
 	<icon src="res/icon/android/ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
 	<icon src="res/icon/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />

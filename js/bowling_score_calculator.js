@@ -309,7 +309,7 @@ function injectXBtn(num) {
 		$('.bowling-calc-buttons-table-' + tableId).append(htmlString);
 	}
 	calcStr = "calc('edit','X')";
-	htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="a" name="b-X" value="X" onclick=' + calcStr + ' /></td>';
+	htmlString = '<td class="bowling-calc-buttons-container"><input type="button" class="x-btn" data-theme="a" name="b-X" value="X" onclick=' + calcStr + ' /></td>';
 	if (num >= 6 && !isLandscape())
 		$(".bowling-calc-buttons-table-2").append(htmlString);
 	else
@@ -433,7 +433,7 @@ function getStrikes() {
 	for (var f = 1; f <= 10; f++)
 		for (var t = 1; t < 3; t++) {
 			frameStr = $('#edit-frame' + f + '-' + t).text();
-			if ( frameStr == 'X')
+			if (frameStr == 'X')
 				result++;
 		}
 	if ($('#edit-frame10-3').text() == 'X')
@@ -445,7 +445,7 @@ function getSpares() {
 	var result = 0;
 	for (var f = 1; f <= 10; f++) {
 		frameStr = $('#edit-frame' + f + '-2').text();
-		if ( frameStr == '/')
+		if (frameStr == '/')
 			result++;
 	}
 	if ($('#edit-frame10-3').text() == '/')
