@@ -82,7 +82,7 @@
 				<h1>New Game</h1>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
-				<form>
+				<form class="game-form">
 
 					<div class="ui-field-contain">
 						<label for="scoreinput">Score:</label>
@@ -372,7 +372,7 @@
 		<section data-role="page" id="stats-page">
 			<header data-role="header" data-position="fixed" data-theme="ff">
 				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Stats">Back</a>
-				<h1 class="stats-header">Statistics</h1>
+				<h1 class="stats-header">Overall Statistics</h1>
 			</header>
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true" data-theme="e">
@@ -382,7 +382,7 @@
 								Highest Score:
 							</div>
 
-							<div class="hs-val" class="stats-score ui-block-e">
+							<div class="hs-val stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -393,7 +393,7 @@
 								Lowest Score:
 							</div>
 
-							<div class="ls-val" class="stats-score ui-block-e">
+							<div class="ls-val stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -407,7 +407,7 @@
 								Highest Average:
 							</div>
 
-							<div class="ha-val" class="stats-score ui-block-e">
+							<div class="ha-val stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -419,7 +419,7 @@
 								Lowest Average:
 							</div>
 
-							<div class="la-val" class="stats-score ui-block-e">
+							<div class="la-val stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -433,7 +433,7 @@
 								Total Strikes:
 							</div>
 
-							<div class="tsk-val" class="stats-score ui-block-e">
+							<div class="tsk-val stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -445,7 +445,7 @@
 								Average Strikes:
 							</div>
 
-							<div class="ask-val" class="stats-score ui-block-e">
+							<div class="ask-val stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -459,7 +459,7 @@
 								Total Spares:
 							</div>
 
-							<div class="tsp-val" class="stats-score ui-block-e">
+							<div class="tsp-val stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -471,7 +471,7 @@
 								Average Spares:
 							</div>
 
-							<div class="asp-val" class="stats-score ui-block-e">
+							<div class="asp-val stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -485,7 +485,7 @@
 								Total Pins:
 							</div>
 
-							<div class="tp-val" class="stats-score ui-block-e">
+							<div class="tp-val stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -497,7 +497,7 @@
 								Total Games:
 							</div>
 
-							<div class="tg-val" class="stats-score ui-block-e">
+							<div class="tg-val stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -509,13 +509,13 @@
 								Total Average Score:
 							</div>
 
-							<div class="ta-val" class="stats-score ui-block-e">
+							<div class="ta-val stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
 					</li>
 				</ul>
-				<a href="#" onclick="ConfirmClear();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="m">Clear All Data</a>
+				<a href="#" onclick="ConfirmAllClear();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="m">Delete All Data</a>
 			</div>
 
 			<!--
@@ -772,27 +772,13 @@
 		</section>
 		<!-- End of Photo Page -->
 
-        <!-- Stats Page -->
+        <!-- Sess Page -->
 		<section data-role="page" id="sess-page">
 			<header data-role="header" data-position="fixed" data-theme="ff">
 				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Stats">Back</a>
-				<h1 class="stats-header">Statistics</h1>
+				<h1 class="stats-header">Session Statistics</h1>
 			</header>
 			<div data-role="content">
-                				<ul data-role="listview" data-inset="true" data-theme="d">
-					<li>
-						<fieldset class="ui-grid-a">
-							<div class="ui-block-a">
-								Highest Average:
-							</div>
-
-							<div class="ha-val" class="stats-score ui-block-e">
-								123
-							</div>
-						</fieldset>
-					</li>
-				</ul>
-
 				<ul data-role="listview" data-inset="true" data-theme="e">
 					<li>
 						<fieldset class="ui-grid-a">
@@ -800,7 +786,7 @@
 								Highest Score:
 							</div>
 
-							<div class="hs-val" class="stats-score ui-block-e">
+							<div class="hs-val stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -811,7 +797,7 @@
 								Lowest Score:
 							</div>
 
-							<div class="ls-val" class="stats-score ui-block-e">
+							<div class="ls-val stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -825,7 +811,7 @@
 								Total Strikes:
 							</div>
 
-							<div class="tsk-val" class="stats-score ui-block-e">
+							<div class="tsk-val stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -837,7 +823,7 @@
 								Average Strikes:
 							</div>
 
-							<div class="ask-val" class="stats-score ui-block-e">
+							<div class="ask-val stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -851,7 +837,7 @@
 								Total Spares:
 							</div>
 
-							<div class="tsp-val" class="stats-score ui-block-e">
+							<div class="tsp-val stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -863,7 +849,7 @@
 								Average Spares:
 							</div>
 
-							<div class="asp-val" class="stats-score ui-block-e">
+							<div class="asp-val stats-score ui-block-e">
 								###
 							</div>
 						</fieldset>
@@ -877,7 +863,7 @@
 								Total Pins:
 							</div>
 
-							<div class="tp-val" class="stats-score ui-block-e">
+							<div class="tp-val stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -889,7 +875,7 @@
 								Total Games:
 							</div>
 
-							<div class="tg-val" class="stats-score ui-block-e">
+							<div class="tg-val stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
@@ -901,13 +887,13 @@
 								Total Average Score:
 							</div>
 
-							<div class="ta-val" class="stats-score ui-block-e">
+							<div class="ta-val stats-score ui-block-e">
 								123
 							</div>
 						</fieldset>
 					</li>
 				</ul>
-				<a href="#" onclick="ConfirmClear();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="m">Clear All Data</a>
+				<a href="#" onclick="ConfirmClear();" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="m">Delete Session</a>
 			</div>
 
 			<!--
@@ -916,6 +902,6 @@
 			</footer>
 			-->
 		</section>
-		<!-- End of Stats Page -->
+		<!-- End of Sess Page -->
 	</body>
 </html>
