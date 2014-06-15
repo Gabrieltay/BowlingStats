@@ -50,6 +50,7 @@ $(document).on("pagebeforeshow", "#record-page", function() {
 
 $(".game-form").on('submit', function(event) {
   event.preventDefault();
+  alert("Submit pressed");
   InsertData();
 });
 
