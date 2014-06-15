@@ -331,6 +331,18 @@ function RemoveCurrentGame() {
 	});
 }
 
+function RemoveCurrentSession() {
+  var dateValue = $("#date-page .date-header").text();
+  var date = new Date(dateValue);
+	var dateString = dateToYMD(date);
+  var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
+	db.transaction(function(tx) {
+		tx.executeSql('DELETE FROM blist WHERE date="' + dateString + '"');
+	});
+  RefreshData();
+  $.mobile.back();$.mobile.back(); // Return to Home
+}
+
 function GetImage(id) {
 	mFile = "";
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
