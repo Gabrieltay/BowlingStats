@@ -326,7 +326,7 @@ function injectYBtn(num) {
 	$(".bowling-calc-buttons-table-2").empty();
 	for (var i = 0; i < num; i++) {
 		if (! isLandscape())
-			var tableId = parseInt(i / 6) + 1;
+			tableId = parseInt(i / 6) + 1;
 		calcStr = "calc('edit','" + i + "')";
 		htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="a" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + ' /></td>';
 		$('.bowling-calc-buttons-table-' + tableId).append(htmlString);
