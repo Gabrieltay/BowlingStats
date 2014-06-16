@@ -30,7 +30,7 @@ function calc(mode, op) {
 	if (op == "1" || op == "2" || op == "3" || op == "4" || op == "5" || op == "6" || op == "7" || op == "8" || op == "9" || op == "0") {
 
 		results[frame_no][throw_no] = parseInt(op);
-
+		
 		if (throw_no == 1) {
 			$('#' + mode + '-frame' + frame_no + '-1').text(op);
 			throw_no++;
@@ -293,6 +293,7 @@ function update_frame_result(mode) {
 function end_game() {
 	complete = 1;
 	clearBtn();
+	$('.final-res-container').append('<h1 id="edit-final-res" class="final-res">'+results[frame_no]['result']+'</h1>');
 }
 
 function injectXBtn(num) {
@@ -310,9 +311,15 @@ function injectXBtn(num) {
 		$('.bowling-calc-buttons-table-' + tableId).append(htmlString);
 	}
 	calcStr = "calc('edit','X')";
+	var imgString = '<image src="images/X-icon.png"/>';
+	for ( var j = frame_no -1; j >= 1; j-- )
+	{
+		if ( results[j]['status'] == 'X' )
+			imgString = imgString + '<image src="images/X-icon.png"/>';
+	}
 	//htmlString = '<td class="bowling-calc-buttons-container"><input type="button" class="x-btn" data-theme="a" name="b-X" value="X" onclick=' + calcStr + ' /></td>';
 	//htmlString = '<td class="bowling-calc-buttons-container"><a href="#" class="x-btn" data-theme="e" data-role="button" onclick=' + calcStr + '><image src="images/X-icon.png"/></a></td>';
-	htmlString = '<a href="#" class="x-btn" data-theme="e" data-role="button" onclick=' + calcStr + '><image src="images/X-icon.png"/></a>';
+	htmlString = '<a href="#" class="x-btn" data-theme="e" data-role="button" onclick=' + calcStr + '>'+imgString+'</a>';
 
 	$(".close-frame-btn").empty();
 	$(".close-frame-btn").append(htmlString);
@@ -357,8 +364,10 @@ function injectYBtn(num) {
 function clearBtn() {
 	$(".bowling-calc-buttons-table-1").empty();
 	$(".bowling-calc-buttons-table-2").empty();
+	$(".close-frame-btn").empty();
 	$(".bowling-calc-buttons-table-1").trigger('create');
 	$(".bowling-calc-buttons-table-2").trigger('create');
+	$(".close-frame-btn").trigger('create');
 }
 
 function populateScores(record) {
