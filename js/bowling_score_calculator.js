@@ -1,14 +1,3 @@
-/**
- * Display bowling calc
- */
-//jQuery(document).ready(function() {
-//	jQuery("#calc-wrapper").show();
-//});
-
-/**
- * Form variable to perform operations on calc form.
- */
-
 var frame_no = 1;
 var throw_no = 1;
 var complete = 0;
@@ -30,7 +19,7 @@ function calc(mode, op) {
 	if (op == "1" || op == "2" || op == "3" || op == "4" || op == "5" || op == "6" || op == "7" || op == "8" || op == "9" || op == "0") {
 		buttonFeedback();
 		results[frame_no][throw_no] = parseInt(op);
-		
+
 		if (throw_no == 1) {
 			$('#' + mode + '-frame' + frame_no + '-1').text(op);
 			throw_no++;
@@ -293,7 +282,7 @@ function update_frame_result(mode) {
 function end_game() {
 	complete = 1;
 	clearBtn();
-	$('.final-res-container').append('<h1 id="edit-final-res" class="final-res">'+results[frame_no]['result']+'</h1>');
+	$('#edit-final-res-container').append('<h1 id="edit-final-res" class="final-res">' + results[frame_no]['result'] + '</h1>');
 }
 
 function injectXBtn(num) {
@@ -307,7 +296,7 @@ function injectXBtn(num) {
 			tableId = parseInt(i / 6) + 1;
 		calcStr = "calc('edit','" + i + "')";
 		//htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="n" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + ' /></td>';
-		htmlString = '<td class="bowling-calc-buttons-container"><a href="#" data-role="button" data-theme="n" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + '>'+ i +'</a></td>';
+		htmlString = '<td class="bowling-calc-buttons-container"><a href="#" data-role="button" data-theme="n" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + '>' + i + '</a></td>';
 		//htmlString = '<td class="bowling-calc-buttons-container"><a href="#" class="x-btn" data-theme="n" data-role="button" onclick=' + calcStr + '><image src="images/'+i+'-icon.png"/></a></td>';
 		$('.bowling-calc-buttons-table-' + tableId).append(htmlString);
 	}
@@ -316,12 +305,12 @@ function injectXBtn(num) {
 	/*
 	for ( var j = frame_no -1; j >= 1; j-- )
 	{
-		if ( results[j]['status'] == 'X' )
-			imgString = imgString + '<image src="images/X-icon.png"/>';
-		else
-			break;
+	if ( results[j]['status'] == 'X' )
+	imgString = imgString + '<image src="images/X-icon.png"/>';
+	else
+	break;
 	}*/
-	
+
 	//htmlString = '<td class="bowling-calc-buttons-container"><input type="button" class="x-btn" data-theme="n" name="b-X" value="X" onclick=' + calcStr + ' /></td>';
 	htmlString = '<td class="bowling-calc-buttons-container"><a href="#" data-role="button" data-theme="n" name="b-X " value="' + i + '" onclick=' + calcStr + '>X</a></td>';
 	//htmlString = '<td class="bowling-calc-buttons-container"><a href="#" class="x-btn" data-theme="n" data-role="button" onclick=' + calcStr + '><image src="images/X-icon.png"/></a></td>';
@@ -349,7 +338,7 @@ function injectYBtn(num) {
 			tableId = parseInt(i / 6) + 1;
 		calcStr = "calc('edit','" + i + "')";
 		//htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="n" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + ' /></td>';
-		htmlString = '<td class="bowling-calc-buttons-container"><a href="#" data-role="button" data-theme="n" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + '>'+ i +'</a></td>';
+		htmlString = '<td class="bowling-calc-buttons-container"><a href="#" data-role="button" data-theme="n" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + '>' + i + '</a></td>';
 		//htmlString = '<td class="bowling-calc-buttons-container"><a href="#" class="x-btn" data-theme="n" data-role="button" onclick=' + calcStr + '><image src="images/'+i+'-icon.png"/></a></td>';
 		$('.bowling-calc-buttons-table-' + tableId).append(htmlString);
 	}
@@ -428,7 +417,6 @@ function populateScores(record) {
 	if (frame_no == 10) {
 		throw_no = 1;
 		while (throw_no <= 3) {
-			//alert(throw_no + ' - ' + $('#view-frame10-' + throw_no).text());
 			if ($('#view-frame10-' + throw_no).text() != '\xa0') {
 				calc('view', $('#view-frame10-' + throw_no).text());
 			} else
@@ -441,7 +429,7 @@ function saveScores() {
 	if (complete == 1) {
 		capture();
 	} else {
-		alert("Game is not finished!");
+		toast("Game is not finished!");
 	}
 }
 
@@ -487,6 +475,3 @@ function isCompleted() {
 	return complete;
 }
 
-function buttonFeedback(){
-	navigator.notification.vibrate(100);
-}

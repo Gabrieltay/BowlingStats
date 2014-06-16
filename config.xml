@@ -5,7 +5,7 @@ id        = "com.phonegap.BowlingStats"
 version   = "0.1.0">
 
 	<name>Bowling Stats</name>
-	<description>PhoneGap Bowling Stats</description>
+	<description>A Bowling Statistics app. Analyze your games. Monitor your progress.</description>
 
 	<!--
 	If you do not want any permissions to be added to your app, add the
@@ -51,18 +51,7 @@ version   = "0.1.0">
 	<gap:plugin name="org.apache.cordova.vibration" version="0.3.7" />
 	<gap:plugin name="nl.x-services.plugins.toast" version="2.0" />
 	<gap:plugin name="nl.x-services.plugins.socialsharing" version="4.0.8" />
-	<gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
-	<!--
-	<gap:config-file platform="ios" parent="UIStatusBarHidden">
-	<true/>
-	</gap:config-file>
-	<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
-	<false/>
-	</gap:config-file>
-	-->
-	<feature name="StatusBar">
-		<param name="ios-package" value="CDVStatusBar" onload="true" />
-	</feature>
+
 	<feature name="SocialSharing">
 		<param name="ios-package" value="SocialSharing" />
 	</feature>
@@ -83,17 +72,7 @@ version   = "0.1.0">
 	<gap:plugin name="org.apache.cordova.network-information" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
 	-->
-	<!--
-	<icon src="res/icon.png"/>
-	<icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:qualifier="ldpi" />
-	<icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:qualifier="mdpi" />
-	<icon src="res/icon/android/icon-72-hdpi.png"   gap:platform="android"    gap:qualifier="hdpi" />
-	<icon src="res/icon/android/icon-96-xhdpi.png"  gap:platform="android"    gap:qualifier="xhdpi" />
-	<icon src="res/icon/ios/icon-57.png"            gap:platform="ios"        width="57" height="57" />
-	<icon src="res/icon/ios/icon-72.png"            gap:platform="ios"        width="72" height="72" />
-	<icon src="res/icon/ios/icon-57-2x.png"         gap:platform="ios"        width="114" height="114" />
-	<icon src="res/icon/ios/icon-72-2x.png"         gap:platform="ios"        width="144" height="144" />
-	-->
+
 	<icon src="res/icon.png"/>
 	<!-- iPhone / iPod Touch  -->
 	<icon src="res/icon/ios/Icon-60.png" gap:platform="ios" width="60" height="60" />
@@ -136,5 +115,6 @@ version   = "0.1.0">
 	<gap:splash src="res/splashscreen/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
 	<gap:splash src="res/splashscreen/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
 	<gap:splash src="res/splashscreen/android/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
+	
 	<access origin="*" />
 </widget>

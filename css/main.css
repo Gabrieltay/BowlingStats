@@ -37,44 +37,8 @@
 	padding-bottom: 5px
 }
 
-#photo-content {
-    width: 40%;
-    height: 40%;
-    background: #444;
-    margin: 0 auto;
-}
-#photo-content img.wide {
-    max-width: 100%;
-    max-height: 100%;
-    height: auto;
-}
-#photo-content img.tall {
-    max-height: 100%;
-    max-width: 100%;
-    width: auto;
-}
-
-.game-photo
-{
-
-  display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.game-photo2
-{
-
-    height: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
 .bowling-calc-score-container table {
 	table-layout:fixed; width:100%;
-	/*border: 2px solid black;*/
 	text-align: center;
 	vertical-align: middle;
 	border-collapse: collapse !important;
@@ -110,11 +74,7 @@
 	text-align: center;
 	vertical-align: middle;
 }
-/*
-​.bowling-calc-score-container .first {
-	border-top: 2px solid black;
-}
-*/
+
 .bowling-calc-score-container .second {
 	border-left: 2px solid black;
 	border-bottom: 2px solid black;
@@ -170,32 +130,6 @@
 {
 float:right;
 }
-/*
-td.bowling-calc-buttons-container input[type=button] {
-	width: 100% ;
-	margin-top: 10px ;
-	padding-left: 15px ;
-}
-
-td.bowling-calc-buttons-container input[type=button].calc-buttons {
-    border: none ;
-    display: block ;
-    background: #136899 ;
-    height: 40px ;
-    width: 100% ;
-    color: #ffffff ;
-    text-align: center ;
-  	-webkit-transition: all 0.15s linear ;
-	  -moz-transition: all 0.15s linear ;
-	  transition: all 0.15s linear;
-}
-
-.ui-btn input[type=button].calc-buttons:disabled {
-    border: #014677 5px solid !important;
-   display: block ;
-	background: #FFFFFF !important;
-}
-
 
 .form-item-frame1-2 {
 	position: relative;

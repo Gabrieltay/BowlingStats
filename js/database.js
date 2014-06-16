@@ -42,15 +42,9 @@ var init = function() {
 
 $(document).ready(init);
 
-$(document).on("pagebeforeshow", "#record-page", function() {
-
-	//$("#photo-content").empty();
-
-});
-
 function onProfileSubmit(event) {
-  event.preventDefault();
-  InsertData();
+	event.preventDefault();
+	InsertData();
 }
 
 function transactionDB(query) {
@@ -74,10 +68,10 @@ function ClearData(buttonIndex) {
 }
 
 function ClearSession(buttonIndex) {
-  if (buttonIndex == 1) {
-    transactionDB(RemoveCurrentSession);
-    StatsSessionData();
-  }
+	if (buttonIndex == 1) {
+		transactionDB(RemoveCurrentSession);
+		StatsSessionData();
+	}
 }
 
 function RefreshData() {
@@ -88,8 +82,8 @@ function StatsData() {
 	transactionDB(StatsQuery);
 }
 
-function StatsSessionData(){
-  transactionDB(StatsSessionQuery);
+function StatsSessionData() {
+	transactionDB(StatsSessionQuery);
 }
 
 function StatsQuery(tx) {
@@ -150,51 +144,51 @@ function StatsQuery(tx) {
 }
 
 function StatsSessionQuery(tx) {
-  var dateValue = $("#date-page .date-header").text();
-  var date = new Date(dateValue);
+	var dateValue = $("#date-page .date-header").text();
+	var date = new Date(dateValue);
 	var dateString = dateToYMD(date);
 
-	tx.executeSql('SELECT MAX(score) AS s FROM blist WHERE date="' + dateString +'"', [], function(tx, results) {
+	tx.executeSql('SELECT MAX(score) AS s FROM blist WHERE date="' + dateString + '"', [], function(tx, results) {
 		var hs = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$(".hs-val").text(hs);
 	}, errorDB);
 
-	tx.executeSql('SELECT MIN(score) AS s FROM blist WHERE date="' + dateString +'"', [], function(tx, results) {
+	tx.executeSql('SELECT MIN(score) AS s FROM blist WHERE date="' + dateString + '"', [], function(tx, results) {
 		var ls = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$(".ls-val").text(ls);
 	}, errorDB);
 
-	tx.executeSql('SELECT SUM(score) AS s FROM blist WHERE date="' + dateString +'"', [], function(tx, results) {
+	tx.executeSql('SELECT SUM(score) AS s FROM blist WHERE date="' + dateString + '"', [], function(tx, results) {
 		var tp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$(".tp-val").text(tp);
 	}, errorDB);
 
-	tx.executeSql('SELECT COUNT(score) AS s FROM blist WHERE date="' + dateString +'"', [], function(tx, results) {
+	tx.executeSql('SELECT COUNT(score) AS s FROM blist WHERE date="' + dateString + '"', [], function(tx, results) {
 		var tg = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$(".tg-val").text(tg);
 	}, errorDB);
 
-	tx.executeSql('SELECT AVG(score) AS s FROM blist WHERE date="' + dateString +'"', [], function(tx, results) {
+	tx.executeSql('SELECT AVG(score) AS s FROM blist WHERE date="' + dateString + '"', [], function(tx, results) {
 		var ta = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$(".ta-val").text(Math.floor(ta));
 	}, errorDB);
 
-	tx.executeSql('SELECT SUM(strikes) AS s FROM blist WHERE frames="true" AND date="' + dateString +'"', [], function(tx, results) {
+	tx.executeSql('SELECT SUM(strikes) AS s FROM blist WHERE frames="true" AND date="' + dateString + '"', [], function(tx, results) {
 		var tsk = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$(".tsk-val").text(Math.floor(tsk));
 	}, errorDB);
 
-	tx.executeSql('SELECT AVG(strikes) AS s FROM blist WHERE frames="true" AND date="' + dateString +'"', [], function(tx, results) {
+	tx.executeSql('SELECT AVG(strikes) AS s FROM blist WHERE frames="true" AND date="' + dateString + '"', [], function(tx, results) {
 		var ask = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$(".ask-val").text(Math.floor(ask));
 	}, errorDB);
 
-	tx.executeSql('SELECT SUM(spares) AS s FROM blist WHERE frames="true" AND date="' + dateString +'"', [], function(tx, results) {
+	tx.executeSql('SELECT SUM(spares) AS s FROM blist WHERE frames="true" AND date="' + dateString + '"', [], function(tx, results) {
 		var tsp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$(".tsp-val").text(Math.floor(tsp));
 	}, errorDB);
 
-	tx.executeSql('SELECT AVG(spares) AS s FROM blist WHERE frames="true" AND date="' + dateString +'"', [], function(tx, results) {
+	tx.executeSql('SELECT AVG(spares) AS s FROM blist WHERE frames="true" AND date="' + dateString + '"', [], function(tx, results) {
 		var asp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 		$(".asp-val").text(Math.floor(asp));
 	}, errorDB);
@@ -209,7 +203,6 @@ function CreatQuery(tx) {
 			sqlStr = sqlStr + 'frame_10_3 varchar(1)';
 	}
 	tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar, frames varchar, strikes Integer, spares Integer,' + sqlStr + ')', [], function(tx, results) {
-		//tx.executeSql('CREATE TABLE IF NOT EXISTS blist (id INTEGER PRIMARY KEY AUTOINCREMENT,score Integer,date varchar, file varchar, frame_1_1 varchar(1), frame_1_2 varchar(1))', [], function(tx, results) {
 	}, errorDB);
 }
 
@@ -223,7 +216,7 @@ function RefreshQuery(tx) {
 			var avg = Math.floor(results.rows.item(i).a);
 			var count = results.rows.item(i).c;
 			var date = new Date(dateString);
-			var string = '<li id="all_' + i + '" data-theme="g'+(i%2)+'"><a href="#date-page" data-transition="slide" data-rel="page" onclick="DateQuery(' + date.valueOf() + ');" class="ui-link-inherit"> [' + dateToYMD(date) + '] ' + count + ' games Avg - ' + avg + '</a></li>';
+			var string = '<li id="all_' + i + '" data-theme="g' + (i % 2) + '"><a href="#date-page" data-transition="slide" data-rel="page" onclick="DateQuery(' + date.valueOf() + ');" class="ui-link-inherit"> [' + dateToYMD(date) + '] ' + count + ' games Avg - ' + avg + '</a></li>';
 			$("#bowl_list").append(string);
 		};
 		freshList("bowl_list");
@@ -245,17 +238,11 @@ function InsertQuery(tx) {
 	}
 
 	if (isCompleted() == 1 && $('#edit-final-res').text() == $("#scoreinput").val()) {
-		//getScores();
 		tx.executeSql('INSERT INTO blist (score,date,file,frames,strikes,spares,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "' + mFile + '", "true",' + getStrikes() + ',' + getSpares() + ',' + getScores() + ')', [], function(tx, results) {
 			$.mobile.back();
 		}, errorDB);
 	} else {
 		tx.executeSql('INSERT INTO blist (score,date,file,frames,strikes,spares,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "' + mFile + '", "false",0,0, "","","","","","","","","","","","","","","","","","","","","")', [], function(tx, results) {
-
-			//tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "NULL", "1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","")', [], function(tx, results) {
-
-			//tx.executeSql('INSERT INTO blist (score,date,file,' + frameCols + ') VALUES ("' + score + '","' + dateString + '", "NULL", "","X","","X","","X","","X","","X","","X","","X","","X","","X","X","X","X")', [], function(tx, results) {
-			//$("#dialog").dialog('close');
 			$.mobile.back();
 		}, errorDB);
 	}
@@ -276,7 +263,7 @@ function DateQuery(dateValue) {
 				for (var i = 0; i < len; i++) {
 					var id = results.rows.item(i).id;
 					var score = results.rows.item(i).score;
-					var string = '<li id="all_' + id + '" data-icon="flat-new" data-iconpos="right" data-theme="g'+(i%2)+'""><a href="#record-page" data-rel="page" data-transition="slide" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
+					var string = '<li id="all_' + id + '" data-icon="flat-new" data-iconpos="right" data-theme="g' + (i % 2) + '""><a href="#record-page" data-rel="page" data-transition="slide" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
 					$("#date_list").append(string);
 				};
 				freshList("date_list");
@@ -332,16 +319,16 @@ function RemoveCurrentGame() {
 }
 
 function RemoveCurrentSession() {
-  var dateValue = $("#date-page .date-header").text();
-  var date = new Date(dateValue);
+	var dateValue = $("#date-page .date-header").text();
+	var date = new Date(dateValue);
 	var dateString = dateToYMD(date);
-  var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
+	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
 		tx.executeSql('DELETE FROM blist WHERE date="' + dateString + '"');
 	});
-  DateQuery(mDate);
-  RefreshData();
-  $.mobile.back();
+	DateQuery(mDate);
+	RefreshData();
+	$.mobile.back();
 }
 
 function GetImage(id) {
@@ -357,12 +344,6 @@ function GetImage(id) {
 				var frames = results.rows.item(0).frames;
 				$(".date-header").text(date.toDateString());
 				mId = id;
-				/*
-				 if (imageData == "NULL") {
-				 var string = '<div class="ui-block-a"><a href="#" data-role="button" data-theme="c" onclick="TakePhoto()"><img src="images/camera.png"></a></div>' + '<div class="ui-block-b"><a href="#" data-role="button" data-theme="c" onclick="FindPhoto()"><img src="images/library.png"></a></div>';
-				 $("#photo-content").html(string);
-				 $('#photo-content').trigger("create");
-				 } else {*/
 				if (imageData != "NULL" || imageData != "") {
 					mFile = imageData;
 				}
@@ -380,7 +361,7 @@ function ConfirmAllClear() {
 }
 
 function ConfirmSessionClear() {
-  navigator.notification.confirm('Clear Session Data?', ClearSession);
+	navigator.notification.confirm('Clear Session Data?', ClearSession);
 }
 
 function FindPhoto() {
@@ -427,13 +408,11 @@ function onEditSuccess(imageData) {
 	var string = '<img class="game-photo" src="' + "data:image/jpeg;base64," + imageData + '"></img>';
 	$("#photo-content").html(string);
 	$('#photo-content').trigger("create");
-  //StatusBar.hide();
 }
 
 function onNewSuccess(imageData) {
 	mStatus = "ready";
 	mFile = "data:image/jpeg;base64," + imageData;
-  //StatusBar.hide();
 }
 
 function errorDB(err) {
@@ -441,15 +420,13 @@ function errorDB(err) {
 }
 
 function successDB() {
-	//alert("Successful");
 }
 
 function onCameraError(message) {
 	alert('Failed because: ' + message);
-  //StatusBar.hide();
 }
 
-function success() {
+function onSuccess() {
 
 }
 
@@ -480,36 +457,8 @@ function resetFields() {
 	calc('edit', 'new');
 }
 
-function socialsharing() {
-	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
-	db.transaction(function(tx) {
-		tx.executeSql('SELECT score, file FROM blist WHERE id="' + mId + '"', [], function(tx, results) {
-			var len = results.rows.length;
-			if (len > 0) {
-				var imagedata = results.rows.item(0).file;
-				var score = results.rows.item(0).score;
-				var dataurl = 'data:image/jpeg;base64,' + imagedata;
-				if (imagedata != "NULL") {
-					window.plugins.socialsharing.available(function(isAvailable) {
-						if (isAvailable) {
-							window.plugins.socialsharing.share('Look at my great score!', "My Name", dataurl, null);
-						} else {
-							alert("Social Plugin not available");
-						}
-					});
-				} else {
-					window.plugins.socialsharing.share('Hello World');
-				}
-			}
-		});
-	});
-
-}
-
 function share() {
 	if (mCanvas != "") {
-		//var htmlString = '<img class="game-photo" src="' + mCanvas + '"></img>';
-		//$('#photo-content').html(htmlString);
 		window.plugins.socialsharing.available(function(isAvailable) {
 			if (isAvailable) {
 				window.plugins.socialsharing.share('Sharing my score via Pro Bowl app', "My Name", mCanvas, null);
@@ -518,10 +467,8 @@ function share() {
 			}
 		});
 	} else {
-		//To Continue Sharing something else??
-		window.plugins.toast.show('Frames scores not recored. Unable to share.', 'long', 'center');
+		toast('Frames scores not recored. Unable to share.');
 	}
-  //StatusBar.hide();
 }
 
 function shareCapture() {
@@ -543,27 +490,19 @@ function saveCapture() {
 				mCanvas = canvas.toDataURL("image/jepg");
 				$.mobile.back();
 				$("#scoreinput").val($('#edit-final-res').text());
-				//var htmlString = '<img class="game-photo" src="' + canvas.toDataURL("image/png") + '"></img>';
-				//$('#photo-content').html(htmlString);
 			}
 		});
 	}
 }
 
-function showPhoto(){
-  	var string = "";
-	if (mFile != "") {
-		string = '<img class="game-photo" src="' + mFile + '"></img>';
-	}
-	else
-	{
-		string = '<img class="game-photo" class="wide" src="images/bg.png"></img>';
-	}
-		$("#photo-content").html(string);
-		$('#photo-content').trigger("create");
-
-}
-
 function isLandscape() {
 	return ($(window).width() > $(window).height());
+}
+
+function toast(msg){
+	window.plugins.toast.show(msg, 'long', 'center');
+}
+
+function buttonFeedback(){
+	navigator.notification.vibrate(100);
 }
