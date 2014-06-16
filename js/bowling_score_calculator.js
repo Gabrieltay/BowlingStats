@@ -312,11 +312,15 @@ function injectXBtn(num) {
 	}
 	calcStr = "calc('edit','X')";
 	var imgString = '<image src="images/X-icon.png"/>';
+	/*
 	for ( var j = frame_no -1; j >= 1; j-- )
 	{
 		if ( results[j]['status'] == 'X' )
 			imgString = imgString + '<image src="images/X-icon.png"/>';
-	}
+		else
+			break;
+	}*/
+	
 	//htmlString = '<td class="bowling-calc-buttons-container"><input type="button" class="x-btn" data-theme="a" name="b-X" value="X" onclick=' + calcStr + ' /></td>';
 	//htmlString = '<td class="bowling-calc-buttons-container"><a href="#" class="x-btn" data-theme="e" data-role="button" onclick=' + calcStr + '><image src="images/X-icon.png"/></a></td>';
 	htmlString = '<a href="#" class="x-btn" data-theme="e" data-role="button" onclick=' + calcStr + '>'+imgString+'</a>';
