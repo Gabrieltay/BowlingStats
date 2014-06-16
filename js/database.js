@@ -497,6 +497,9 @@ function shareCapture() {
 			}
 		});
 	}
+	else {
+		toast('Frames scores not recored. Unable to share.');
+	}
 }
 
 function saveCapture() {
