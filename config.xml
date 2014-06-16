@@ -51,12 +51,12 @@ version   = "0.1.0">
 	<gap:plugin name="org.apache.cordova.vibration" version="0.3.7" />
 	<gap:plugin name="nl.x-services.plugins.toast" version="2.0" />
 	<gap:plugin name="nl.x-services.plugins.socialsharing" version="4.0.8" />
-	<gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
-
+	<gap:plugin name="org.apache.cordova.statusbar" version="0.1.4" />
+	<preference name="StatusBarOverlaysWebView" value="false" />
+	<preference name="StatusBarBackgroundColor" value="#000000" />
 	<feature name="SocialSharing">
 		<param name="ios-package" value="SocialSharing" />
 	</feature>
-	
 	<feature name="StatusBar">
 		<param name="ios-package" value="CDVStatusBar" onload="true" />
 	</feature>
@@ -77,7 +77,6 @@ version   = "0.1.0">
 	<gap:plugin name="org.apache.cordova.network-information" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
 	-->
-
 	<icon src="res/icon.png"/>
 	<!-- iPhone / iPod Touch  -->
 	<icon src="res/icon/ios/Icon-60.png" gap:platform="ios" width="60" height="60" />
@@ -94,13 +93,12 @@ version   = "0.1.0">
 	<!-- Spotlight Icon -->
 	<icon src="res/icon/ios/Icon-40.png" gap:platform="ios" width="40" height="40" />
 	<icon src="res/icon/ios/Icon-40@2x.png" gap:platform="ios" width="80" height="80" />
-	
 	<icon src="res/icon/android/ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
 	<icon src="res/icon/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
 	<icon src="res/icon/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
 	<icon src="res/icon/android/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
 	<icon src="res/icon/android/xxhdpi.png" gap:platform="android" gap:qualifier="xxhdpi" />
-	
+
 	<!-- iPhone and iPod touch -->
 	<gap:splash src="res/splashscreen/ios/Default.png" gap:platform="ios" width="320" height="480" />
 	<gap:splash src="res/splashscreen/ios/Default@2x.png" gap:platform="ios" width="640" height="960" />
@@ -115,11 +113,9 @@ version   = "0.1.0">
 	<!-- Retina iPad -->
 	<gap:splash src="res/splashscreen/ios/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
 	<gap:splash src="res/splashscreen/ios/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />
-
 	<gap:splash src="res/splashscreen/android/ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
 	<gap:splash src="res/splashscreen/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
 	<gap:splash src="res/splashscreen/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
 	<gap:splash src="res/splashscreen/android/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
-	
 	<access origin="*" />
 </widget>

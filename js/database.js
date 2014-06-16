@@ -23,19 +23,19 @@ for (var i = 2; i <= 22; i++) {
 var init = function() {
 	onDeviceReady();
 
-//	new SwipeOut(document.getElementById("bowl_list"));
-//	new SwipeOut(document.getElementById("date_list"));
+	//	new SwipeOut(document.getElementById("bowl_list"));
+	//	new SwipeOut(document.getElementById("date_list"));
 
-//	$("#date_list").on("delete", "li", RemoveGame);
-//	$("#bowl_list").on("delete", "li", RemoveDate);
+	//	$("#date_list").on("delete", "li", RemoveGame);
+	//	$("#bowl_list").on("delete", "li", RemoveDate);
 
-//	$('ul').on('touchstart', function(e) {
-//		$(this).addClass('tapped');
-//	});
+	//	$('ul').on('touchstart', function(e) {
+	//		$(this).addClass('tapped');
+	//	});
 
-//	$('ul').on('touchend', function(e) {
-//		$(this).removeClass('tapped');
-//	});
+	//	$('ul').on('touchend', function(e) {
+	//		$(this).removeClass('tapped');
+	//	});
 
 	FastClick.attach(document.body);
 
@@ -87,22 +87,18 @@ function StatsSessionData() {
 	transactionDB(StatsSessionQuery);
 }
 
-
-function MaxRecordsQuery()
-{
+function MaxRecordsQuery() {
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
-	
-	tx.executeSql('SELECT COUNT(score) AS s FROM blist', [], function(tx, results) {
-		if ( results.rows.item(0).s >= MaxRecords )
-		{
-			toast("Sorry, Pro Bowling Lite version only allow up to " + MaxRecords + " games! Please purchase Full version for unlimited records and new features.")
-		}
-		else{
-			InsertData();
-		}
-	}), errorDB});
 
+		tx.executeSql('SELECT COUNT(score) AS s FROM blist', [], function(tx, results) {
+			if (results.rows.item(0).s >= MaxRecords) {
+				toast("Sorry, Pro Bowling Lite version only allow up to " + MaxRecords + " games! Please purchase Full version for unlimited records and new features.")
+			} else {
+				InsertData();
+			}
+		}), errorDB
+	});
 
 }
 
@@ -248,7 +244,7 @@ function InsertQuery(tx) {
 		alert("Phone not ready to save data!");
 		return;
 	}
-	
+
 	var score = $("#scoreinput").val();
 	var date = $("#dateinput").val();
 	var dateString = new String(date);
@@ -302,28 +298,29 @@ function ClearQuery(tx) {
 	CreatQuery(tx);
 	freshList("bowl_list");
 }
+
 /*
-function RemoveGame(e) {
-	var id = $(e.currentTarget).attr('id').substring(4);
-	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
-	db.transaction(function(tx) {
-		tx.executeSql('DELETE FROM blist WHERE id="' + id + '"');
-	});
-	RefreshData();
-}
+ function RemoveGame(e) {
+ var id = $(e.currentTarget).attr('id').substring(4);
+ var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
+ db.transaction(function(tx) {
+ tx.executeSql('DELETE FROM blist WHERE id="' + id + '"');
+ });
+ RefreshData();
+ }
 
-function RemoveDate(e) {
-	var first = $('a', e.currentTarget).text().indexOf('[');
-	var last = $('a', e.currentTarget).text().indexOf(']');
-	var rawString = $('a', e.currentTarget).text().substring((first + 1), last);
-	var date = new Date(rawString);
-	var dateString = dateToYMD(date);
+ function RemoveDate(e) {
+ var first = $('a', e.currentTarget).text().indexOf('[');
+ var last = $('a', e.currentTarget).text().indexOf(']');
+ var rawString = $('a', e.currentTarget).text().substring((first + 1), last);
+ var date = new Date(rawString);
+ var dateString = dateToYMD(date);
 
-	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
-	db.transaction(function(tx) {
-		tx.executeSql('DELETE FROM blist WHERE date="' + dateString + '"');
-	});
-}*/
+ var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
+ db.transaction(function(tx) {
+ tx.executeSql('DELETE FROM blist WHERE date="' + dateString + '"');
+ });
+ }*/
 function RemoveCurrentGame() {
 	navigator.notification.confirm('Delete?', function(index) {
 		if (index == 1) {
@@ -525,5 +522,6 @@ function toast(msg) {
 
 function buttonFeedback(mode) {//return;
 	if (mode == 'edit')
-		navigator.notification.vibrate(100);
+		navigator.notification.beep(1);
+	//		navigator.notification.vibrate(100);
 }
