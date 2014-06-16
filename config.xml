@@ -48,6 +48,8 @@ version   = "0.1.0">
 	<preference name="DisallowOverscroll" 		  value="true"/>
 	<gap:plugin name="org.apache.cordova.camera" version="0.2.9"/>
 	<gap:plugin name="org.apache.cordova.dialogs" version="0.2.6"/>
+	<gap:plugin name="org.apache.cordova.vibration" version="0.3.7" />
+	<gap:plugin name="nl.x-services.plugins.toast" version="2.0" />
 	<gap:plugin name="nl.x-services.plugins.socialsharing" version="4.0.8" />
 	<gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
 	<!--
@@ -80,7 +82,7 @@ version   = "0.1.0">
 	<gap:plugin name="org.apache.cordova.media" />
 	<gap:plugin name="org.apache.cordova.network-information" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
-	<gap:plugin name="org.apache.cordova.vibration" />-->
+	-->
 	<!--
 	<icon src="res/icon.png"/>
 	<icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:qualifier="ldpi" />

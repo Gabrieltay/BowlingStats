@@ -519,6 +519,7 @@ function share() {
 		});
 	} else {
 		//To Continue Sharing something else??
+		window.plugins.toast.show('Frames scores not recored. Unable to share.', 'long', 'center');
 	}
   //StatusBar.hide();
 }

@@ -28,7 +28,7 @@ function calc(mode, op) {
 	}
 
 	if (op == "1" || op == "2" || op == "3" || op == "4" || op == "5" || op == "6" || op == "7" || op == "8" || op == "9" || op == "0") {
-
+		buttonFeedback();
 		results[frame_no][throw_no] = parseInt(op);
 		
 		if (throw_no == 1) {
@@ -137,7 +137,7 @@ function calc(mode, op) {
 	}
 
 	if (op == "X") {
-
+		buttonFeedback();
 		if (frame_no == 10) {
 
 			results[frame_no][throw_no] = '10';
@@ -173,7 +173,7 @@ function calc(mode, op) {
 	}
 
 	if (op == "/") {
-
+		buttonFeedback();
 		if (frame_no == 10) {
 
 			results[frame_no][throw_no] = parseInt(10 - parseInt(results[frame_no][throw_no - 1]));
@@ -485,4 +485,8 @@ function getSpares() {
 
 function isCompleted() {
 	return complete;
+}
+
+function buttonFeedback(){
+	navigator.notification.vibrate(100);
 }
