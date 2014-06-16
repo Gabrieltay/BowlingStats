@@ -3,6 +3,7 @@ const DBname = "bowlList";
 const DBversion = "1,0";
 const DBdisname = "listDB";
 const DBsize = 4000000;
+const MaxRecords = 5;
 var mId = 0;
 var mCanvas = "";
 var mFile = "";
@@ -84,6 +85,25 @@ function StatsData() {
 
 function StatsSessionData() {
 	transactionDB(StatsSessionQuery);
+}
+
+
+function MaxRecordsQuery()
+{
+	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
+	db.transaction(function(tx) {
+	
+	tx.executeSql('SELECT COUNT(score) AS s FROM blist', [], function(tx, results) {
+		if ( results.rows.item(0).s >= MaxRecords )
+		{
+			toast("Sorry, Pro Bowling Lite version only allow up to " + MaxRecords + " games! Please purchase Full version for unlimited records and new features.")
+		}
+		else{
+			InsertData();
+		}
+	}), errorDB});
+
+
 }
 
 function StatsQuery(tx) {
@@ -228,12 +248,13 @@ function InsertQuery(tx) {
 		alert("Phone not ready to save data!");
 		return;
 	}
+	
 	var score = $("#scoreinput").val();
 	var date = $("#dateinput").val();
 	var dateString = new String(date);
 
 	if (score == '' || date == '' || parseInt(score) > 300) {
-		alert("Empty/Invalid Fields！");
+		toast("Empty/Invalid Fields！");
 		return;
 	}
 
@@ -356,7 +377,7 @@ function GetImage(id) {
 
 }
 
-function ConfirmAllClear() {
+function ConfirmAllClear() {//ClearData(1);return;
 	navigator.notification.confirm('Clear All Data?', ClearData);
 }
 
@@ -503,7 +524,7 @@ function toast(msg) {
 	window.plugins.toast.show(msg, 'long', 'center');
 }
 
-function buttonFeedback(mode) {
+function buttonFeedback(mode) {//return;
 	if (mode == 'edit')
 		navigator.notification.vibrate(100);
 }

@@ -4,8 +4,8 @@ xmlns:gap = "http://phonegap.com/ns/1.0"
 id        = "com.phonegap.BowlingStats"
 version   = "0.1.0">
 
-	<name>Bowling Stats</name>
-	<description>A Bowling Statistics app. Analyze your games. Monitor your progress.</description>
+	<name>Pro Bowling Stats Lite</name>
+	<description>A Bowling Statistics app. Analyze your games. Monitor your progress. Lite Version</description>
 
 	<!--
 	If you do not want any permissions to be added to your app, add the
