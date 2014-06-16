@@ -3,7 +3,7 @@ const DBname = "bowlList";
 const DBversion = "1,0";
 const DBdisname = "listDB";
 const DBsize = 4000000;
-const MaxRecords = 5;
+const MaxRecords = 15;
 var mId = 0;
 var mCanvas = "";
 var mFile = "";
@@ -23,19 +23,19 @@ for (var i = 2; i <= 22; i++) {
 var init = function() {
 	onDeviceReady();
 
-	new SwipeOut(document.getElementById("bowl_list"));
-	new SwipeOut(document.getElementById("date_list"));
+//	new SwipeOut(document.getElementById("bowl_list"));
+//	new SwipeOut(document.getElementById("date_list"));
 
-	$("#date_list").on("delete", "li", RemoveGame);
-	$("#bowl_list").on("delete", "li", RemoveDate);
+//	$("#date_list").on("delete", "li", RemoveGame);
+//	$("#bowl_list").on("delete", "li", RemoveDate);
 
-	$('ul').on('touchstart', function(e) {
-		$(this).addClass('tapped');
-	});
+//	$('ul').on('touchstart', function(e) {
+//		$(this).addClass('tapped');
+//	});
 
-	$('ul').on('touchend', function(e) {
-		$(this).removeClass('tapped');
-	});
+//	$('ul').on('touchend', function(e) {
+//		$(this).removeClass('tapped');
+//	});
 
 	FastClick.attach(document.body);
 
@@ -302,7 +302,7 @@ function ClearQuery(tx) {
 	CreatQuery(tx);
 	freshList("bowl_list");
 }
-
+/*
 function RemoveGame(e) {
 	var id = $(e.currentTarget).attr('id').substring(4);
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
@@ -323,8 +323,7 @@ function RemoveDate(e) {
 	db.transaction(function(tx) {
 		tx.executeSql('DELETE FROM blist WHERE date="' + dateString + '"');
 	});
-}
-
+}*/
 function RemoveCurrentGame() {
 	navigator.notification.confirm('Delete?', function(index) {
 		if (index == 1) {
