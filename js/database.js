@@ -38,8 +38,11 @@ var init = function() {
 	//	});
 
 	FastClick.attach(document.body);
-
 };
+
+function onDeviceReady(){
+	alert("hello")
+}
 
 $(document).ready(init);
 
@@ -521,7 +524,7 @@ function toast(msg) {
 }
 
 function buttonFeedback(mode) {//return;
-	if (mode == 'edit')
+	//if (mode == 'edit')
 		navigator.notification.beep(1);
 	//		navigator.notification.vibrate(100);
 }
