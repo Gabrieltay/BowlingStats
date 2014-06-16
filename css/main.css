@@ -27,12 +27,13 @@
 }
 
 .x-btn {
-	/*background: url("../images/X-icon.png");*/
+	/*background: url("../images/X-icon.png");
 	background-position:center;
-	background-repeat:no-repeat;
+	background-repeat:no-repeat;*/
 	margin-left: auto;
     margin-right: auto;
-
+	padding-top: 5px;
+	padding-bottom: 5px
 }
 
 #photo-content {
