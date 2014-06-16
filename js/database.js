@@ -499,10 +499,11 @@ function isLandscape() {
 	return ($(window).width() > $(window).height());
 }
 
-function toast(msg){
+function toast(msg) {
 	window.plugins.toast.show(msg, 'long', 'center');
 }
 
-function buttonFeedback(){
-	navigator.notification.vibrate(100);
+function buttonFeedback(mode) {
+	if (mode == 'edit')
+		navigator.notification.vibrate(100);
 }
