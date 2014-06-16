@@ -27,9 +27,12 @@
 }
 
 .x-btn {
-	background-image: url("../images/X-icon.png");
+	/*background: url("../images/X-icon.png");*/
 	background-position:center;
 	background-repeat:no-repeat;
+	margin-left: auto;
+    margin-right: auto;
+
 }
 
 #photo-content {
@@ -67,7 +70,6 @@
 }
 
 
-
 .bowling-calc-score-container table {
 	table-layout:fixed; width:100%;
 	/*border: 2px solid black;*/
@@ -81,6 +83,10 @@
 	text-align: center;
 	vertical-align: middle;
 	border-collapse: collapse !important;
+}
+
+.bowling-calc-buttons-table-1 a, .bowling-calc-buttons-table-2 a {
+	font-size: 1.5em;
 }
 
 .final-res-container h1{

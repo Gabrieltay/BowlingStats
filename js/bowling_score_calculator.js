@@ -305,17 +305,24 @@ function injectXBtn(num) {
 		if (! isLandscape())
 			tableId = parseInt(i / 6) + 1;
 		calcStr = "calc('edit','" + i + "')";
-		htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="a" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + ' /></td>';
+		//htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="a" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + ' /></td>';
+		htmlString = '<td class="bowling-calc-buttons-container"><a href="#" data-role="button" data-theme="a" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + '>'+ i +'</a></td>';
 		$('.bowling-calc-buttons-table-' + tableId).append(htmlString);
 	}
 	calcStr = "calc('edit','X')";
-	htmlString = '<td class="bowling-calc-buttons-container"><input type="button" class="x-btn" data-theme="a" name="b-X" value="X" onclick=' + calcStr + ' /></td>';
-	if (num >= 6 && !isLandscape())
-		$(".bowling-calc-buttons-table-2").append(htmlString);
-	else
-		$(".bowling-calc-buttons-table-1").append(htmlString);
+	//htmlString = '<td class="bowling-calc-buttons-container"><input type="button" class="x-btn" data-theme="a" name="b-X" value="X" onclick=' + calcStr + ' /></td>';
+	//htmlString = '<td class="bowling-calc-buttons-container"><a href="#" class="x-btn" data-theme="e" data-role="button" onclick=' + calcStr + '><image src="images/X-icon.png"/></a></td>';
+	htmlString = '<a href="#" class="x-btn" data-theme="e" data-role="button" onclick=' + calcStr + '><image src="images/X-icon.png"/></a>';
+
+	$(".close-frame-btn").empty();
+	$(".close-frame-btn").append(htmlString);
+	//if (num >= 6 && !isLandscape())
+	//	$(".bowling-calc-buttons-table-2").append(htmlString);
+	//else
+	//	$(".bowling-calc-buttons-table-1").append(htmlString);
 	$(".bowling-calc-buttons-table-1").trigger('create');
 	$(".bowling-calc-buttons-table-2").trigger('create');
+	$(".close-frame-btn").trigger('create');
 }
 
 function injectYBtn(num) {
@@ -328,17 +335,23 @@ function injectYBtn(num) {
 		if (! isLandscape())
 			tableId = parseInt(i / 6) + 1;
 		calcStr = "calc('edit','" + i + "')";
-		htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="a" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + ' /></td>';
+		//htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="a" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + ' /></td>';
+		htmlString = '<td class="bowling-calc-buttons-container"><a href="#" data-role="button" data-theme="a" name="b-' + i + '" value="' + i + '" onclick=' + calcStr + '>'+ i +'</a></td>';
 		$('.bowling-calc-buttons-table-' + tableId).append(htmlString);
 	}
 	calcStr = "calc('edit','/')";
-	htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="a" name="b-/" value="/" onclick=' + calcStr + ' /></td>';
-	if (num >= 6 && !isLandscape())
-		$(".bowling-calc-buttons-table-2").append(htmlString);
-	else
-		$(".bowling-calc-buttons-table-1").append(htmlString);
+	//htmlString = '<td class="bowling-calc-buttons-container"><input type="button" data-theme="a" name="b-/" value="/" onclick=' + calcStr + ' /></td>';
+	//htmlString = '<td class="bowling-calc-buttons-container"><a href="#" class="x-btn" data-theme="e" data-role="button" onclick=' + calcStr + '><image src="images/S-icon.png"/></a></td>';
+	htmlString = '<a href="#" class="x-btn" data-theme="e" data-role="button" onclick=' + calcStr + '><image src="images/S-icon.png"/></a>';
+	$(".close-frame-btn").empty();
+	$(".close-frame-btn").append(htmlString);
+	//if (num >= 6 && !isLandscape())
+	//	$(".bowling-calc-buttons-table-2").append(htmlString);
+	//else
+	//	$(".bowling-calc-buttons-table-1").append(htmlString);
 	$(".bowling-calc-buttons-table-1").trigger('create');
 	$(".bowling-calc-buttons-table-2").trigger('create');
+	$(".close-frame-btn").trigger('create');
 }
 
 function clearBtn() {

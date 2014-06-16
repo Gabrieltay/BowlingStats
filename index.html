@@ -38,7 +38,7 @@
 			<header data-role="header" data-position="fixed" data-theme="ff">
 				<a href="#add-page" data-rel="page" data-transition="slideup" data-role="button" data-icon="plus" title="Home" onclick="resetFields()">Add</a>
 				<h1>Pro Bowl</h1>
-				<a href="#stats-page" id="stats-btn" data-rel="page" data-transition="slide" data-iconpos="notext" data-role="button" data-icon="flat-menu" onclick="StatsData()"></a>
+				<a href="#stats-page" id="stats-btn" data-rel="page" data-iconpos="right" data-transition="slide" data-role="button" data-icon="flat-menu" onclick="StatsData()">Stats</a>
 			</header>
 
 			<div data-role="content">
@@ -130,7 +130,7 @@
 			<header data-role="header" data-theme="ff">
 				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>
 				<h1 class="date-header">Current Date</h1>
-                <a href="#sess-page" id="stats-btn" data-rel="page" data-transition="slide" data-iconpos="notext" data-role="button" data-icon="flat-menu" onclick="StatsSessionData()"></a>
+                <a href="#sess-page" id="stats-btn" data-rel="page" data-iconpos="right" data-transition="slide" data-role="button" data-icon="flat-menu" onclick="StatsSessionData()">Stats</a>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
 				<ul data-role="listview" id="date_list" data-inset="true" data-theme="gg" class="ui-listview ui-listview-inset ui-corner-all ui-shadow"></ul>
@@ -721,8 +721,8 @@
 
 								<tr class="bowling-calc-buttons-table-2"></tr>
 							</table>
-							<div id="edit-final-res-container" class="final-res-container">
-								<h1 id="edit-final-res" class="final-res">0</h1>
+							<div class="close-frame-btn">
+								
 							</div>
 							<fieldset class="ui-grid-b ui-responsive">
 								<div class="ui-block-a">
@@ -737,6 +737,10 @@
 									<a href="#" onclick="calc('edit','new');" data-role="button" data-icon="flat-cross" data-theme="m">Clear</a>
 								</div>
 							</fieldset>
+							
+							<div id="edit-final-res-container" class="final-res-container">
+								<h1 id="edit-final-res" class="final-res">0</h1>
+							</div>
 						</div>
 
 					</div>
