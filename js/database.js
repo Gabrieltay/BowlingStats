@@ -44,7 +44,8 @@ $(document).ready(init);
 
 function onProfileSubmit(event) {
 	event.preventDefault();
-	MaxRecordsQuery();
+	//MaxRecordsQuery();
+	InsertData();
 }
 
 function transactionDB(query) {
