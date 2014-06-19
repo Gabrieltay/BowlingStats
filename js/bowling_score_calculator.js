@@ -65,8 +65,11 @@ function calc(mode, op) {
 		complete = 0;
 		switch (throw_no) {
 			case 1:
-				if (frame_no == 1)
+				if (frame_no == 1){
+					$.mobile.back();
 					return;
+				}
+					
 				$('#' + mode + '-frame' + (frame_no - 1) + '-res').text('\xa0');
 				if (frame_no >= 2 && results[frame_no-1]['status'] == 'X')// Previous Strike
 				{

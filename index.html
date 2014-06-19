@@ -495,12 +495,12 @@
 
 		<!-- Score Page -->
 		<section data-role="page" id="score-page">
-			<header class="page-header" data-role="header" data-position="fixed" data-theme="ff">
+			<!--<header class="page-header" data-role="header" data-position="fixed" data-theme="ff">-->
 				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Scores">Back</a>-->
-				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
+				<!--<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1>Score Sheet</h1>
-			</header>
-			<div data-role="content">
+			</header>-->
+			<div data-role="main">
 				<form id="edit-generate-bowling-score-calculator" class="generate-bowling-score-calculator">
 					<div id="edit-bowling-calc-container" class="bowling-calc-container">
 						<div id="edit-bowling-calc-score-container" class="bowling-calc-score-container">
@@ -703,7 +703,7 @@
 								</div>
 								<div class="ui-block-c">
 									<!--<a href="#" onclick="calc('edit','new');" data-role="button" data-icon="flat-cross" data-theme="m">Clear</a>-->
-									<a href="#" class="img-btn" onclick="calc('edit','new');" data-role="button" data-theme="m"><img src="images/trash.png"/></a>
+									<a href="#" data-rel="back" class="img-btn" onclick="calc('edit','new');" data-role="button" data-theme="m"><img src="images/trash.png"/></a>
 								</div>
 							</fieldset>
 						</div>
