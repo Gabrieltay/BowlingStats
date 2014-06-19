@@ -35,10 +35,10 @@
 		<!-- Home Page -->
 		<section data-role="page" id="home-page" class="ui-responsive-panel">
 
-			<header id="home-header" data-role="header" data-position="fixed" data-theme="ff">
+			<header class="page-header" id="home-header" data-role="header" data-position="fixed" data-theme="ff">
 				<!--<a href="#add-page" data-rel="page" data-transition="slideup" data-role="button" data-icon="plus" title="Home" onclick="resetFields()">Add</a>-->
 				<a href="#add-page" data-rel="page" data-transition="slideup" data-role="button" onclick="resetFields()"><img src="images/add.png"/></a>
-				<h1>Pro Bowling Stats</h1>
+				<h1>ProBowl Stats</h1>
 				<!--<a href="#stats-page" id="stats-btn" data-rel="page" data-iconpos="right" data-transition="slide" data-role="button" data-icon="flat-menu" onclick="StatsData()">Stats</a>-->
 				<a href="#stats-page" id="stats-btn" data-rel="page" data-transition="slide" data-role="button"  onclick="StatsData()"><img src="images/stats.png"/></a>
 			</header>
@@ -73,8 +73,9 @@
 
 		<!-- Add Page -->
 		<section data-role="page" id="add-page">
-			<header data-role="header" data-theme="ff">
-				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>
+			<header class="page-header" data-role="header" data-theme="ff">
+				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>-->
+				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1>New Game</h1>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
@@ -106,8 +107,9 @@
 
 		<!-- View Page -->
 		<section data-role="page" id="date-page" >
-			<header data-role="header" data-theme="ff">
-				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>
+			<header class="page-header" data-role="header" data-theme="ff">
+				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>-->
+				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="date-header">Current Date</h1>
 				<a href="#sess-page" id="stats-btn" data-rel="page" data-iconpos="right" data-transition="slide" data-role="button" data-icon="flat-menu" onclick="StatsSessionData()">Stats</a>
 			</header>
@@ -119,8 +121,9 @@
 
 		<!-- Record Page -->
 		<section data-role="page" id="record-page">
-			<header data-role="header" data-theme="ff">
-				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>
+			<header class="page-header" data-role="header" data-theme="ff">
+				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>-->
+				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="date-header">Current Photo</h1>
 
 			</header>
@@ -329,8 +332,9 @@
 
 		<!-- Stats Page -->
 		<section data-role="page" id="stats-page">
-			<header data-role="header" data-position="fixed" data-theme="ff">
-				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Stats">Back</a>
+			<header class="page-header" data-role="header" data-position="fixed" data-theme="ff">
+				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Stats">Back</a>-->
+				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="stats-header">Overall Statistics</h1>
 			</header>
 			<div data-role="content">
@@ -481,8 +485,9 @@
 
 		<!-- Score Page -->
 		<section data-role="page" id="score-page">
-			<header data-role="header" data-position="fixed" data-theme="ff">
-				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Scores">Back</a>
+			<header class="page-header" data-role="header" data-position="fixed" data-theme="ff">
+				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Scores">Back</a>-->
+				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1>Score Sheet</h1>
 			</header>
 			<div data-role="content">
@@ -699,8 +704,9 @@
 
 		<!-- Sess Page -->
 		<section data-role="page" id="sess-page">
-			<header data-role="header" data-position="fixed" data-theme="ff">
-				<a data-rel="back" data-role="button" data-icon="arrow-l" title="Stats">Back</a>
+			<header class="page-header" data-role="header" data-position="fixed" data-theme="ff">
+				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Stats">Back</a>-->
+				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="stats-header">Session Statistics</h1>
 			</header>
 			<div data-role="content">

@@ -22,7 +22,7 @@ ul {
 	font-size: 1.2em !important;
 }
 
-#home-header a{
+.page-header a{
 	font-size: 1.0em !important;	 
 	margin: 0px auto;
 	padding: 1px;
