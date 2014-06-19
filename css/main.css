@@ -60,6 +60,10 @@ ul{
 	margin: 0px auto;
 }
 
+#edit-generate-bowling-score-calculator {
+	margin-top:20px;
+}
+
 .bowling-calc-buttons-container a img{
 		max-height:44px; 
 		vertical-align: middle;
@@ -94,6 +98,20 @@ ul{
 	margin-left: auto ;
   	margin-right: auto ;
   	font-size: 2em;
+}
+
+#fitted-div{
+	margin-top: 6px;	
+}
+
+.final-res-container #view-final-res{
+	width: 100% ;
+	vertical-align: middle;
+	text-align: center;
+	margin-left: auto ;
+  	margin-right: auto ;
+  	font-size: 1.5em;
+  	margin-bottom: 4px;
 }
 
 .bowling-calc-score-container label {
