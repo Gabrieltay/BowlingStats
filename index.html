@@ -92,14 +92,21 @@
 
 					<fieldset class="ui-grid-a ui-responsive">
 						<div class="ui-block-a">
-							<a href="#score-page" data-role="button" data-icon="flat-new" data-iconpos="left" data-theme="k" onclick="calcs('new')">Frames</a>
+							<!--<a href="#score-page" data-role="button" data-icon="flat-new" data-iconpos="left" data-theme="k" onclick="calcs('new')">Frames</a>-->
+							<a href="#score-page" class="img-btn" data-role="button" data-theme="k" onclick="calcs('new')"><img src="images/score.png"/></a>
 						</div>
 						<div class="ui-block-b">
-							<a href="#" data-role="button" data-icon="flat-man" data-iconpos="left" data-theme="j" onclick="share()">Share</a>
+							<!--<a href="#" data-role="button" data-icon="flat-man" data-iconpos="left" data-theme="j" onclick="share()">Share</a>-->
+							<a href="#" class="img-btn" data-role="button" data-theme="j" onclick="share()"><img src="images/share.png"/></a>
 						</div>
 					</fieldset>
-					<!--<a href="#" onclick="MaxRecordsQuery();" id="submit" data-role="button" data-icon="flat-checkround" data-theme="g">Confirm</a>-->
-					<a href="#" onclick="InsertData();" id="submit" data-role="button" data-icon="flat-checkround" data-theme="g">Confirm</a>
+					<div class="ui-grid-solo">
+
+							<!--<a href="#" onclick="MaxRecordsQuery();" id="submit" data-role="button" data-icon="flat-checkround" data-theme="g">Confirm</a>-->
+							<!--<a href="#" onclick="InsertData();" id="submit" data-role="button" data-icon="flat-checkround" data-theme="g">Confirm</a>-->
+							<a href="#" onclick="InsertData();" class="img-btn" id="submit" data-role="button" data-theme="g"><img src="images/tick.png"/></a>
+
+					</div>
 				</form>
 			</div>
 		</section>
@@ -479,7 +486,8 @@
 						</fieldset>
 					</li>
 				</ul>
-				<a href="#" onclick="ConfirmAllClear();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="m">Delete All Data</a>
+				<!--<a href="#" onclick="ConfirmAllClear();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="m">Delete All Data</a>-->
+				<a href="#" class="img-btn" onclick="ConfirmAllClear();" id="clear" data-role="button" data-theme="m"><img src="images/trash.png"/></a>
 			</div>
 		</section>
 		<!-- End of Stats Page -->
@@ -685,14 +693,16 @@
 							</div>
 							<fieldset class="ui-grid-b ui-responsive">
 								<div class="ui-block-a">
-									<a href="#" onclick="calc('edit','erase');" data-role="button" data-icon="arrow-l" data-theme="i">Erase</a>
-
+									<!--<a href="#" onclick="calc('edit','erase');" data-role="button" data-icon="arrow-l" data-theme="i">Erase</a>-->
+									<a href="#" class="img-btn" calc('edit','erase');" data-role="button" data-theme="i"><img src="images/erase.png"/></a>
 								</div>
 								<div class="ui-block-b">
-									<a href="#" onclick="saveCapture();" data-role="button" data-icon="flat-checkround" data-theme="g">Save</a>
+									<!--<a href="#" onclick="saveCapture();" data-role="button" data-icon="flat-checkround" data-theme="g">Save</a>-->
+									<a href="#" class=img-btn" onclick="saveCapture();" data-role="button" data-theme="g"><img src="images/save.png"/></a>
 								</div>
 								<div class="ui-block-c">
-									<a href="#" onclick="calc('edit','new');" data-role="button" data-icon="flat-cross" data-theme="m">Clear</a>
+									<!--<a href="#" onclick="calc('edit','new');" data-role="button" data-icon="flat-cross" data-theme="m">Clear</a>-->
+									<a href="#" class=img-btn" onclick="calc('edit','new');" data-role="button" data-theme="m"><img src="images/trash.png"/></a>
 								</div>
 							</fieldset>
 						</div>
@@ -825,7 +835,8 @@
 						</fieldset>
 					</li>
 				</ul>
-				<a href="#" onclick="ConfirmSessionClear();" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="m">Delete Session</a>
+				<!--<a href="#" onclick="ConfirmSessionClear();" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="m">Delete Session</a>-->
+				<a href="#" class="img-btn" ConfirmSessionClear();" data-role="button" data-theme="m"><img src="images/trash.png"/></a>
 			</div>
 		</section>
 		<!-- End of Sess Page -->

@@ -31,6 +31,10 @@ header a img {
 	/*border: 2px solid black !important;*/
 }
 
+.img-btn img {
+	max-height: 44px !important;
+}
+
 .ui-footer {
     position: absolute !important;
     bottom: 0;
@@ -55,23 +59,8 @@ header a img {
 	margin: 0px auto;
 }
 
-.x-btn {
-	/*background: url("../images/X-icon.png");
-	background-position:center;
-	background-repeat:no-repeat;*/
-	
-	
-	/*
-	display: block;
-	margin-left: 0 auto;
-    margin-right: 0 auto;
-	padding-top: 5px;
-	padding-bottom: 5px*/
-}
-
 .bowling-calc-buttons-container a img{
 		max-height:44px; 
-		
 		vertical-align: middle;
 }
 
