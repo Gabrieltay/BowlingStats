@@ -35,10 +35,12 @@
 		<!-- Home Page -->
 		<section data-role="page" id="home-page" class="ui-responsive-panel">
 
-			<header data-role="header" data-position="fixed" data-theme="ff">
-				<a href="#add-page" data-rel="page" data-transition="slideup" data-role="button" data-icon="plus" title="Home" onclick="resetFields()">Add</a>
+			<header id="home-header" data-role="header" data-position="fixed" data-theme="ff">
+				<!--<a href="#add-page" data-rel="page" data-transition="slideup" data-role="button" data-icon="plus" title="Home" onclick="resetFields()">Add</a>-->
+				<a href="#add-page" data-rel="page" data-transition="slideup" data-role="button" onclick="resetFields()"><img src="images/add.png"/></a>
 				<h1>Pro Bowling Stats</h1>
-				<a href="#stats-page" id="stats-btn" data-rel="page" data-iconpos="right" data-transition="slide" data-role="button" data-icon="flat-menu" onclick="StatsData()">Stats</a>
+				<!--<a href="#stats-page" id="stats-btn" data-rel="page" data-iconpos="right" data-transition="slide" data-role="button" data-icon="flat-menu" onclick="StatsData()">Stats</a>-->
+				<a href="#stats-page" id="stats-btn" data-rel="page" data-transition="slide" data-role="button"  onclick="StatsData()"><img src="images/stats.png"/></a>
 			</header>
 
 			<div data-role="content">

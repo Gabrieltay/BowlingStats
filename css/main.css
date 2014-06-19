@@ -8,6 +8,26 @@
    	-webkit-highlight: none;
 }
 
+header h1{
+	font-size: 1.5em !important; 
+	/*border: 2px solid black;*/
+}
+
+header a img {
+	margin: 0 auto !important;
+	/*border: 2px solid black !important;*/
+}
+
+ul {
+	font-size: 1.2em !important;
+}
+
+#home-header a{
+	font-size: 1.0em !important;	 
+	margin: 0px auto;
+	padding: 1px;
+}
+
 .ui-footer {
     position: absolute !important;
     bottom: 0;
