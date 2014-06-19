@@ -41,7 +41,8 @@ var init = function() {
 	};
 
 	 $(window).resize(function() {
-        buttonsRedraw();
+	 	if ($.mobile.activePage.attr('id') == "score-page")
+        	buttonsRedraw();
     });
     
 	FastClick.attach(document.body);
