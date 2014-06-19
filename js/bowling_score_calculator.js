@@ -307,7 +307,7 @@ function injectXBtn(num) {
 	var imgString = '<image src="images/X-icon.png"/>';
 
 	//htmlString = '<td class="bowling-calc-buttons-container"><a href="#" data-role="button" data-theme="n" name="b-X " value="' + i + '" onclick=' + calcStr + '>X</a></td>';
-	htmlString = '<td class="bowling-calc-buttons-container x-btn"><a href="#" data-role="button" data-theme="a" name="b-X " value="' + i + '" onclick=' + calcStr + '><img src="images/x.png"/></a></td>';
+	htmlString = '<td class="bowling-calc-buttons-container"><a href="#" data-role="button" data-theme="a" name="b-X " value="' + i + '" onclick=' + calcStr + '><img src="images/x.png"/></a></td>';
 
 
 	$(".close-frame-btn").empty();
@@ -340,7 +340,8 @@ function injectYBtn(num) {
 	}
 	calcStr = "calc('edit','/')";
 	
-	htmlString = '<td class="bowling-calc-buttons-container"><a href="#" data-role="button" data-theme="n" name="b-/ " value="' + i + '" onclick=' + calcStr + '>/</a></td>';
+	//htmlString = '<td class="bowling-calc-buttons-container"><a href="#" data-role="button" data-theme="n" name="b-/ " value="' + i + '" onclick=' + calcStr + '>/</a></td>';
+	htmlString = '<td class="bowling-calc-buttons-container"><a href="#" data-role="button" data-theme="a" name="b-X " value="' + i + '" onclick=' + calcStr + '><img src="images/s.png"/></a></td>';
 	
 	$(".close-frame-btn").empty();
 	//$(".close-frame-btn").append(htmlString);

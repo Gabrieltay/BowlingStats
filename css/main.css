@@ -7,11 +7,7 @@
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
    	-webkit-highlight: none;
 }
-header a img {
-	font-size: 1.5em !important; 
-	margin: 0 auto !important;
-	/*border: 2px solid black !important;*/
-}
+
 
 header h1{
 	font-size: 1.1em !important; 
@@ -28,6 +24,11 @@ ul{
 	font-size: 1.0em !important;	 
 	margin: 0px auto;
 	padding: 1px;
+}
+
+header a img {
+	max-height: 44px !important;
+	/*border: 2px solid black !important;*/
 }
 
 .ui-footer {
@@ -69,7 +70,7 @@ ul{
 }
 
 .bowling-calc-buttons-container a img{
-		max-height:10%; 
+		max-height:44px; 
 		
 		vertical-align: middle;
 }
