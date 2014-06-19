@@ -36,7 +36,14 @@ var init = function() {
 	//	$('ul').on('touchend', function(e) {
 	//		$(this).removeClass('tapped');
 	//	});
+	var options = {
+		frequency : 3000
+	};
 
+	 $(window).resize(function() {
+        buttonsRedraw();
+    });
+    
 	FastClick.attach(document.body);
 };
 
@@ -497,8 +504,7 @@ function shareCapture() {
 				share();
 			}
 		});
-	}
-	else {
+	} else {
 		toast('Frames scores not recored. Unable to share.');
 	}
 }
