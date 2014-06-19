@@ -20,6 +20,9 @@ header h1{
 }
 
 
+ul{
+	font-size: 1.1em !important; 
+}
 
 .page-header a{
 	font-size: 1.0em !important;	 

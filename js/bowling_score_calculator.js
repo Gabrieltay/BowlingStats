@@ -112,7 +112,7 @@ function calc(mode, op) {
 				if (frame_no == 10) {
 					$('#' + mode + '-frame' + (frame_no) + '-3').text('');
 					$('#' + mode + '-frame' + frame_no + '-res').text('');
-					if ($('#' + mode + '-frame' + frame_no + '-2').text() == 'X') {
+					if ($('#' + mode + '-frame' + frame_no + '-2').text() == 'X' || $('#' + mode + '-frame' + frame_no + '-2').text() == '/') {
 						injectXBtn(10);
 					} else {
 						injectYBtn(parseInt(10 - parseInt($('#' + mode + '-frame' + frame_no + '-2').text())));
@@ -363,12 +363,14 @@ function injectYBtn(num) {
 }
 
 function injectBlanks(num){
+	if (isLandscape())
+		return;
 	var htmlString = "";
 	var tableId = 1;
+	
 	for (var i = num+2; i < 13; i++)
-	{
-		if (! isLandscape())
-			tableId = parseInt(i / 6) + 1;
+	{	
+		tableId = parseInt(i / 6) + 1;
 		htmlString = '<td class="bowling-calc-buttons-container"><a class="disable-btn" href="#" data-role="button" data-theme="00" name="" value="">&nbsp;</a></td>';
 		$('.bowling-calc-buttons-table-' + tableId).append(htmlString);
 	}
