@@ -10,11 +10,17 @@
 
 
 header h1{
-	font-size: 1.1em !important; 
+	font-size: 1em !important; 
 	padding-top: 15px !important;
 	padding-bottom: 22px !important;
 }
 
+header a img {
+	max-height: 36px !important;
+	padding-top: 5px !important;
+	padding-bottom: 3px !important;
+	/*border: 2px solid black !important;*/
+}
 
 ul{
 	font-size: 1.1em !important; 
@@ -26,13 +32,8 @@ ul{
 	padding: 1px;
 }
 
-header a img {
-	max-height: 44px !important;
-	/*border: 2px solid black !important;*/
-}
-
 .img-btn img {
-	max-height: 44px !important;
+	max-height: 33px !important;
 }
 
 .ui-footer {
