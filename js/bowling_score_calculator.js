@@ -322,6 +322,7 @@ function injectXBtn(num) {
 		$(".bowling-calc-buttons-table-2").append(htmlString);
 	else
 		$(".bowling-calc-buttons-table-1").append(htmlString);
+		
 	$(".bowling-calc-buttons-table-1").trigger('create');
 	$(".bowling-calc-buttons-table-2").trigger('create');
 	$(".close-frame-btn").trigger('create');
@@ -353,9 +354,24 @@ function injectYBtn(num) {
 		$(".bowling-calc-buttons-table-2").append(htmlString);
 	else
 		$(".bowling-calc-buttons-table-1").append(htmlString);
+		
+	injectBlanks(num);
+	
 	$(".bowling-calc-buttons-table-1").trigger('create');
 	$(".bowling-calc-buttons-table-2").trigger('create');
 	$(".close-frame-btn").trigger('create');
+}
+
+function injectBlanks(num){
+	var htmlString = "";
+	var tableId = 1;
+	for (var i = num+2; i < 13; i++)
+	{
+		if (! isLandscape())
+			tableId = parseInt(i / 6) + 1;
+		htmlString = '<td class="bowling-calc-buttons-container"><a class="disable-btn" href="#" data-role="button" data-theme="00" name="" value="">&nbsp;</a></td>';
+		$('.bowling-calc-buttons-table-' + tableId).append(htmlString);
+	}
 }
 
 function clearBtn() {
