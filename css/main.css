@@ -7,20 +7,19 @@
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
    	-webkit-highlight: none;
 }
-
-header h1{
-	font-size: 1.5em !important; 
-	/*border: 2px solid black;*/
-}
-
 header a img {
+	font-size: 1.5em !important; 
 	margin: 0 auto !important;
 	/*border: 2px solid black !important;*/
 }
 
-ul {
-	font-size: 1.2em !important;
+header h1{
+	font-size: 1.1em !important; 
+	padding-top: 15px !important;
+	padding-bottom: 22px !important;
 }
+
+
 
 .page-header a{
 	font-size: 1.0em !important;	 
