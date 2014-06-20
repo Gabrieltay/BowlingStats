@@ -297,7 +297,7 @@ function injectXBtn(num) {
 	var tableId = 1;
 	$(".bowling-calc-buttons-table-1").empty();
 	$(".bowling-calc-buttons-table-2").empty();
-	$(".final-res-container").empty();
+	$("#edit-final-res-container").empty();
 	for (var i = 0; i < num; i++) {
 		if (! isLandscape())
 			tableId = parseInt(i / 5) + 1;
@@ -343,7 +343,7 @@ function injectYBtn(num) {
 	var tableId = 1;
 	$(".bowling-calc-buttons-table-1").empty();
 	$(".bowling-calc-buttons-table-2").empty();
-	$(".final-res-container").empty();
+	$("#edit-final-res-container").empty();
 	for (var i = 0; i < num; i++) {
 		if (! isLandscape())
 			tableId = parseInt(i / 5) + 1;
