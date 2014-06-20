@@ -4,7 +4,7 @@ var complete = 0;
 //var scores = new Array();
 var btnx = -1;
 var results = [];
-var theme = "p";
+var theme = "n";
 //new Array();
 
 /**
