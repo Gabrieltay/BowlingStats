@@ -45,6 +45,7 @@ var init = function() {
         	buttonsRedraw();
     });
     
+    
 	FastClick.attach(document.body);
 };
 

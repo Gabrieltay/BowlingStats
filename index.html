@@ -62,6 +62,8 @@
 				<a href="#" data-role="button" data-inline="true" data-theme="l">l</a>
 				<a href="#" data-role="button" data-inline="true" data-theme="m">m</a>
 				<a href="#" data-role="button" data-inline="true" data-theme="n">n</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="o">n</a>
+				<a href="#" data-role="button" data-inline="true" data-theme="p">n</a>
 				</div>
 				-->
 			</div>
@@ -72,7 +74,7 @@
 		<!-- End of Home Page -->
 
 		<!-- Add Page -->
-		<section data-role="page" id="add-page">
+		<section data-role="page" id="add-page" class="wrapper">
 			<header class="page-header" data-role="header" data-theme="ff">
 				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>-->
 				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
@@ -90,8 +92,10 @@
 						<input type="date" name="date" id="dateinput" value="">
 					</div></td>
 				</form>
-				</div>
-				<fieldset class="ui-grid-b ui-responsive">
+			</div>
+			<div class="footer-container">
+				<div class="ui-grid-b" data-theme="00">
+
 					<div class="ui-block-a">
 						<!--<a href="#score-page" data-role="button" data-icon="flat-new" data-iconpos="left" data-theme="k" onclick="calcs('new')">Frames</a>-->
 						<a href="#score-page" class="img-btn" data-role="button" data-theme="k" onclick="calcs('new')"><img src="images/score.png"/></a>
@@ -100,14 +104,14 @@
 						<!--<a href="#" onclick="MaxRecordsQuery();" id="submit" data-role="button" data-icon="flat-checkround" data-theme="g">Confirm</a>-->
 						<!--<a href="#" onclick="InsertData();" id="submit" data-role="button" data-icon="flat-checkround" data-theme="g">Confirm</a>-->
 						<a href="#" onclick="InsertData();" class="img-btn" id="submit" data-role="button" data-theme="g"><img src="images/tick.png"/></a>
-
 					</div>
 					<div class="ui-block-c">
 						<!--<a href="#" data-role="button" data-icon="flat-man" data-iconpos="left" data-theme="j" onclick="share()">Share</a>-->
 						<a href="#" class="img-btn" data-role="button" data-theme="j" onclick="share()"><img src="images/share.png"/></a>
 					</div>
-				</fieldset>
-			
+				</div>
+			</div>
+
 		</section>
 		<!-- End of Add Page -->
 
@@ -324,17 +328,21 @@
 
 					</div>
 
-					<fieldset class="ui-grid-a" id="fitted-div">
-						<div class="ui-block-a">
-							<!--<a href="" data-role="button" data-icon="flat-cross" data-iconpos="left" data-theme="m" onclick="RemoveCurrentGame()">Delete</a>-->
-							<a href="" class="img-btn" data-role="button" data-theme="m" onclick="RemoveCurrentGame()"><img src="images/trash.png"/></a>
-						</div>
-						<div class="ui-block-b">
-							<!--<a href="#" data-role="button" data-icon="flat-man" data-iconpos="left" data-theme="j" onclick="shareCapture()">Share</a>-->
-							<a href="#" class="img-btn" data-role="button" data-theme="j" onclick="shareCapture()"><img src="images/share.png"/></a>
-						</div>
-					</fieldset>
 				</form>
+
+			</div>
+			<div class="footer-container">
+				<div  class="ui-grid-a" id="fitted-div" data-theme="00">
+					<div class="ui-block-a">
+						<!--<a href="" data-role="button" data-icon="flat-cross" data-iconpos="left" data-theme="m" onclick="RemoveCurrentGame()">Delete</a>-->
+						<a href="" class="img-btn" data-role="button" data-theme="m" onclick="RemoveCurrentGame()"><img src="images/trash.png"/></a>
+					</div>
+					<div class="ui-block-b">
+						<!--<a href="#" data-role="button" data-icon="flat-man" data-iconpos="left" data-theme="j" onclick="shareCapture()">Share</a>-->
+						<a href="#" class="img-btn" data-role="button" data-theme="j" onclick="shareCapture()"><img src="images/share.png"/></a>
+					</div>
+				</div>
+			</div>
 			</div>
 		</section>
 		<!-- End of Record Page -->
@@ -496,9 +504,9 @@
 		<!-- Score Page -->
 		<section data-role="page" id="score-page">
 			<!--<header class="page-header" data-role="header" data-position="fixed" data-theme="ff">-->
-				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Scores">Back</a>-->
-				<!--<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
-				<h1>Score Sheet</h1>
+			<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Scores">Back</a>-->
+			<!--<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
+			<h1>Score Sheet</h1>
 			</header>-->
 			<div data-role="main">
 				<form id="edit-generate-bowling-score-calculator" class="generate-bowling-score-calculator">
@@ -688,28 +696,35 @@
 								<tr class="bowling-calc-buttons-table-1"></tr>
 
 								<tr class="bowling-calc-buttons-table-2"></tr>
+								
 							</table>
-							<div id="edit-final-res-container" class="close-frame-btn final-res-container">
+							<div id="edit-final-res-container" class="final-res-container">
 
 							</div>
-							<fieldset class="ui-grid-b ui-responsive">
-								<div class="ui-block-a">
-									<!--<a href="#" onclick="calc('edit','erase');" data-role="button" data-icon="arrow-l" data-theme="i">Erase</a>-->
-									<a href="#" class="img-btn" onclick="calc('edit','erase');" data-role="button" data-theme="i"><img src="images/erase.png"/></a>
-								</div>
-								<div class="ui-block-b">
-									<!--<a href="#" onclick="saveCapture();" data-role="button" data-icon="flat-checkround" data-theme="g">Save</a>-->
-									<a href="#" class="img-btn" onclick="saveCapture();" data-role="button" data-theme="g"><img src="images/save.png"/></a>
-								</div>
-								<div class="ui-block-c">
-									<!--<a href="#" onclick="calc('edit','new');" data-role="button" data-icon="flat-cross" data-theme="m">Clear</a>-->
-									<a href="#" data-rel="back" class="img-btn" onclick="calc('edit','new');" data-role="button" data-theme="m"><img src="images/trash.png"/></a>
-								</div>
-							</fieldset>
+
+						</div>
+						<div class="bowling-calc-buttons-container close-frame-btn">
+							
 						</div>
 
 					</div>
 				</form>
+			</div>
+			<div class="footer-container">
+				<fieldset class="ui-grid-b ">
+					<div class="ui-block-a">
+						<!--<a href="#" onclick="calc('edit','erase');" data-role="button" data-icon="arrow-l" data-theme="i">Erase</a>-->
+						<a href="#" class="img-btn" onclick="calc('edit','erase');" data-role="button" data-theme="ff"><img src="images/erase.png"/></a>
+					</div>
+					<div class="ui-block-b">
+						<!--<a href="#" onclick="saveCapture();" data-role="button" data-icon="flat-checkround" data-theme="g">Save</a>-->
+						<a href="#" class="img-btn" onclick="saveCapture();" data-role="button" data-theme="g"><img src="images/save.png"/></a>
+					</div>
+					<div class="ui-block-c">
+						<!--<a href="#" onclick="calc('edit','new');" data-role="button" data-icon="flat-cross" data-theme="m">Clear</a>-->
+						<a href="#" data-rel="back" class="img-btn" onclick="calc('edit','new');" data-role="button" data-theme="m"><img src="images/trash.png"/></a>
+					</div>
+				</fieldset>
 			</div>
 		</section>
 		<!-- End of Score Page -->
