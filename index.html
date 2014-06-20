@@ -7,7 +7,6 @@
 		<title>Bowling Scores</title>
 
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
-		<!--<link rel="stylesheet" type="text/css" href="css/jquery.swipeButton.css" />-->
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 
 		<script src="js/jquery-1.9.1.min.js"></script>
@@ -23,8 +22,6 @@
 		<script src="js/jquery.mobile-1.4.2.min.js"></script>
 		<script src="js/database.js"></script>
 		<script src="js/bowling_score_calculator.js"></script>
-		<!--<script src="js/hammer.js"></script>
-		<script src="js/swipeout.js"></script>-->
 		<script src="js/fastclick.js"></script>
 		<script src="js/html2canvas.js"></script>
 		<script type="text/javascript" charset="utf-8" src="statusbar.js"></script>
@@ -36,10 +33,8 @@
 		<section data-role="page" id="home-page" class="ui-responsive-panel">
 
 			<header class="page-header" id="home-header" data-role="header" data-position="fixed" data-theme="ff">
-				<!--<a href="#add-page" data-rel="page" data-transition="slideup" data-role="button" data-icon="plus" title="Home" onclick="resetFields()">Add</a>-->
 				<a href="#add-page" data-rel="page" data-transition="slideup" data-role="button" onclick="resetFields()"><img src="images/add.png"/></a>
 				<h1>ProBowl Stats</h1>
-				<!--<a href="#stats-page" id="stats-btn" data-rel="page" data-iconpos="right" data-transition="slide" data-role="button" data-icon="flat-menu" onclick="StatsData()">Stats</a>-->
 				<a href="#stats-page" id="stats-btn" data-rel="page" data-transition="slide" data-role="button"  onclick="StatsData()"><img src="images/stats.png"/></a>
 			</header>
 
@@ -76,7 +71,6 @@
 		<!-- Add Page -->
 		<section data-role="page" id="add-page" class="wrapper">
 			<header class="page-header" data-role="header" data-theme="ff">
-				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>-->
 				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1>New Game</h1>
 			</header>
@@ -97,16 +91,12 @@
 				<div class="ui-grid-b" data-theme="00">
 
 					<div class="ui-block-a">
-						<!--<a href="#score-page" data-role="button" data-icon="flat-new" data-iconpos="left" data-theme="k" onclick="calcs('new')">Frames</a>-->
 						<a href="#score-page" class="img-btn" data-role="button" data-theme="k" onclick="calcs('new')"><img src="images/score.png"/></a>
 					</div>
 					<div class="ui-block-b">
-						<!--<a href="#" onclick="MaxRecordsQuery();" id="submit" data-role="button" data-icon="flat-checkround" data-theme="g">Confirm</a>-->
-						<!--<a href="#" onclick="InsertData();" id="submit" data-role="button" data-icon="flat-checkround" data-theme="g">Confirm</a>-->
 						<a href="#" onclick="InsertData();" class="img-btn" id="submit" data-role="button" data-theme="g"><img src="images/tick.png"/></a>
 					</div>
 					<div class="ui-block-c">
-						<!--<a href="#" data-role="button" data-icon="flat-man" data-iconpos="left" data-theme="j" onclick="share()">Share</a>-->
 						<a href="#" class="img-btn" data-role="button" data-theme="j" onclick="share()"><img src="images/share.png"/></a>
 					</div>
 				</div>
@@ -118,10 +108,8 @@
 		<!-- View Page -->
 		<section data-role="page" id="date-page" >
 			<header class="page-header" data-role="header" data-theme="ff">
-				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>-->
 				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="date-header">Current Date</h1>
-				<!--<a href="#sess-page" id="stats-btn" data-rel="page" data-iconpos="right" data-transition="slide" data-role="button" data-icon="flat-menu" onclick="StatsSessionData()">Stats</a>-->
 				<a href="#sess-page" id="stats-btn" data-rel="page" data-transition="slide" data-role="button" onclick="StatsSessionData()"><img src="images/stats.png"/></a>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
@@ -133,7 +121,6 @@
 		<!-- Record Page -->
 		<section data-role="page" id="record-page">
 			<header class="page-header" data-role="header" data-theme="ff">
-				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Home">Back</a>-->
 				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="date-header">Current Photo</h1>
 
@@ -320,12 +307,7 @@
 								</tr>
 							</table>
 						</div>
-						<!--<div class="bowling-calc-buttons-container">-->
-
-						<!--</div>-->
-
 					</div>
-
 				</form>
 				<div id="view-final-res-container" class="final-res-container">
 					<h1 id="view-final-res" class="final-res">0</h1>
@@ -335,11 +317,9 @@
 			<div class="footer-container">
 				<div  class="ui-grid-a" id="fitted-div" data-theme="00">
 					<div class="ui-block-a">
-						<!--<a href="" data-role="button" data-icon="flat-cross" data-iconpos="left" data-theme="m" onclick="RemoveCurrentGame()">Delete</a>-->
 						<a href="" class="img-btn" data-role="button" data-theme="m" onclick="RemoveCurrentGame()"><img src="images/trash.png"/></a>
 					</div>
 					<div class="ui-block-b">
-						<!--<a href="#" data-role="button" data-icon="flat-man" data-iconpos="left" data-theme="j" onclick="shareCapture()">Share</a>-->
 						<a href="#" class="img-btn" data-role="button" data-theme="j" onclick="shareCapture()"><img src="images/share.png"/></a>
 					</div>
 				</div>
@@ -351,7 +331,6 @@
 		<!-- Stats Page -->
 		<section data-role="page" id="stats-page">
 			<header class="page-header" data-role="header" data-position="fixed" data-theme="ff">
-				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Stats">Back</a>-->
 				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="stats-header">Overall Statistics</h1>
 			</header>
@@ -496,7 +475,6 @@
 						</fieldset>
 					</li>
 				</ul>
-				<!--<a href="#" onclick="ConfirmAllClear();" id="clear" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="m">Delete All Data</a>-->
 				<a href="#" class="img-btn" onclick="ConfirmAllClear();" id="clear" data-role="button" data-theme="m"><img src="images/trash.png"/></a>
 			</div>
 		</section>
@@ -697,32 +675,22 @@
 								<tr class="bowling-calc-buttons-table-1"></tr>
 
 								<tr class="bowling-calc-buttons-table-2"></tr>
-
 							</table>
-							<div id="edit-final-res-container" class="final-res-container">
-
-							</div>
-
+							<div id="edit-final-res-container" class="final-res-container"></div>
 						</div>
-						<div class="bowling-calc-buttons-container close-frame-btn">
-
-						</div>
-
+						<div class="bowling-calc-buttons-container close-frame-btn"></div>
 					</div>
 				</form>
 			</div>
 			<div class="footer-container">
 				<fieldset class="ui-grid-b ">
 					<div class="ui-block-a">
-						<!--<a href="#" onclick="calc('edit','erase');" data-role="button" data-icon="arrow-l" data-theme="i">Erase</a>-->
 						<a href="#" class="img-btn" onclick="calc('edit','erase');" data-role="button" data-theme="ff"><img src="images/erase.png"/></a>
 					</div>
 					<div class="ui-block-b">
-						<!--<a href="#" onclick="saveCapture();" data-role="button" data-icon="flat-checkround" data-theme="g">Save</a>-->
 						<a href="#" class="img-btn" onclick="saveCapture();" data-role="button" data-theme="g"><img src="images/save.png"/></a>
 					</div>
 					<div class="ui-block-c">
-						<!--<a href="#" onclick="calc('edit','new');" data-role="button" data-icon="flat-cross" data-theme="m">Clear</a>-->
 						<a href="#" data-rel="back" class="img-btn" onclick="calc('edit','new');" data-role="button" data-theme="m"><img src="images/trash.png"/></a>
 					</div>
 				</fieldset>
@@ -733,7 +701,6 @@
 		<!-- Sess Page -->
 		<section data-role="page" id="sess-page">
 			<header class="page-header" data-role="header" data-position="fixed" data-theme="ff">
-				<!--<a data-rel="back" data-role="button" data-icon="arrow-l" title="Stats">Back</a>-->
 				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="stats-header">Session Statistics</h1>
 			</header>
@@ -852,7 +819,6 @@
 						</fieldset>
 					</li>
 				</ul>
-				<!--<a href="#" onclick="ConfirmSessionClear();" data-role="button" data-icon="flat-cross" data-iconpos="right" data-theme="m">Delete Session</a>-->
 				<a href="#" class="img-btn" onclick="ConfirmSessionClear();" data-role="button" data-theme="m"><img src="images/trash.png"/></a>
 			</div>
 		</section>

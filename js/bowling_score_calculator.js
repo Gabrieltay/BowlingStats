@@ -1,11 +1,10 @@
 var frame_no = 1;
 var throw_no = 1;
 var complete = 0;
-//var scores = new Array();
+
 var btnx = -1;
 var results = [];
 var theme = "n";
-//new Array();
 
 /**
  * Function to return result for the operation performed on calc.
@@ -315,16 +314,7 @@ function injectXBtn(num) {
 	htmlString = '<td class="bowling-calc-buttons-container"><a href="#" data-role="button" data-theme="' + theme + '" name="b-X " value="' + i + '" onclick=' + calcStr + '><img src="images/x.png"/></a></td>';
 
 	$(".close-frame-btn").empty();
-	//$(".close-frame-btn").append(htmlString);
-	/*
-	 if ( isLandscape())
-	 $(".bowling-calc-buttons-table-1").append(htmlString);
 
-	 else if (num >= 4 && num < 8)
-	 $(".bowling-calc-buttons-table-2").append(htmlString);
-	 else
-	 $(".bowling-calc-buttons-table-3").append(htmlString);
-	 */
 	if (isLandscape())
 		$(".bowling-calc-buttons-table-1").append(htmlString);
 	else {
@@ -367,12 +357,6 @@ function injectYBtn(num) {
 		htmlString = '<a href="#" data-role="button" data-theme="' + theme + '" name="b-/ " onclick=' + calcStr + '><img src="images/s.png"/></a>';
 		$(".close-frame-btn").append(htmlString);
 	}
-	/*
-	 else if (num >= 4 && num < 8)
-	 $(".bowling-calc-buttons-table-2").append(htmlString);
-	 else
-	 $(".bowling-calc-buttons-table-3").append(htmlString);
-	 */
 
 	injectBlanks(num);
 

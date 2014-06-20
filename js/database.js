@@ -23,29 +23,15 @@ for (var i = 2; i <= 22; i++) {
 var init = function() {
 	onDeviceReady();
 
-	//	new SwipeOut(document.getElementById("bowl_list"));
-	//	new SwipeOut(document.getElementById("date_list"));
-
-	//	$("#date_list").on("delete", "li", RemoveGame);
-	//	$("#bowl_list").on("delete", "li", RemoveDate);
-
-	//	$('ul').on('touchstart', function(e) {
-	//		$(this).addClass('tapped');
-	//	});
-
-	//	$('ul').on('touchend', function(e) {
-	//		$(this).removeClass('tapped');
-	//	});
 	var options = {
 		frequency : 3000
 	};
 
-	 $(window).resize(function() {
-	 	if ($.mobile.activePage.attr('id') == "score-page")
-        	buttonsRedraw();
-    });
-    
-    
+	$(window).resize(function() {
+		if ($.mobile.activePage.attr('id') == "score-page")
+			buttonsRedraw();
+	});
+
 	FastClick.attach(document.body);
 };
 
