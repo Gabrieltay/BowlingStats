@@ -483,6 +483,20 @@ function share() {
 	}
 }
 
+function shareComplete() {
+	mCanvas = "";
+	if (isCompleted()) {
+		html2canvas($("#view-bowling-calc-score-container"), {
+			onrendered : function(canvas) {
+				mCanvas = canvas.toDataURL("image/jepg");
+				share();
+			}
+		});
+	} else {
+		toast('Frames scores not recorded. Unable to share.');
+	}
+}
+
 function shareCapture() {
 	mCanvas = "";
 	if ($("#view-frame1-res").text().trim() != "") {
@@ -502,7 +516,7 @@ function saveCapture() {
 		html2canvas($("#edit-bowling-calc-score-container"), {
 			onrendered : function(canvas) {
 				mCanvas = canvas.toDataURL("image/jepg");
-				$.mobile.back();
+				
 				$("#scoreinput").val($('#edit-final-res').text());
 			}
 		});

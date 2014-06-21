@@ -9,6 +9,10 @@ input[type=number], textarea) {
 	-webkit-highlight: none;
 }
 
+.game-form label, .game-form input{
+	font-size: 1.5em !important;
+}
+
 header h1 {
 	font-size: 1em !important;
 	padding-top: 15px !important;
@@ -17,9 +21,15 @@ header h1 {
 
 header a img {
 	max-height: 24px !important;
-	padding-top: 5px !important;
-	padding-bottom: 3px !important;
+	padding: 7px !important;
+	/*padding-top: 5px !important;
+	padding-bottom: 3px !important;*/
 	/*border: 2px solid black !important;*/
+}
+
+header a {
+	padding-left: 5px !important;
+	padding-right: 5px !important;
 }
 
 ul {
@@ -113,7 +123,7 @@ section {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	font-size: 2em;
+	font-size: 20vh;
 }
 
 #fitted-div {
@@ -126,8 +136,8 @@ section {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	font-size: 10vmin;
-	margin-bottom: 4px;
+	font-size: 20vh;
+	
 }
 
 .bowling-calc-score-container label {
@@ -159,6 +169,7 @@ section {
 	border-radius: 8px 8px 0 0;
 	background: #8E8E93;
 	color: #FFFFFF;
+	height: 32px;
 }
 
 .bowling-calc-score-container .frame-no:nth-child(even) {
@@ -168,6 +179,12 @@ section {
 
 .bowling-calc-score-container .middle-frame {
 	border-top: 2px solid black;
+	height: 32px;
+}
+
+.bowling-calc-score-container .bottom-frame {
+	border-top: 2px solid black;
+	height: 32px;
 }
 
 .bowling-calc-score-container .first-frame-no {
@@ -185,6 +202,14 @@ section {
 	border-radius: 8px;
 	border: 2px solid black;
 	background: #FFFFFF;
+}
+
+.score-res{
+	font-size: 0.8em !important;	
+}
+
+.score-content{
+	padding: 8px;	
 }
 
 .stats-score {
