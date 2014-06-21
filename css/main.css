@@ -12,11 +12,11 @@ input[type=number], textarea) {
 header h1 {
 	font-size: 1em !important;
 	padding-top: 15px !important;
-	padding-bottom: 22px !important;
+	padding-bottom: 15px !important;
 }
 
 header a img {
-	max-height: 36px !important;
+	max-height: 24px !important;
 	padding-top: 5px !important;
 	padding-bottom: 3px !important;
 	/*border: 2px solid black !important;*/
@@ -33,7 +33,7 @@ ul {
 }
 
 .img-btn img {
-	max-height: 36px !important;
+	max-height: 24px !important;
 }
 
 .close-frame-btn img {

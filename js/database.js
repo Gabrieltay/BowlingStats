@@ -227,7 +227,7 @@ function RefreshQuery(tx) {
 			var avg = Math.floor(results.rows.item(i).a);
 			var count = results.rows.item(i).c;
 			var date = new Date(dateString);
-			var string = '<li id="all_' + i + '" data-theme="g' + (i % 2) + '"><a href="#date-page" data-transition="slide" data-rel="page" onclick="DateQuery(' + date.valueOf() + ');" class="ui-link-inherit"> [' + dateToYMD(date) + '] ' + count + ' games Avg - ' + avg + '</a></li>';
+			var string = '<li id="all_' + i + '" data-theme="o' + (i % 2) + '"><a href="#date-page" data-transition="slide" data-rel="page" onclick="DateQuery(' + date.valueOf() + ');" class="ui-link-inherit"> [' + dateToYMD(date) + '] ' + count + ' games Avg - ' + avg + '</a></li>';
 			$("#bowl_list").append(string);
 		};
 		freshList("bowl_list");
@@ -275,7 +275,7 @@ function DateQuery(dateValue) {
 				for (var i = 0; i < len; i++) {
 					var id = results.rows.item(i).id;
 					var score = results.rows.item(i).score;
-					var string = '<li id="all_' + id + '" data-icon="flat-new" data-iconpos="right" data-theme="g' + (i % 2) + '""><a href="#record-page" data-rel="page" data-transition="slide" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
+					var string = '<li id="all_' + id + '" data-icon="flat-new" data-iconpos="right" data-theme="o' + (i % 2) + '""><a href="#record-page" data-rel="page" data-transition="slide" onclick="GetImage(' + id + ');"> Game ' + (i + 1) + ' - ' + score + '</a></li>';
 					$("#date_list").append(string);
 				};
 				freshList("date_list");
@@ -479,7 +479,7 @@ function share() {
 			}
 		});
 	} else {
-		toast('Frames scores not recored. Unable to share.');
+		toast('Frames scores not recorded. Unable to share.');
 	}
 }
 
@@ -493,7 +493,7 @@ function shareCapture() {
 			}
 		});
 	} else {
-		toast('Frames scores not recored. Unable to share.');
+		toast('Frames scores not recorded. Unable to share.');
 	}
 }
 

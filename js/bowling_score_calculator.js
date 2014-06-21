@@ -4,7 +4,7 @@ var complete = 0;
 
 var btnx = -1;
 var results = [];
-var theme = "n";
+var theme = "00";
 
 /**
  * Function to return result for the operation performed on calc.

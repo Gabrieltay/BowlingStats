@@ -32,9 +32,9 @@
 		<!-- Home Page -->
 		<section data-role="page" id="home-page" class="ui-responsive-panel">
 
-			<header class="page-header" id="home-header" data-role="header" data-position="fixed" data-theme="ff">
+			<header class="page-header" id="home-header" data-role="header" data-position="fixed" data-theme="p">
 				<a href="#add-page" data-rel="page" data-transition="slideup" data-role="button" onclick="resetFields()"><img src="images/add.png"/></a>
-				<h1>ProBowl Stats</h1>
+				<h1>PROBowl</h1>
 				<a href="#stats-page" id="stats-btn" data-rel="page" data-transition="slide" data-role="button"  onclick="StatsData()"><img src="images/stats.png"/></a>
 			</header>
 
@@ -70,7 +70,7 @@
 
 		<!-- Add Page -->
 		<section data-role="page" id="add-page" class="wrapper">
-			<header class="page-header" data-role="header" data-theme="ff">
+			<header class="page-header" data-role="header" data-theme="p">
 				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1>New Game</h1>
 			</header>
@@ -91,13 +91,13 @@
 				<div class="ui-grid-b" data-theme="00">
 
 					<div class="ui-block-a">
-						<a href="#score-page" class="img-btn" data-role="button" data-theme="k" onclick="calcs('new')"><img src="images/score.png"/></a>
+						<a href="#score-page" class="img-btn" data-role="button" data-theme="o0" onclick="calcs('new')"><img src="images/score.png"/></a>
 					</div>
 					<div class="ui-block-b">
-						<a href="#" onclick="InsertData();" class="img-btn" id="submit" data-role="button" data-theme="g"><img src="images/tick.png"/></a>
+						<a href="#" onclick="InsertData();" class="img-btn" id="submit" data-role="button" data-theme="o0"><img src="images/tick.png"/></a>
 					</div>
 					<div class="ui-block-c">
-						<a href="#" class="img-btn" data-role="button" data-theme="j" onclick="share()"><img src="images/share.png"/></a>
+						<a href="#" class="img-btn" data-role="button" data-theme="o0" onclick="share()"><img src="images/share.png"/></a>
 					</div>
 				</div>
 			</div>
@@ -107,7 +107,7 @@
 
 		<!-- View Page -->
 		<section data-role="page" id="date-page" >
-			<header class="page-header" data-role="header" data-theme="ff">
+			<header class="page-header" data-role="header" data-theme="p">
 				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="date-header">Current Date</h1>
 				<a href="#sess-page" id="stats-btn" data-rel="page" data-transition="slide" data-role="button" onclick="StatsSessionData()"><img src="images/stats.png"/></a>
@@ -120,10 +120,10 @@
 
 		<!-- Record Page -->
 		<section data-role="page" id="record-page">
-			<header class="page-header" data-role="header" data-theme="ff">
+			<header class="page-header" data-role="header" data-theme="p">
 				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="date-header">Current Photo</h1>
-
+				<a href="#" class="img-btn" data-role="button" onclick="shareCapture()"><img src="images/share.png"/></a>
 			</header>
 			<div data-role="main" data-content-theme="b" class="ui-content ui-corner-all">
 				<form id="view-generate-bowling-score-calculator" class="generate-bowling-score-calculator">
@@ -315,13 +315,10 @@
 			</div>
 			</div>
 			<div class="footer-container">
-				<div  class="ui-grid-a" id="fitted-div" data-theme="00">
-					<div class="ui-block-a">
+				<div  class="ui-grid-solo" id="fitted-div" data-theme="00">
+
 						<a href="" class="img-btn" data-role="button" data-theme="m" onclick="RemoveCurrentGame()"><img src="images/trash.png"/></a>
-					</div>
-					<div class="ui-block-b">
-						<a href="#" class="img-btn" data-role="button" data-theme="j" onclick="shareCapture()"><img src="images/share.png"/></a>
-					</div>
+
 				</div>
 			</div>
 
@@ -330,7 +327,7 @@
 
 		<!-- Stats Page -->
 		<section data-role="page" id="stats-page">
-			<header class="page-header" data-role="header" data-position="fixed" data-theme="ff">
+			<header class="page-header" data-role="header" data-position="fixed" data-theme="p">
 				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="stats-header">Overall Statistics</h1>
 			</header>
@@ -482,10 +479,10 @@
 
 		<!-- Score Page -->
 		<section data-role="page" id="score-page">
-			<!--
-			<header class="page-header" data-role="header" data-position="fixed" data-theme="ff">
-			<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
-			<h1>Score Sheet</h1>-->
+
+			<header class="page-header" data-role="header" data-position="fixed" data-theme="p">
+				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
+				<h1>Score Sheet</h1>
 			</header>
 			<div data-role="content">
 				<form id="edit-generate-bowling-score-calculator" class="generate-bowling-score-calculator">
@@ -685,13 +682,13 @@
 			<div class="footer-container">
 				<fieldset class="ui-grid-b ">
 					<div class="ui-block-a">
-						<a href="#" class="img-btn" onclick="calc('edit','erase');" data-role="button" data-theme="ff"><img src="images/erase.png"/></a>
+						<a href="#" class="img-btn" onclick="calc('edit','erase');" data-role="button" data-theme="o0"><img src="images/erase.png"/></a>
 					</div>
 					<div class="ui-block-b">
-						<a href="#" class="img-btn" onclick="saveCapture();" data-role="button" data-theme="g"><img src="images/save.png"/></a>
+						<a href="#" class="img-btn" onclick="saveCapture();" data-role="button" data-theme="o0"><img src="images/save.png"/></a>
 					</div>
 					<div class="ui-block-c">
-						<a href="#" data-rel="back" class="img-btn" onclick="calc('edit','new');" data-role="button" data-theme="m"><img src="images/trash.png"/></a>
+						<a href="#" data-rel="back" class="img-btn" onclick="calc('edit','new');" data-role="button" data-theme="o0"><img src="images/trash.png"/></a>
 					</div>
 				</fieldset>
 			</div>
@@ -700,7 +697,7 @@
 
 		<!-- Sess Page -->
 		<section data-role="page" id="sess-page">
-			<header class="page-header" data-role="header" data-position="fixed" data-theme="ff">
+			<header class="page-header" data-role="header" data-position="fixed" data-theme="p">
 				<a data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="stats-header">Session Statistics</h1>
 			</header>
