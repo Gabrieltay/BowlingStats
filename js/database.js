@@ -556,18 +556,11 @@ function drawLine(canvas) {
 	canvas.attr("width", width);
 	canvas.attr("height", height);
 
-	var options = {
-		scaleOverride : true,
-		scaleSteps : 15,
-		scaleStepWidth : 20,
-		scaleStartValue : 0,
-	};
-
 	var lineChartData = {
 		labels : [],
 		datasets : [{
 			//fillColor : "rgba(220,220,220,0.5)",
-			fillColor: "#FF9500",
+			fillColor : "#FF9500",
 			strokeColor : "rgba(220,220,220,1)",
 			pointColor : "#FFAA33",
 			pointStrokeColor : "#fff",
@@ -578,18 +571,30 @@ function drawLine(canvas) {
 
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
-		tx.executeSql("SELECT AVG(score) AS a, date FROM blist GROUP BY date ORDER BY date ASC", [], function(tx, results) {
+		tx.executeSql("SELECT AVG(score) AS a, date FROM blist GROUP BY date ORDER BY date DESC LIMIT 5", [], function(tx, results) {
 			var len = results.rows.length;
-			for (var i = 0; i < len; i++) {
+			var max = 0;
+			var min = 300;
+			for (var i = len - 1; i >= 0; i--) {
 				var date = new Date(results.rows.item(i).date);
 				var avg = Math.floor(results.rows.item(i).a);
+				if ( avg > max )
+					max = avg;
+				if ( min > avg )
+					min = avg;
 				var d = date.getDate();
 				var m = date.getMonth() + 1;
-				var dateString = (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) ;
+				var dateString = (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m);
 
 				lineChartData.labels.push(dateString);
 				lineChartData.datasets[0].data.push(avg);
 			}
+			var options = {
+				scaleOverride : true,
+				scaleSteps : 10,
+				scaleStepWidth : Math.floor((max-min)/10),
+				scaleStartValue : min,
+			};
 			var myLine = new Chart(canvas.get(0).getContext("2d")).Line(lineChartData, options);
 		});
 	});
