@@ -30,16 +30,17 @@ header a img {
 header a {
 	padding-left: 5px !important;
 	padding-right: 5px !important;
+	margin: 0px !important;
 }
 
 header .l-header-btn {
-	padding-left: 1px !important;
+	padding-left: 5px !important;
 	padding-right: 9px !important;
 }
 
 header .r-header-btn {
 	padding-left: 9px !important;
-	padding-right: 1px !important;
+	padding-right: 5px !important;
 }
 
 ul {
@@ -163,7 +164,7 @@ section {
 }
 
 .bowling-calc-score-container .third {
-	border-bottom: 2px solid black;
+	
 }
 
 .bowling-calc-score-container .frame {
