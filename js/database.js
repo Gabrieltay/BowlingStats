@@ -30,8 +30,8 @@ var init = function() {
 	$(window).resize(function() {
 		if ($.mobile.activePage.attr('id') == "score-page")
 			buttonsRedraw();
-		if ($.mobile.activePage.attr('id') == "graph-page")
-			draw();
+		//if ($.mobile.activePage.attr('id') == "graph-page")
+		//draw();
 	});
 
 	FastClick.attach(document.body);
@@ -41,7 +41,7 @@ $(document).ready(init);
 
 $(document).on("pagecontainershow", function(event, ui) {
 	var activePage = $.mobile.pageContainer.pagecontainer("getActivePage").prop('id');
-	if ( activePage == "graph-page")
+	if (activePage == "graph-page")
 		draw();
 });
 
@@ -552,21 +552,24 @@ function draw() {
 
 function drawLine(canvas) {
 	var width = canvas.parent().width();
+	var height = $(window).height() * 0.4;
 	canvas.attr("width", width);
+	canvas.attr("height", height);
 
 	var options = {
 		scaleOverride : true,
-		scaleSteps : 20,
-		scaleStepWidth : 15,
+		scaleSteps : 15,
+		scaleStepWidth : 20,
 		scaleStartValue : 0,
 	};
 
 	var lineChartData = {
 		labels : [],
 		datasets : [{
-			fillColor : "rgba(220,220,220,0.5)",
+			//fillColor : "rgba(220,220,220,0.5)",
+			fillColor: "#FF9500",
 			strokeColor : "rgba(220,220,220,1)",
-			pointColor : "rgba(220,220,220,1)",
+			pointColor : "#FFAA33",
 			pointStrokeColor : "#fff",
 			data : [],
 			title : "Hello"
@@ -578,8 +581,12 @@ function drawLine(canvas) {
 		tx.executeSql("SELECT AVG(score) AS a, date FROM blist GROUP BY date ORDER BY date ASC", [], function(tx, results) {
 			var len = results.rows.length;
 			for (var i = 0; i < len; i++) {
-				var dateString = results.rows.item(i).date;
+				var date = new Date(results.rows.item(i).date);
 				var avg = Math.floor(results.rows.item(i).a);
+				var d = date.getDate();
+				var m = date.getMonth() + 1;
+				var dateString = (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) ;
+
 				lineChartData.labels.push(dateString);
 				lineChartData.datasets[0].data.push(avg);
 			}
@@ -590,19 +597,21 @@ function drawLine(canvas) {
 
 function drawPie(canvas) {
 	var width = canvas.parent().width();
+	var height = $(window).height() * 0.4;
 	canvas.attr("width", width);
+	canvas.attr("height", height);
 
 	var data = [{
 		value : 0,
-		color : "#878BB6",
+		color : "#FF3A2D",
 		title : "Strikes"
 	}, {
 		value : 0,
-		color : "#4ACAB4",
+		color : "#FF9500",
 		title : "Spares"
 	}, {
 		value : 0,
-		color : "#FF8153",
+		color : "#4A4A4A",
 		title : "Open"
 	}];
 
@@ -623,7 +632,7 @@ function drawPie(canvas) {
 			var asp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 			data[0].value = Math.floor(ask);
 			data[1].value = Math.floor(asp);
-			data[2].value = (10 - Math.floor(ask) - Math.floor(asp));
+			data[2].value = (11 - Math.floor(ask) - Math.floor(asp));
 
 			var myPie = new Chart(canvas.get(0).getContext("2d")).Pie(data, myoptions);
 		});
