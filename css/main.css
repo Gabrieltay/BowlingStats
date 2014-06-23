@@ -8,8 +8,7 @@ input[type=number], textarea) {
 	-webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
 	-webkit-highlight: none;
 }
-
-.game-form label, .game-form input{
+.game-form label, .game-form input {
 	font-size: 1.5em !important;
 }
 
@@ -21,15 +20,26 @@ header h1 {
 
 header a img {
 	max-height: 24px !important;
-	padding: 7px !important;
+	padding-top: 7px !important;
+	padding-bottom: 7px !important;
 	/*padding-top: 5px !important;
-	padding-bottom: 3px !important;*/
+	 padding-bottom: 3px !important;*/
 	/*border: 2px solid black !important;*/
 }
 
 header a {
 	padding-left: 5px !important;
 	padding-right: 5px !important;
+}
+
+header .l-header-btn {
+	padding-left: 1px !important;
+	padding-right: 9px !important;
+}
+
+header .r-header-btn {
+	padding-left: 9px !important;
+	padding-right: 1px !important;
 }
 
 ul {
@@ -123,7 +133,7 @@ section {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	font-size: 20vh;
+	font-size: 10vh;
 }
 
 #fitted-div {
@@ -137,7 +147,6 @@ section {
 	margin-left: auto;
 	margin-right: auto;
 	font-size: 20vh;
-	
 }
 
 .bowling-calc-score-container label {
@@ -183,7 +192,7 @@ section {
 }
 
 .bowling-calc-score-container .bottom-frame {
-	border-top: 2px solid black;
+
 	height: 32px;
 }
 
@@ -204,12 +213,12 @@ section {
 	background: #FFFFFF;
 }
 
-.score-res{
-	font-size: 0.8em !important;	
+.score-res {
+	font-size: 0.8em !important;
 }
 
-.score-content{
-	padding: 8px;	
+.score-content {
+	padding: 8px;
 }
 
 .stats-score {

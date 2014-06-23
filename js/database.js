@@ -30,12 +30,20 @@ var init = function() {
 	$(window).resize(function() {
 		if ($.mobile.activePage.attr('id') == "score-page")
 			buttonsRedraw();
+		if ($.mobile.activePage.attr('id') == "graph-page")
+			draw();
 	});
 
 	FastClick.attach(document.body);
 };
 
 $(document).ready(init);
+
+$(document).on("pagecontainershow", function(event, ui) {
+	var activePage = $.mobile.pageContainer.pagecontainer("getActivePage").prop('id');
+	if ( activePage == "graph-page")
+		draw();
+});
 
 function onProfileSubmit(event) {
 	event.preventDefault();
@@ -486,7 +494,7 @@ function share() {
 function shareComplete() {
 	mCanvas = "";
 	if (isCompleted()) {
-		html2canvas($("#view-bowling-calc-score-container"), {
+		html2canvas($("#edit-bowling-calc-score-container"), {
 			onrendered : function(canvas) {
 				mCanvas = canvas.toDataURL("image/jepg");
 				share();
@@ -516,7 +524,7 @@ function saveCapture() {
 		html2canvas($("#edit-bowling-calc-score-container"), {
 			onrendered : function(canvas) {
 				mCanvas = canvas.toDataURL("image/jepg");
-				
+
 				$("#scoreinput").val($('#edit-final-res').text());
 			}
 		});
@@ -535,4 +543,89 @@ function buttonFeedback(mode) {//return;
 	//if (mode == 'edit')
 	//	navigator.notification.beep(1);
 	//		navigator.notification.vibrate(100);
+}
+
+function draw() {
+	drawLine($('#lineCanvas'));
+	drawPie($('#pieCanvas'));
+}
+
+function drawLine(canvas) {
+	var width = canvas.parent().width();
+	canvas.attr("width", width);
+
+	var options = {
+		scaleOverride : true,
+		scaleSteps : 20,
+		scaleStepWidth : 15,
+		scaleStartValue : 0,
+	};
+
+	var lineChartData = {
+		labels : [],
+		datasets : [{
+			fillColor : "rgba(220,220,220,0.5)",
+			strokeColor : "rgba(220,220,220,1)",
+			pointColor : "rgba(220,220,220,1)",
+			pointStrokeColor : "#fff",
+			data : [],
+			title : "Hello"
+		}]
+	};
+
+	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
+	db.transaction(function(tx) {
+		tx.executeSql("SELECT AVG(score) AS a, date FROM blist GROUP BY date ORDER BY date ASC", [], function(tx, results) {
+			var len = results.rows.length;
+			for (var i = 0; i < len; i++) {
+				var dateString = results.rows.item(i).date;
+				var avg = Math.floor(results.rows.item(i).a);
+				lineChartData.labels.push(dateString);
+				lineChartData.datasets[0].data.push(avg);
+			}
+			var myLine = new Chart(canvas.get(0).getContext("2d")).Line(lineChartData, options);
+		});
+	});
+}
+
+function drawPie(canvas) {
+	var width = canvas.parent().width();
+	canvas.attr("width", width);
+
+	var data = [{
+		value : 0,
+		color : "#878BB6",
+		title : "Strikes"
+	}, {
+		value : 0,
+		color : "#4ACAB4",
+		title : "Spares"
+	}, {
+		value : 0,
+		color : "#FF8153",
+		title : "Open"
+	}];
+
+	var myoptions = {
+		inGraphDataShow : true,
+		inGraphDataAnglePosition : 2,
+		inGraphDataRadiusPosition : 2,
+		inGraphDataRotate : "inRadiusAxisRotateLabels",
+		inGraphDataAlign : "center",
+		inGraphDataVAlign : "middle",
+		inGraphDataFontColor : "white",
+		inGraphDataFontSize : 11
+	}
+	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
+	db.transaction(function(tx) {
+		tx.executeSql('SELECT AVG(strikes) AS a, AVG(spares) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
+			var ask = (results.rows.item(0).a == null) ? 0 : results.rows.item(0).a;
+			var asp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
+			data[0].value = Math.floor(ask);
+			data[1].value = Math.floor(asp);
+			data[2].value = (10 - Math.floor(ask) - Math.floor(asp));
+
+			var myPie = new Chart(canvas.get(0).getContext("2d")).Pie(data, myoptions);
+		});
+	});
 }
