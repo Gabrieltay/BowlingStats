@@ -33,7 +33,26 @@ var init = function() {
 		//if ($.mobile.activePage.attr('id') == "graph-page")
 		//draw();
 	});
-	draw();
+	
+	//draw();
+	
+	$(".graph-slide").owlCarousel({
+
+		navigation : false, // Show next and prev buttons
+		slideSpeed : 300,
+		paginationSpeed : 400,
+		items : 1,
+    	lazyLoad : true,
+		afterMove : draw
+		// "singleItem:true" is a shortcut for:
+		// items : 1,
+		// itemsDesktop : false,
+		// itemsDesktopSmall : false,
+		// itemsTablet: false,
+		// itemsMobile : false
+	});
+	
+	
 	
 	FastClick.attach(document.body);
 };
@@ -554,7 +573,7 @@ function draw() {
 function drawLine(canvas) {
 	canvas.empty();
 	var width = canvas.parent().width();
-	var height = $(window).height() * 0.4;
+	var height = $(window).height() * 0.8;
 	canvas.attr("width", width);
 	canvas.attr("height", height);
 
@@ -580,9 +599,9 @@ function drawLine(canvas) {
 			for (var i = len - 1; i >= 0; i--) {
 				var date = new Date(results.rows.item(i).date);
 				var avg = Math.floor(results.rows.item(i).a);
-				if ( avg > max )
+				if (avg > max)
 					max = avg;
-				if ( min > avg )
+				if (min > avg)
 					min = avg;
 				var d = date.getDate();
 				var m = date.getMonth() + 1;
@@ -594,7 +613,7 @@ function drawLine(canvas) {
 			var options = {
 				scaleOverride : true,
 				scaleSteps : 10,
-				scaleStepWidth : Math.floor((max-min)/10),
+				scaleStepWidth : Math.floor((max - min) / 10),
 				scaleStartValue : min,
 			};
 			var myLine = new Chart(canvas.get(0).getContext("2d")).Line(lineChartData, options);
@@ -605,7 +624,7 @@ function drawLine(canvas) {
 function drawPie(canvas) {
 	canvas.empty();
 	var width = canvas.parent().width();
-	var height = $(window).height() * 0.4;
+	var height = $(window).height() * 0.8;
 	canvas.attr("width", width);
 	canvas.attr("height", height);
 
@@ -624,6 +643,7 @@ function drawPie(canvas) {
 	}];
 
 	var myoptions = {
+		animationSteps : 50,
 		inGraphDataShow : true,
 		inGraphDataAnglePosition : 2,
 		inGraphDataRadiusPosition : 2,
