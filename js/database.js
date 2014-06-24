@@ -377,6 +377,28 @@ function RemoveCurrentSession() {
 function GetImage(id) {
 	mFile = "";
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
+	/*
+	$("#view-final-res-container").empty();
+	$("#view-final-res-container").owlCarousel({
+		navigation : false, // Show next and prev buttons
+		slideSpeed : 300,
+		paginationSpeed : 400,
+		pagination : true,
+		items : 1,});
+	var dateString = dateToYMD(new Date(mDate));
+	
+	db.transaction(function(tx) {
+		tx.executeSql('SELECT id,score FROM blist WHERE date="' + dateString + '"', [], function(tx, results) {
+			var len = results.rows.length;
+			if (len > 0) {
+				for (var i = 0; i < len; i++) {
+				var content = '<div id="'+results.rows.items(i).id+'" class="item"><h1 id="view-final-res" class="final-res">'+ results.rows.items(i).score +'</h1></div>';
+				$("#view-final-res-container").append(content);
+				$("#view-final-res-container").trigger('create');
+				}
+			}
+		})});
+		*/
 	db.transaction(function(tx) {
 		tx.executeSql('SELECT file,date,score,frames,' + frameCols + ' FROM blist WHERE id="' + id + '"', [], function(tx, results) {
 			var len = results.rows.length;
@@ -396,7 +418,6 @@ function GetImage(id) {
 			}
 		});
 	});
-
 }
 
 function ConfirmAllClear() {//ClearData(1);return;

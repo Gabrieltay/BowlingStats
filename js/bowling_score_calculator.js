@@ -64,6 +64,7 @@ function calc(mode, op) {
 
 	if (op == "erase") {
 		complete = 0;
+		$("#scoreinput").val("");
 		switch (throw_no) {
 			case 1:
 				if (frame_no == 1) {
@@ -288,6 +289,7 @@ function end_game() {
 	complete = 1;
 	clearBtn();
 	$('#edit-final-res-container').append('<h1 id="edit-final-res" class="final-res">' + results[frame_no]['result'] + '</h1>');
+	$("#scoreinput").val($('#edit-final-res').text());
 }
 
 function injectXBtn(num) {
