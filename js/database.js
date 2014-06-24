@@ -9,6 +9,7 @@ var mCanvas = "";
 var mFile = "";
 var mDate = "";
 var mStatus = "ready";
+var deviceWidth = 0;
 
 var frameCols = "";
 for (var i = 2; i <= 22; i++) {
@@ -26,7 +27,9 @@ var init = function() {
 	var options = {
 		frequency : 3000
 	};
-
+	
+	deviceWidth = $(window).width();alert(deviceWidth);
+	
 	$(window).resize(function() {
 		if ($.mobile.activePage.attr('id') == "score-page")
 			buttonsRedraw();
@@ -572,7 +575,7 @@ function draw() {
 
 function drawLine(canvas) {
 	canvas.empty();
-	var width = (canvas.parent().width() * 0.9 > 300 ? canvas.parent().width() * 0.9 : 300);
+	var width = deviceWidth * 0.9;
 	var height = $(window).height() * 0.8;
 	canvas.attr("width", width);
 	canvas.attr("height", height);
@@ -623,7 +626,7 @@ function drawLine(canvas) {
 
 function drawPie(canvas) {
 	canvas.empty();
-	var width = (canvas.parent().width() * 0.9 > 300 ? canvas.parent().width() * 0.9 : 300);
+	var width = deviceWidth * 0.9;
 	var height = $(window).height() * 0.8;
 	canvas.attr("width", width);
 	canvas.attr("height", height);
