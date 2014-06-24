@@ -572,7 +572,7 @@ function draw() {
 
 function drawLine(canvas) {
 	canvas.empty();
-	var width = canvas.parent().width();
+	var width = (canvas.parent().width() * 0.9 > 300 ? canvas.parent().width() * 0.9 : 300);
 	var height = $(window).height() * 0.8;
 	canvas.attr("width", width);
 	canvas.attr("height", height);
@@ -623,7 +623,7 @@ function drawLine(canvas) {
 
 function drawPie(canvas) {
 	canvas.empty();
-	var width = canvas.parent().width();
+	var width = (canvas.parent().width() * 0.9 > 300 ? canvas.parent().width() * 0.9 : 300);
 	var height = $(window).height() * 0.8;
 	canvas.attr("width", width);
 	canvas.attr("height", height);
