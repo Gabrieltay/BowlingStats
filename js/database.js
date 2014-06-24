@@ -33,7 +33,8 @@ var init = function() {
 		//if ($.mobile.activePage.attr('id') == "graph-page")
 		//draw();
 	});
-
+	draw();
+	
 	FastClick.attach(document.body);
 };
 
@@ -551,6 +552,7 @@ function draw() {
 }
 
 function drawLine(canvas) {
+	canvas.empty();
 	var width = canvas.parent().width();
 	var height = $(window).height() * 0.4;
 	canvas.attr("width", width);
@@ -601,6 +603,7 @@ function drawLine(canvas) {
 }
 
 function drawPie(canvas) {
+	canvas.empty();
 	var width = canvas.parent().width();
 	var height = $(window).height() * 0.4;
 	canvas.attr("width", width);

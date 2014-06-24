@@ -64,7 +64,7 @@
 				-->
 				<!--<canvas id="canvas" height="350" width="400"></canvas>-->
 			</div>
-			
+
 			<script>
 				RefreshData();
 			</script>
@@ -325,16 +325,20 @@
 
 		</section>
 		<!-- End of Record Page -->
-		
+
 		<!-- Graph Page -->
 		<section data-role="page" id="graph-page">
 			<header class="page-header" data-role="header" data-position="fixed" data-theme="p">
 				<a class="l-header-btn" data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="stats-header">Overall Statistics</h1>
 			</header>
-			<div data-role="content">
-				<canvas id="lineCanvas" height="300" width="400"></canvas>
-				<canvas id="pieCanvas" height="300" width="400"></canvas>
+			<div data-role="content" class="graph-slide">
+				<div>
+					<canvas id="lineCanvas" height="300" width="400"></canvas>
+				</div>
+				<div>
+					<canvas id="pieCanvas" height="300" width="400"></canvas>
+				</div>
 			</div>
 
 		</section>
