@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 		<link rel="stylesheet" type="text/css" href="css/owl.carousel.css" />
+		<link rel="stylesheet" href="css/owl.theme.css" />
 		<script src="js/jquery-1.9.1.min.js"></script>
 		<script src="js/jquery.once.js?v=1.2"></script>
 		<script type="text/javascript">
@@ -20,6 +21,7 @@
 			});
 		</script>
 		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+		<script src="js/parse-1.2.18.min.js"></script>
 		<script src="js/owl.carousel.js"></script>
 		<script src="js/database.js"></script>
 		<script src="js/bowling_score_calculator.js"></script>
@@ -95,10 +97,13 @@
 				<div class="ui-grid-a" data-theme="00">
 
 					<div class="ui-block-a">
-						<a href="#score-page" class="img-btn" data-role="button" data-theme="o0" onclick="calcs('new')"><img src="images/score.png"/></a>
+						<a href="#score-page" class="img-btn" data-role="button" data-theme="o0" onclick="calcs('new')">
+							<img src="images/score.png"/><p>Frames</p>
+							</a>
 					</div>
 					<div class="ui-block-b">
-						<a href="#" onclick="InsertData();" class="img-btn" id="submit" data-role="button" data-theme="o0"><img src="images/tick.png"/></a>
+						<a href="#" onclick="InsertData();" class="img-btn" id="submit" data-role="button" data-theme="o0">
+							<img src="images/tick.png"/><p>Save</p></a>
 					</div>
 				</div>
 			</div>
@@ -335,9 +340,11 @@
 			</header>
 			<div data-role="content" class="graph-slide owl-carousel owl-theme">
 				<div class="item">
+					<h1>Progress</h1>
 					<canvas id="lineCanvas" height="300" width="400"></canvas>
 				</div>
 				<div class="item">
+					<h1>Ratio</h1>
 					<canvas id="pieCanvas" height="300" width="400"></canvas>
 				</div>
 			</div>
@@ -704,10 +711,16 @@
 			<div class="footer-container">
 				<fieldset class="ui-grid-a">
 					<div class="ui-block-a">
-						<a href="#" class="img-btn" onclick="calc('edit','erase');" data-role="button" data-theme="o0"><img src="images/erase.png"/></a>
+						<a href="#" class="img-btn" onclick="calc('edit','erase');" data-role="button" data-theme="o0">
+							<img src="images/erase.png"/>
+							<p>Erase</p>
+							</a>
 					</div>
 					<div class="ui-block-b">
-						<a href="#" data-rel="back" class="img-btn" onclick="calc('edit','new');" data-role="button" data-theme="o0"><img src="images/trash.png"/></a>
+						<a href="#" data-rel="back" class="img-btn" onclick="calc('edit','new');" data-role="button" data-theme="o0">
+							<img src="images/trash.png"/>
+							<p>Clear</p>
+							</a>
 					</div>
 				</fieldset>
 			</div>

@@ -43,6 +43,7 @@ function calc(mode, op) {
 					end_game();
 				} else {
 					throw_no++;
+					injectYBtn(parseInt(10 - op));
 				}
 			}
 		} else {

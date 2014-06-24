@@ -10,6 +10,7 @@ var mFile = "";
 var mDate = "";
 var mStatus = "ready";
 var deviceWidth = 0;
+var mGraphHeightRatio = 0.6;
 
 var frameCols = "";
 for (var i = 2; i <= 22; i++) {
@@ -27,25 +28,26 @@ var init = function() {
 	var options = {
 		frequency : 3000
 	};
-	
-	deviceWidth = $(window).width();alert(deviceWidth);
-	
+
+	deviceWidth = $(window).width();
+
 	$(window).resize(function() {
 		if ($.mobile.activePage.attr('id') == "score-page")
 			buttonsRedraw();
 		//if ($.mobile.activePage.attr('id') == "graph-page")
 		//draw();
 	});
-	
+
 	//draw();
-	
+
 	$(".graph-slide").owlCarousel({
 
 		navigation : false, // Show next and prev buttons
 		slideSpeed : 300,
 		paginationSpeed : 400,
+		pagination : true,
 		items : 1,
-    	lazyLoad : true,
+		lazyLoad : true,
 		afterMove : draw
 		// "singleItem:true" is a shortcut for:
 		// items : 1,
@@ -54,9 +56,7 @@ var init = function() {
 		// itemsTablet: false,
 		// itemsMobile : false
 	});
-	
-	
-	
+
 	FastClick.attach(document.body);
 };
 
@@ -575,8 +575,8 @@ function draw() {
 
 function drawLine(canvas) {
 	canvas.empty();
-	var width = deviceWidth * 0.9;
-	var height = $(window).height() * 0.8;
+	var width = deviceWidth * 0.95;
+	var height = $(window).height() * mGraphHeightRatio;
 	canvas.attr("width", width);
 	canvas.attr("height", height);
 
@@ -626,8 +626,8 @@ function drawLine(canvas) {
 
 function drawPie(canvas) {
 	canvas.empty();
-	var width = deviceWidth * 0.9;
-	var height = $(window).height() * 0.8;
+	var width = deviceWidth * 0.95;
+	var height = $(window).height() * mGraphHeightRatio;
 	canvas.attr("width", width);
 	canvas.attr("height", height);
 
