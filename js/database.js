@@ -57,6 +57,23 @@ var init = function() {
 		// itemsMobile : false
 	});
 
+	$(".caro-container").owlCarousel({
+
+		navigation : false, // Show next and prev buttons
+		slideSpeed : 300,
+		paginationSpeed : 400,
+		pagination : true,
+		items : 1,
+		lazyLoad : true,
+		afterMove : afterAction
+		// "singleItem:true" is a shortcut for:
+		// items : 1,
+		// itemsDesktop : false,
+		// itemsDesktopSmall : false,
+		// itemsTablet: false,
+		// itemsMobile : false
+	});
+
 	FastClick.attach(document.body);
 };
 
@@ -375,30 +392,9 @@ function RemoveCurrentSession() {
 }
 
 function GetImage(id) {
+	gamesCarousel();
 	mFile = "";
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
-	/*
-	$("#view-final-res-container").empty();
-	$("#view-final-res-container").owlCarousel({
-		navigation : false, // Show next and prev buttons
-		slideSpeed : 300,
-		paginationSpeed : 400,
-		pagination : true,
-		items : 1,});
-	var dateString = dateToYMD(new Date(mDate));
-	
-	db.transaction(function(tx) {
-		tx.executeSql('SELECT id,score FROM blist WHERE date="' + dateString + '"', [], function(tx, results) {
-			var len = results.rows.length;
-			if (len > 0) {
-				for (var i = 0; i < len; i++) {
-				var content = '<div id="'+results.rows.items(i).id+'" class="item"><h1 id="view-final-res" class="final-res">'+ results.rows.items(i).score +'</h1></div>';
-				$("#view-final-res-container").append(content);
-				$("#view-final-res-container").trigger('create');
-				}
-			}
-		})});
-		*/
 	db.transaction(function(tx) {
 		tx.executeSql('SELECT file,date,score,frames,' + frameCols + ' FROM blist WHERE id="' + id + '"', [], function(tx, results) {
 			var len = results.rows.length;
@@ -414,11 +410,49 @@ function GetImage(id) {
 				}
 
 				populateScores(results.rows.item(0));
-				$("#view-final-res").text(score);
+				//$(".view-final-res").text(score);
 			}
 		});
 	});
 }
+
+function gamesCarousel() {
+	$(".caro-container").empty();
+
+	var dateString = dateToYMD(new Date(mDate));
+	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
+	db.transaction(function(tx) {
+		tx.executeSql('SELECT id,score FROM blist WHERE date="' + dateString + '"', [], function(tx, results) {
+			var len = results.rows.length;
+			if (len > 0) {
+				for (var i = 0; i < len; i++) {
+					var id = results.rows.item(i).id;
+					var score = results.rows.item(i).score;
+					var content = "<div id=\"" + id + "\" class=\"item view-final-res-container final-res-container\"><h1 class=\"view-final-res final-res\">" + score + "</h1></div>";
+					$(".caro-container").data('owlCarousel').addItem(content);
+				}
+
+			}
+		})
+	});
+
+}
+
+function afterAction() {
+	var owl = $("#view-final-res-caro");
+	id = this.owl.userItems[this.owl.currentItem].id;
+	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
+	db.transaction(function(tx) {
+		tx.executeSql('SELECT score,frames,' + frameCols + ' FROM blist WHERE id="' + id + '"', [], function(tx, results) {
+			var len = results.rows.length;
+			if (len > 0) {
+				var score = results.rows.item(0).score;
+				var frames = results.rows.item(0).frames;
+				populateScores(results.rows.item(0));
+			}
+		})});
+}
+
 
 function ConfirmAllClear() {//ClearData(1);return;
 	navigator.notification.confirm('Clear All Data?', ClearData);
