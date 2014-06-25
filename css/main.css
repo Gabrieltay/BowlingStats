@@ -37,7 +37,7 @@ input[type=number], textarea) {
 	font-family: 'raleway-thin';
 }
 
-#stats-page ul, #sess-page ul{
+#stats-page ul, #sess-page ul {
 	font-family: 'quicksand', 'raleway-thin';
 }
 header h1 {
@@ -170,14 +170,13 @@ section {
 	font-size: 10vh;
 }
 
-.final-res-container h3{
+.final-res-container h3 {
 	width: 100%;
 	vertical-align: middle;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
 	font-size: 5vh;
-	
 }
 
 #fitted-div {
@@ -193,7 +192,6 @@ section {
 	font-size: 10vh;
 }
 
-
 .bowling-calc-score-container label {
 	height: 100%;
 	width: 100%;/*25px;*/
@@ -208,7 +206,7 @@ section {
 }
 
 .bowling-calc-score-container .third {
-
+	border-bottom: 2px solid black;
 }
 
 .bowling-calc-score-container .frame {
@@ -268,6 +266,38 @@ section {
 
 .stats-score {
 	float: right;
+}
+
+@media screen and (max-height: 480px) {
+	/* rules that only apply for canvases narrower than 1000px */
+	.bowling-calc-buttons-container a img {
+		max-height: 24px;
+		vertical-align: middle;
+	}
+
+	.close-frame-btn img {
+		max-height: 44px !important;
+	}
+
+	.img-btn img {
+		max-height: 24px !important;
+	}
+
+	.bowling-calc-buttons-table-1 a, .bowling-calc-buttons-table-2 a {
+		font-size: 1em;
+		padding-left: 0;
+		padding-right: 0;
+		padding-top: 12px;
+		padding-bottom: 8px;
+	}
+
+	.footer-container {
+		font-size: 1em;
+	}
+	
+	.ui-btn {
+		padding-top: 0.3em;
+	}
 }
 /*
  .form-item-frame1-2 {
