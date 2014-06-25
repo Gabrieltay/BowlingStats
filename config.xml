@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns = "http://www.w3.org/ns/widgets"
 xmlns:gap = "http://phonegap.com/ns/1.0"
-id        = "com.phonegap.BowlingStats"
-version   = "1.1.0">
+id        = "com.gabmobi.BowlingStats"
+version   = "1.1.1">
 
 	<name>ProBowl Stats</name>
 	<description>A Bowling Statistics app. Analyze your games. Monitor your progress.</description>
@@ -123,15 +123,9 @@ version   = "1.1.0">
 	<!--
 	<gap:splash src="res/splashscreen/ios/Default.png" gap:platform="ios" width="320" height="480" />
 	<gap:splash src="res/splashscreen/ios/Default@2x.png" gap:platform="ios" width="640" height="960" />
-
-
 	<gap:splash src="res/splashscreen/ios/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
-
-
 	<gap:splash src="res/splashscreen/ios/Default-Portrait.png" gap:platform="ios" width="768" height="1024" />
 	<gap:splash src="res/splashscreen/ios/Default-Landscape.png" gap:platform="ios" width="1024" height="768" />
-
-
 	<gap:splash src="res/splashscreen/ios/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
 	<gap:splash src="res/splashscreen/ios/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />
 	
