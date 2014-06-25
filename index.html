@@ -36,7 +36,7 @@
 		<!-- Home Page -->
 		<section data-role="page" id="home-page" class="ui-responsive-panel">
 
-			<header class="page-header" id="home-header" data-role="header" data-position="fixed" data-theme="p">
+			<header class="page-header" id="home-header" data-role="header" data-position="fixed" data-theme="p" data-tap-toggle="false">
 				<a class="l-header-btn" href="#add-page" data-rel="page" data-transition="slideup" data-role="button" onclick="resetFields()"><img src="images/add.png"/></a>
 				<h1>PROBowl</h1>
 				<a class="r-header-btn" href="#stats-page" id="stats-btn" data-rel="page" data-transition="slide" data-role="button"  onclick="StatsData()"><img src="images/stats.png"/></a>
@@ -76,7 +76,7 @@
 
 		<!-- Add Page -->
 		<section data-role="page" id="add-page" class="wrapper">
-			<header class="page-header" data-role="header" data-theme="p">
+			<header class="page-header" data-role="header" data-theme="p" data-tap-toggle="false">
 				<a class="l-header-btn" data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1>New Game</h1>
 			</header>
@@ -116,7 +116,7 @@
 
 		<!-- View Page -->
 		<section data-role="page" id="date-page" >
-			<header class="page-header" data-role="header" data-theme="p">
+			<header class="page-header" data-role="header" data-theme="p" data-tap-toggle="false">
 				<a class="l-header-btn" data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="date-header">Current Date</h1>
 				<a class="r-header-btn" href="#sess-page" id="stats-btn" data-rel="page" data-transition="slide" data-role="button" onclick="StatsSessionData()"><img src="images/stats.png"/></a>
@@ -129,7 +129,7 @@
 
 		<!-- Record Page -->
 		<section data-role="page" id="record-page">
-			<header class="page-header" data-role="header" data-theme="p">
+			<header class="page-header" data-role="header" data-theme="p" data-tap-toggle="false">
 				<a class="l-header-btn" data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="date-header">Current Photo</h1>
 				<a class="r-header-btn" href="#" class="img-btn" data-role="button" onclick="shareCapture()"><img src="images/share.png"/></a>
@@ -339,7 +339,7 @@
 
 		<!-- Graph Page -->
 		<section data-role="page" id="graph-page">
-			<header class="page-header" data-role="header" data-position="fixed" data-theme="p">
+			<header class="page-header" data-role="header" data-position="fixed" data-theme="p" data-tap-toggle="false">
 				<a class="l-header-btn" data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="stats-header">Overall Statistics</h1>
 			</header>
@@ -359,10 +359,10 @@
 
 		<!-- Stats Page -->
 		<section data-role="page" id="stats-page">
-			<header class="page-header" data-role="header" data-position="fixed" data-theme="p">
+			<header class="page-header" data-role="header" data-position="fixed" data-theme="p" data-tap-toggle="false">
 				<a class="l-header-btn" data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="stats-header">Overall Statistics</h1>
-				<a class="r-header-btn" href="#graph-page" data-role="button" title="Home"><img src="images/graph.png"/></a>
+				<a class="r-header-btn" href="#graph-page" data-role="button" onclick="draw()" title="Home"><img src="images/graph.png"/></a>
 			</header>
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true" data-theme="e">
@@ -513,7 +513,7 @@
 		<!-- Score Page -->
 		<section data-role="page" id="score-page">
 
-			<header class="page-header" data-role="header" data-position="fixed" data-theme="p">
+			<header class="page-header" data-role="header" data-position="fixed" data-theme="p" data-tap-toggle="false">
 				<a class="l-header-btn" data-rel="back" data-role="button" title="Home" onclick="saveCapture()"><img src="images/back.png"/></a>
 				<h1>Score Sheet</h1>
 				<a class="r-header-btn" href="#" class="img-btn" data-role="button" onclick="shareComplete()"><img src="images/share.png"/></a>
@@ -734,9 +734,10 @@
 
 		<!-- Sess Page -->
 		<section data-role="page" id="sess-page">
-			<header class="page-header" data-role="header" data-position="fixed" data-theme="p">
+			<header class="page-header" data-role="header" data-position="fixed" data-theme="p" data-tap-toggle="false">
 				<a class="l-header-btn" data-rel="back" data-role="button" title="Home"><img src="images/back.png"/></a>
 				<h1 class="stats-header">Session Statistics</h1>
+				<a class="r-header-btn" href="#graph-page" data-role="button" onclick="draw()" title="Home"><img src="images/graph.png"/></a>
 			</header>
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true" data-theme="e">

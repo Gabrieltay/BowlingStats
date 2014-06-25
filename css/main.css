@@ -3,6 +3,11 @@
 	src: url('fonts/Raleway-ExtraLight.otf'); /*URL to font*/
 }
 
+@font-face {
+	font-family: 'quicksand';
+	src: url('fonts/Quicksand-Regular.otf');
+}
+
 *:not(input[type=date],
 input[type=number], textarea) {
 	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -28,10 +33,13 @@ input[type=number], textarea) {
 	margin-right: auto;
 }
 
-.graph-slide .item h1 {
+.graph-slide .item h1, #add-page label, #add-page input {
 	font-family: 'raleway-thin';
 }
 
+#stats-page ul, #sess-page ul{
+	font-family: 'quicksand', 'raleway-thin';
+}
 header h1 {
 	font-size: 1em !important;
 	padding-top: 15px !important;
@@ -162,6 +170,16 @@ section {
 	font-size: 10vh;
 }
 
+.final-res-container h3{
+	width: 100%;
+	vertical-align: middle;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 5vh;
+	
+}
+
 #fitted-div {
 	margin-top: 6px;
 }
@@ -172,8 +190,9 @@ section {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	font-size: 20vh;
+	font-size: 10vh;
 }
+
 
 .bowling-calc-score-container label {
 	height: 100%;

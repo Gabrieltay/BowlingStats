@@ -11,6 +11,7 @@ var mDate = "";
 var mStatus = "ready";
 var deviceWidth = 0;
 var mGraphHeightRatio = 0.6;
+var mStats = "overall"// overall or session
 
 var frameCols = "";
 for (var i = 2; i <= 22; i++) {
@@ -46,8 +47,7 @@ var init = function() {
 		slideSpeed : 300,
 		paginationSpeed : 400,
 		pagination : true,
-		items : 1,
-		lazyLoad : true,
+		singleItem : true,
 		afterMove : draw
 		// "singleItem:true" is a shortcut for:
 		// items : 1,
@@ -63,8 +63,7 @@ var init = function() {
 		slideSpeed : 300,
 		paginationSpeed : 400,
 		pagination : true,
-		items : 1,
-		lazyLoad : true,
+		singleItem : true,
 		afterMove : afterAction
 		// "singleItem:true" is a shortcut for:
 		// items : 1,
@@ -81,8 +80,8 @@ $(document).ready(init);
 
 $(document).on("pagecontainershow", function(event, ui) {
 	var activePage = $.mobile.pageContainer.pagecontainer("getActivePage").prop('id');
-	if (activePage == "graph-page")
-		draw();
+	//if (activePage == "graph-page")
+	//	draw();
 });
 
 function onProfileSubmit(event) {
@@ -123,10 +122,12 @@ function RefreshData() {
 }
 
 function StatsData() {
+	mStats = "overview";
 	transactionDB(StatsQuery);
 }
 
 function StatsSessionData() {
+	mStats = "session";
 	transactionDB(StatsSessionQuery);
 }
 
@@ -392,7 +393,7 @@ function RemoveCurrentSession() {
 }
 
 function GetImage(id) {
-	gamesCarousel();
+		
 	mFile = "";
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
@@ -414,11 +415,13 @@ function GetImage(id) {
 			}
 		});
 	});
+	
+	gamesCarousel(id);
 }
 
-function gamesCarousel() {
+function gamesCarousel(recordId) {
 	$(".caro-container").empty();
-
+	var currrentItem = 0;
 	var dateString = dateToYMD(new Date(mDate));
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
@@ -427,15 +430,17 @@ function gamesCarousel() {
 			if (len > 0) {
 				for (var i = 0; i < len; i++) {
 					var id = results.rows.item(i).id;
+					if ( recordId == id )
+						currrentItem = i;
 					var score = results.rows.item(i).score;
-					var content = "<div id=\"" + id + "\" class=\"item view-final-res-container final-res-container\"><h1 class=\"view-final-res final-res\">" + score + "</h1></div>";
+					var content = "<div id=\"" + id + "\" class=\"item view-final-res-container final-res-container\"><h3>Game " + (i + 1) + "</h3><h1 class=\"view-final-res final-res\">" + score + "</h1></div>";
 					$(".caro-container").data('owlCarousel').addItem(content);
 				}
-
+		$(".owl-carousel").data('owlCarousel').jumpTo(currrentItem);
 			}
 		})
 	});
-
+	
 }
 
 function afterAction() {
@@ -450,9 +455,9 @@ function afterAction() {
 				var frames = results.rows.item(0).frames;
 				populateScores(results.rows.item(0));
 			}
-		})});
+		})
+	});
 }
-
 
 function ConfirmAllClear() {//ClearData(1);return;
 	navigator.notification.confirm('Clear All Data?', ClearData);
@@ -648,24 +653,34 @@ function drawLine(canvas) {
 		}]
 	};
 
+	var queryStr = "";
+	if (mStats == "overview")
+		queryStr = "SELECT AVG(score) AS a, date FROM blist GROUP BY date ORDER BY date DESC LIMIT 5"
+	else 
+		queryStr = "SELECT score AS a FROM blist WHERE date=\"" + dateToYMD(new Date(mDate))+"\" ORDER BY id DESC";
+
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
-		tx.executeSql("SELECT AVG(score) AS a, date FROM blist GROUP BY date ORDER BY date DESC LIMIT 5", [], function(tx, results) {
+		tx.executeSql(queryStr, [], function(tx, results) {
 			var len = results.rows.length;
 			var max = 0;
 			var min = 300;
 			for (var i = len - 1; i >= 0; i--) {
-				var date = new Date(results.rows.item(i).date);
+				var labelString = "Game " + (len - i);
 				var avg = Math.floor(results.rows.item(i).a);
 				if (avg > max)
 					max = avg;
 				if (min > avg)
 					min = avg;
-				var d = date.getDate();
-				var m = date.getMonth() + 1;
-				var dateString = (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m);
 
-				lineChartData.labels.push(dateString);
+				if (mStats == "overview") {
+					var date = new Date(results.rows.item(i).date);
+					var d = date.getDate();
+					var m = date.getMonth() + 1;
+					labelString = (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m);
+				}
+
+				lineChartData.labels.push(labelString);
 				lineChartData.datasets[0].data.push(avg);
 			}
 			var options = {
@@ -711,9 +726,16 @@ function drawPie(canvas) {
 		inGraphDataFontColor : "white",
 		inGraphDataFontSize : 11
 	}
+	
+	var queryStr = "";
+	if (mStats == "overview")
+		queryStr = "SELECT AVG(strikes) AS a, AVG(spares) AS s FROM blist WHERE frames=\"true\""
+	else 
+		queryStr = "SELECT AVG(strikes) AS a, AVG(spares) AS s FROM blist WHERE frames=\"true\" AND date=\"" + dateToYMD(new Date(mDate))+"\"";
+		
 	var db = window.openDatabase(DBname, DBversion, DBdisname, DBsize);
 	db.transaction(function(tx) {
-		tx.executeSql('SELECT AVG(strikes) AS a, AVG(spares) AS s FROM blist WHERE frames="true"', [], function(tx, results) {
+		tx.executeSql(queryStr, [], function(tx, results) {
 			var ask = (results.rows.item(0).a == null) ? 0 : results.rows.item(0).a;
 			var asp = (results.rows.item(0).s == null) ? 0 : results.rows.item(0).s;
 			data[0].value = Math.floor(ask);
