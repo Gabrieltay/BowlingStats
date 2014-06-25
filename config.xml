@@ -120,7 +120,7 @@ version   = "1.1.2">
 	<icon src="res/icon/android/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
 	<icon src="res/icon/android/xxhdpi.png" gap:platform="android" gap:qualifier="xxhdpi" />
 
-	<!--
+	
 	<gap:splash src="res/splashscreen/ios/Default.png" gap:platform="ios" width="320" height="480" />
 	<gap:splash src="res/splashscreen/ios/Default@2x.png" gap:platform="ios" width="640" height="960" />
 	<gap:splash src="res/splashscreen/ios/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
@@ -128,7 +128,7 @@ version   = "1.1.2">
 	<gap:splash src="res/splashscreen/ios/Default-Landscape.png" gap:platform="ios" width="1024" height="768" />
 	<gap:splash src="res/splashscreen/ios/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
 	<gap:splash src="res/splashscreen/ios/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />
-	
+	<!--
 	<gap:splash src="res/splashscreen/android/ldpi.png" gap:platform="android" gap:qualifier="ldpi" />
 	<gap:splash src="res/splashscreen/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
 	<gap:splash src="res/splashscreen/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
