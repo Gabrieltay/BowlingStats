@@ -293,7 +293,7 @@ function InsertQuery(tx) {
 	var date = $("#dateinput").val();
 	var dateString = new String(date);
 
-	if (score == '' || date == '' || parseInt(score) > 300) {
+	if (score == '' || date == '' || parseInt(score) > 300 || parseInt(score) < 0) {
 		toast("Empty/Invalid Fields！");
 		return;
 	}
