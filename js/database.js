@@ -683,6 +683,9 @@ function drawLine(canvas) {
 				lineChartData.labels.push(labelString);
 				lineChartData.datasets[0].data.push(avg);
 			}
+			
+			min = (min > 50 ? min - 50 : 0 );
+			
 			var options = {
 				scaleOverride : true,
 				scaleSteps : 10,
