@@ -582,9 +582,7 @@ function shareComplete() {
 				mCanvas = canvas.toDataURL("image/jepg");
 				share();
 			}
-		},
-		width: 640
-		);
+		});
 	} else {
 		toast('Frames scores not recorded. Unable to share.');
 	}
@@ -598,9 +596,7 @@ function shareCapture() {
 				mCanvas = canvas.toDataURL("image/jepg");
 				share();
 			}
-		},
-		width: 640
-		);
+		});
 	} else {
 		toast('Frames scores not recorded. Unable to share.');
 	}
@@ -614,9 +610,7 @@ function saveCapture() {
 
 				$("#scoreinput").val($('#edit-final-res').text());
 			}
-		},
-		width: 640
-		);
+		});
 	}
 }
 
